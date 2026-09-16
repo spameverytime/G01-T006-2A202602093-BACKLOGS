@@ -1,15 +1,14 @@
 # Nhật ký tuần 01 · 15/09 – 21/09/2026
 
-> **File ví dụ** — tên, số liệu và link đều là giả. Tuần mới thì copy
-> [`_mau-tuan.md`](_mau-tuan.md) thành `tuan-02.md`.
-
-**Lead tuần này:** @thanh-vien-a
+**Học viên:** Phạm Xuân Duy (MSSV: `2A202602093`) — **Đội:** T006  
+**Lead tuần này:** @thanh-vien-a  
 **Dữ liệu / task CVAT:** Ảnh giao thông đô thị — [task 12](https://cvat.example.com/tasks/12)
 
 ## Thành viên và phân công
 
 | Thành viên | Vị trí | Phân công tuần này |
 |---|---|---|
+| Phạm Xuân Duy (`2A202602093`) | Annotator | Job 1351 |
 | Nguyễn Văn A (@thanh-vien-a) | Lead | Chia job, chốt edge case, review xác suất 10% mọi job |
 | Trần Thị B (@thanh-vien-b) | Annotator | Job 101, 102 |
 | Lê Văn C (@thanh-vien-c) | Annotator | Job 103, 104 |
@@ -28,8 +27,19 @@ Phạm Thị D vừa review vừa gán, nên job 105 do Lead review.
 | 5 | Job 105 — 250 ảnh, cùng nhãn | @thanh-vien-d | @thanh-vien-a | 🟡 40% |  |
 | 6 | Đọc lại guideline §3, gom các ca chưa rõ | @thanh-vien-a | — | ✅ 100% | Ra P-001, P-002 |
 | 7 | Rà lại job 101 theo QĐ-001 | @thanh-vien-b | @thanh-vien-d | ✅ 100% | Sửa 37 ảnh người ngồi sau |
+| 8 | Job 1351 — Gán nhãn các đối tượng: `car`, `truck`, `traffic light`, `traffic sign`, `lane/double yellow`, `lane/double white`, `lane/single white`, `lane/single yellow`, `pedestrian`, `bicycle` | Phạm Xuân Duy | Lead | 🟡 Đang làm | 17/09: Đã xong các đối tượng trên; tiếp tục làm buổi trưa theo lịch nhóm |
 
 Mức hoàn thành: ✅ xong **và đã qua review** · 🟡 đang làm (ghi %) · ⛔ bị chặn (ghi lý do) · ⬜ chưa bắt đầu
+
+### Chi tiết tiến độ theo ngày (Phạm Xuân Duy)
+
+#### Ngày 17/09/2026
+- **Công việc thực hiện:** Gán nhãn **Job 1351**.
+- **Tiến độ đã hoàn thành:** Đã hoàn thiện gán nhãn các lớp đối tượng:
+  - **Phương tiện & Người:** `car`, `truck`, `pedestrian`, `bicycle`
+  - **Đèn tín hiệu & Biển báo:** `traffic light`, `traffic sign`
+  - **Vạch kẻ đường (Lanes):** `lane/double yellow`, `lane/double white`, `lane/single white`, `lane/single yellow`
+- **Kế hoạch tiếp theo:** Tiếp tục hoàn thiện các đối tượng còn lại vào buổi trưa theo lịch phân công của nhóm.
 
 ## Tổng kết
 
