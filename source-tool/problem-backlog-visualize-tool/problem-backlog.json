@@ -1,0 +1,91 @@
+{
+  "title": "Problem backlog",
+  "intro": "Những chỗ gặp trong lúc gán nhãn mà **guideline chưa trả lời được**, cộng các pain point về công cụ.\n\nGhi ngay khi gặp, kể cả lúc chưa biết xử lý thế nào. Một edge case không được ghi lại thì\nmỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn lớn nhất của nhãn không nhất quán.\n\n> Các mục bên dưới là **ví dụ**, tên và link CVAT đều giả. Mẫu trống để copy nằm cuối file.",
+  "items": [
+    {
+      "id": "P-001",
+      "summary": "Người ngồi sau xe máy: box riêng hay gộp chung với người lái",
+      "summaryTable": "Người ngồi sau xe máy: box riêng hay gộp với người lái",
+      "type": "Guideline mơ hồ",
+      "section": "§3.2",
+      "sectionDetail": "§3.2 — \"mỗi người một bounding box\"",
+      "reporter": "@thanh-vien-b",
+      "date": "16/09/2026",
+      "cvatLinks": [
+        {
+          "url": "https://cvat.example.com/tasks/12/jobs/101?frame=37",
+          "note": "hai người, gần như chồng khít"
+        },
+        {
+          "url": "https://cvat.example.com/tasks/12/jobs/101?frame=112",
+          "note": "người ngồi sau chỉ lộ đầu"
+        }
+      ],
+      "description": "§3.2 nói mỗi người một box, nhưng hình minh hoạ trong guideline lại vẽ một box cho cả xe máy lẫn người trên xe.",
+      "options": [
+        "Theo câu chữ: người ngồi sau có box `nguoi` riêng.",
+        "Theo hình minh hoạ: không vẽ box `nguoi` cho ai đang ngồi trên xe."
+      ],
+      "workaround": "vẽ box riêng và gắn tag `can_xem_lai` để dễ lọc ra sửa.",
+      "status": "✅ Đã chốt",
+      "result": "✅ [QĐ-001](so-quyet-dinh.md#qđ-001)",
+      "resultTable": "[QĐ-001](so-quyet-dinh.md#qđ-001)"
+    },
+    {
+      "id": "P-002",
+      "summary": "Xe bị che khuất hơn một nửa",
+      "summaryTable": "Xe bị che khuất hơn một nửa",
+      "type": "Guideline chưa nói tới",
+      "section": "§3.4",
+      "sectionDetail": "§3.4 — chỉ nói về vật thể bị cắt ở mép ảnh, không nói về bị che",
+      "reporter": "@thanh-vien-c",
+      "date": "17/09/2026",
+      "cvatLinks": [
+        {
+          "url": "https://cvat.example.com/tasks/12/jobs/103?frame=8",
+          "note": "ô tô sau xe buýt, lộ khoảng 30%"
+        },
+        {
+          "url": "https://cvat.example.com/tasks/12/jobs/103?frame=64",
+          "note": "xe máy sau cột điện, lộ khoảng 50%"
+        }
+      ],
+      "description": "Không rõ có gán nhãn vật thể bị che không, và nếu có thì box ôm phần nhìn thấy hay ôm cả phần ước lượng bị che.",
+      "options": [
+        "Bỏ qua khi lộ dưới 50%.",
+        "Luôn gán, box chỉ ôm phần nhìn thấy.",
+        "Luôn gán, box ôm cả phần ước lượng."
+      ],
+      "workaround": "dừng job 103, chuyển sang job khác ít ca che khuất.",
+      "status": "↗️ Hỏi BTC",
+      "result": "↗️ Đã hỏi BTC ngày 18/09/2026, chờ trả lời.",
+      "resultTable": "—"
+    },
+    {
+      "id": "P-003",
+      "summary": "Phải vẽ lại box y hệt qua nhiều frame liên tiếp",
+      "summaryTable": "Phải vẽ lại box y hệt qua nhiều frame liên tiếp",
+      "type": "Pain point công cụ",
+      "section": "—",
+      "sectionDetail": "—",
+      "reporter": "@thanh-vien-d",
+      "date": "18/09/2026",
+      "cvatLinks": [
+        {
+          "url": "https://cvat.example.com/tasks/12/jobs/105?frame=200",
+          "note": "frame 200–260, xe đỗ không di chuyển"
+        }
+      ],
+      "description": "Ảnh chụp liên tiếp từ camera cố định. Xe đỗ bên đường xuất hiện y nguyên ở hàng chục frame, annotator phải vẽ lại ở từng frame. Ước tính chiếm ~40% thời gian job 105.",
+      "options": [
+        "Dùng chế độ *Track* sẵn có của CVAT — cần thử xem có hợp với dữ liệu dạng ảnh rời không.",
+        "Viết script đọc file export của CVAT, nhân box sang các frame kế tiếp, rồi import lại."
+      ],
+      "workaround": "",
+      "status": "🗣️ Đang bàn",
+      "result": "🗣️ Đang bàn. Nếu chọn hướng 2 thì đổi trạng thái sang 🛠️ và làm trong [`source-tool/`](source-tool/).",
+      "resultTable": "—"
+    }
+  ]
+}
+

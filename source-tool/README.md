@@ -23,17 +23,21 @@ Mỗi tool một thư mục con, có README riêng:
 
 ```
 source-tool/
-├── README.md              ← file này, giữ bảng danh sách tool
-└── nhan-box-qua-frame/    ← ví dụ
+├── README.md                       ← file này, giữ bảng danh sách tool
+├── GUIDELINE.md                    ← quy chuẩn phát triển, phân bổ cổng 9xxx & danh mục tool
+└── problem-backlog-visualize-tool/ ← tool quản lý backlog (cổng 9001)
     ├── README.md
+    ├── run.sh
     └── …source code…
 ```
+
+> 📖 Chi tiết về quy chuẩn phát triển, phân bổ cổng `9xxx`, ý nghĩa và tác dụng của từng tool xem tại [`GUIDELINE.md`](GUIDELINE.md).
 
 Thêm tool thì thêm một dòng vào bảng:
 
 | Tool | Giải quyết | Người viết | Trạng thái |
 |---|---|---|---|
-| *(chưa có)* |  |  |  |
+| [`problem-backlog-visualize-tool`](problem-backlog-visualize-tool/) | Quản lý, trực quan hóa và nhập/xuất `problem-backlog.md` | @antigravity | Hoàn thành |
 
 ## Mẫu README cho từng tool
 

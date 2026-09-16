@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Problem Backlog Hub | Visualizer & Quản lý Pain Point</title>
+  <!-- Google Fonts: Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="app-header">
+    <div class="header-container">
+      <div class="brand-section">
+        <div class="brand-icon">
+          <span class="material-symbols-outlined">rule</span>
+        </div>
+        <div>
+          <h1 class="brand-title">Problem Backlog Hub</h1>
+          <p class="brand-subtitle">Quản lý Pain Point & Guideline Edge Cases cho Annotation Team</p>
+        </div>
+      </div>
+
+      <div class="header-actions">
+        <button id="btn-add" class="btn btn-primary">
+          <span class="material-symbols-outlined">add_circle</span>
+          Thêm Pain Point
+        </button>
+        <button id="btn-export-md" class="btn btn-secondary" title="Xuất file Markdown đúng chuẩn problem-backlog.md">
+          <span class="material-symbols-outlined">description</span>
+          Xuất Markdown
+        </button>
+        <button id="btn-io" class="btn btn-outline" title="Quản lý Lưu / Nhập / Xuất JSON & Markdown">
+          <span class="material-symbols-outlined">sync_alt</span>
+          Nhập / Xuất Dữ liệu
+        </button>
+        <button id="btn-help" class="btn btn-outline" title="Xem hướng dẫn quy định">
+          <span class="material-symbols-outlined">help_outline</span>
+        </button>
+        <button id="btn-reset" class="btn btn-outline" title="Khôi phục dữ liệu mẫu gốc">
+          <span class="material-symbols-outlined">restart_alt</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- Main App Body -->
+  <main class="main-container">
+
+    <!-- Intro Card -->
+    <div class="intro-card">
+      <div class="intro-content">
+        Những chỗ gặp trong lúc gán nhãn mà <strong>guideline chưa trả lời được</strong>, cộng các pain point về công cụ.<br>
+        Ghi ngay khi gặp, kể cả lúc chưa biết xử lý thế nào. Một edge case không được ghi lại thì mỗi người sẽ tự xử lý theo một kiểu — và đó là nguồn lớn nhất của nhãn không nhất quán.
+        <div class="intro-note">
+          💡 Dữ liệu được tự động ghi nhận và lưu trữ vào JSON (LocalStorage). Khi hoàn thành có thể tải file JSON hoặc xuất ngay file <code>problem-backlog.md</code> chuẩn định dạng.
+        </div>
+      </div>
+    </div>
+
+    <!-- KPI Cards Grid -->
+    <section class="kpi-grid" id="kpi-grid">
+      <!-- Generated dynamically by JS -->
+    </section>
+
+    <!-- Toolbar: Search, Filters & View Toggle -->
+    <section class="toolbar-card">
+      <div class="toolbar-filters">
+        <div class="search-box">
+          <span class="material-symbols-outlined search-icon">search</span>
+          <input type="text" id="search-input" placeholder="Tìm kiếm theo mã, tóm tắt, mô tả, người phát hiện...">
+        </div>
+
+        <select id="filter-type" class="select-filter">
+          <option value="">-- Tất cả Loại --</option>
+          <option value="Guideline chưa nói tới">Guideline chưa nói tới</option>
+          <option value="Guideline mơ hồ">Guideline mơ hồ</option>
+          <option value="Guideline mâu thuẫn">Guideline mâu thuẫn</option>
+          <option value="Pain point công cụ">Pain point công cụ</option>
+        </select>
+
+        <select id="filter-status" class="select-filter">
+          <option value="">-- Tất cả Trạng thái --</option>
+          <option value="🔴 Mở">🔴 Mở</option>
+          <option value="🗣️ Đang bàn">🗣️ Đang bàn</option>
+          <option value="↗️ Hỏi BTC">↗️ Hỏi BTC</option>
+          <option value="✅ Đã chốt">✅ Đã chốt</option>
+          <option value="🛠️ Làm tool">🛠️ Làm tool</option>
+          <option value="⚪ Bỏ">⚪ Bỏ</option>
+        </select>
+      </div>
+
+      <div style="display: flex; align-items: center; gap: 0.75rem;">
+        <span id="item-count-badge" style="font-size: 0.8rem; color: var(--text-muted); font-weight: 500;">
+          3 mục
+        </span>
+        <div class="view-modes">
+          <button id="view-table-btn" class="view-btn active" title="Chế độ xem Bảng">
+            <span class="material-symbols-outlined">table_rows</span>
+            Bảng
+          </button>
+          <button id="view-kanban-btn" class="view-btn" title="Chế độ xem Thẻ theo Trạng thái">
+            <span class="material-symbols-outlined">view_kanban</span>
+            Cột
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <!-- Table View -->
+    <div id="table-container" class="table-card">
+      <div class="table-responsive">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th style="width: 100px;">Mã</th>
+              <th>Tóm tắt</th>
+              <th style="width: 170px;">Loại</th>
+              <th style="width: 130px;">Mục guideline</th>
+              <th style="width: 140px;">Trạng thái</th>
+              <th>Kết quả</th>
+              <th style="width: 140px; text-align: right;">Thao tác</th>
+            </tr>
+          </thead>
+          <tbody id="table-body">
+            <!-- Dynamically populated -->
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Kanban Board View -->
+    <div id="kanban-container" class="kanban-grid" style="display: none;">
+      <!-- Dynamically populated -->
+    </div>
+
+  </main>
+
+  <!-- Modal: Add / Edit Item Form -->
+  <div id="modal-form" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 id="modal-form-title" class="modal-title">
+          <span class="material-symbols-outlined">edit_note</span>
+          <span>Thêm Pain Point mới</span>
+        </h2>
+        <button class="btn btn-outline btn-icon-only modal-close-btn">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <form id="problem-form">
+        <div class="modal-body">
+          <input type="hidden" id="form-edit-index">
+
+          <div class="form-row">
+            <div class="form-group" style="max-width: 160px;">
+              <label class="form-label" for="form-id">Mã vấn đề <span class="required">*</span></label>
+              <input type="text" id="form-id" class="form-control" required placeholder="P-001">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-status">Trạng thái <span class="required">*</span></label>
+              <select id="form-status" class="form-control" required>
+                <option value="🔴 Mở">🔴 Mở</option>
+                <option value="🗣️ Đang bàn">🗣️ Đang bàn</option>
+                <option value="↗️ Hỏi BTC">↗️ Hỏi BTC</option>
+                <option value="✅ Đã chốt">✅ Đã chốt</option>
+                <option value="🛠️ Làm tool">🛠️ Làm tool</option>
+                <option value="⚪ Bỏ">⚪ Bỏ</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-type">Loại <span class="required">*</span></label>
+              <select id="form-type" class="form-control" required>
+                <option value="Guideline chưa nói tới">Guideline chưa nói tới (Tình huống không có trong guideline)</option>
+                <option value="Guideline mơ hồ">Guideline mơ hồ (Đọc ra 2 cách hiểu trở lên)</option>
+                <option value="Guideline mâu thuẫn">Guideline mâu thuẫn (Hai mục nói ngược nhau)</option>
+                <option value="Pain point công cụ">Pain point công cụ (Làm trên CVAT chậm/dễ sai)</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label class="form-label" for="form-summary">Tóm tắt ngắn gọn <span class="required">*</span></label>
+            <input type="text" id="form-summary" class="form-control" required placeholder="Ví dụ: Người ngồi sau xe máy: box riêng hay gộp với người lái">
+            <span class="form-hint">Mô tả cốt lõi trong 1 dòng để dễ nắm bắt trên danh sách.</span>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="form-section">Mục guideline</label>
+              <input type="text" id="form-section" class="form-control" placeholder="§3.2 hoặc §3.4 hoặc —">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-section-detail">Chi tiết mục guideline (nếu có)</label>
+              <input type="text" id="form-section-detail" class="form-control" placeholder='Ví dụ: §3.2 — "mỗi người một bounding box"'>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <div class="form-group">
+              <label class="form-label" for="form-reporter">Người phát hiện</label>
+              <input type="text" id="form-reporter" class="form-control" placeholder="@username">
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="form-date">Ngày phát hiện</label>
+              <div style="display: flex; gap: 0.5rem;">
+                <input type="text" id="form-date" class="form-control" placeholder="dd/mm/yyyy">
+                <button type="button" id="btn-today" class="btn btn-secondary" style="padding: 0 0.75rem;" title="Điền ngày hôm nay">
+                  Hôm nay
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- CVAT Links -->
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+              <label class="form-label">
+                <span class="material-symbols-outlined" style="font-size: 16px;">link</span>
+                Link CVAT minh họa
+              </label>
+              <button type="button" id="btn-add-cvat-link" class="btn btn-outline" style="padding: 0.2rem 0.5rem; font-size: 0.78rem;">
+                <span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+                Thêm link
+              </button>
+            </div>
+            <div id="cvat-links-list" class="dynamic-list">
+              <!-- Dynamically populated rows -->
+            </div>
+            <span class="form-hint">Ví dụ: <code>https://cvat.example.com/tasks/12/jobs/101?frame=37</code> kèm ghi chú: <code>hai người, gần như chồng khít</code></span>
+          </div>
+
+          <!-- Mô tả -->
+          <div class="form-group">
+            <label class="form-label" for="form-description">Mô tả chi tiết <span class="required">*</span></label>
+            <textarea id="form-description" class="form-control" required rows="3" placeholder="Nêu rõ bối cảnh tình huống, tại sao guideline chưa giải quyết được hoặc công cụ gặp khó khăn gì..."></textarea>
+          </div>
+
+          <!-- Các cách hiểu / Hướng đang cân nhắc -->
+          <div class="form-group">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.35rem;">
+              <label id="label-options" class="form-label">
+                <span class="material-symbols-outlined" style="font-size: 16px;">splitscreen</span>
+                Các cách hiểu / Phương án
+              </label>
+              <button type="button" id="btn-add-option" class="btn btn-outline" style="padding: 0.2rem 0.5rem; font-size: 0.78rem;">
+                <span class="material-symbols-outlined" style="font-size: 16px;">add</span>
+                Thêm phương án
+              </button>
+            </div>
+            <div id="options-list" class="dynamic-list">
+              <!-- Dynamically populated rows -->
+            </div>
+            <span class="form-hint">Liệt kê các góc nhìn khác nhau hoặc các giải pháp kỹ thuật đang cân nhắc.</span>
+          </div>
+
+          <!-- Xử lý tạm -->
+          <div class="form-group">
+            <label class="form-label" for="form-workaround">Xử lý tạm trong lúc chờ</label>
+            <textarea id="form-workaround" class="form-control" rows="2" placeholder="Ví dụ: vẽ box riêng và gắn tag can_xem_lai để dễ lọc ra sửa..."></textarea>
+          </div>
+
+          <!-- Kết quả -->
+          <div class="form-row">
+            <div class="form-group" style="flex: 2;">
+              <label class="form-label" for="form-result">Kết quả chi tiết</label>
+              <input type="text" id="form-result" class="form-control" placeholder="Ví dụ: ✅ [QĐ-001](so-quyet-dinh.md#qđ-001) hoặc ↗️ Đã hỏi BTC ngày 18/09/2026...">
+              <span class="form-hint">Liên kết sang Sổ quyết định <code>so-quyet-dinh.md</code> hoặc <code>source-tool/</code></span>
+            </div>
+            <div class="form-group" style="flex: 1;">
+              <label class="form-label" for="form-result-table">Kết quả trên bảng</label>
+              <input type="text" id="form-result-table" class="form-control" placeholder="[QĐ-001](so-quyet-dinh.md#qđ-001) hoặc —">
+            </div>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline modal-close-btn">Hủy bỏ</button>
+          <button type="submit" class="btn btn-primary">
+            <span class="material-symbols-outlined">save</span>
+            Lưu thay đổi
+          </button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Modal: Detail View -->
+  <div id="modal-detail" class="modal-backdrop">
+    <div class="modal-dialog">
+      <div class="modal-header">
+        <h2 id="detail-id" class="modal-title">
+          <span class="material-symbols-outlined">visibility</span>
+          <span>P-001</span>
+        </h2>
+        <div style="display: flex; gap: 0.5rem; align-items: center;">
+          <button id="detail-btn-copy-md" class="btn btn-secondary btn-icon-only" title="Sao chép Markdown mục này">
+            <span class="material-symbols-outlined">content_copy</span>
+          </button>
+          <button id="detail-btn-edit" class="btn btn-primary btn-icon-only" title="Chỉnh sửa mục này">
+            <span class="material-symbols-outlined">edit</span>
+          </button>
+          <button class="btn btn-outline btn-icon-only modal-close-btn">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+      </div>
+      <div class="modal-body" id="detail-body">
+        <!-- Rendered dynamically -->
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline modal-close-btn">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal: Import / Export Hub -->
+  <div id="modal-io" class="modal-backdrop">
+    <div class="modal-dialog" style="max-width: 900px;">
+      <div class="modal-header">
+        <h2 class="modal-title">
+          <span class="material-symbols-outlined">sync_alt</span>
+          <span>Trung tâm Nhập / Xuất & Lưu trữ Dữ liệu</span>
+        </h2>
+        <button class="btn btn-outline btn-icon-only modal-close-btn">
+          <span class="material-symbols-outlined">close</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <nav class="tab-nav">
+          <button class="tab-btn active" data-tab="tab-export-md">
+            <span class="material-symbols-outlined">markdown</span>
+            Xuất Markdown (problem-backlog.md)
+          </button>
+          <button class="tab-btn" data-tab="tab-export-json">
+            <span class="material-symbols-outlined">data_object</span>
+            Lưu / Xuất JSON
+          </button>
+          <button class="tab-btn" data-tab="tab-import">
+            <span class="material-symbols-outlined">upload_file</span>
+            Nhập dữ liệu (JSON / MD)
+          </button>
+          <button class="tab-btn" data-tab="tab-guide">
+            <span class="material-symbols-outlined">info</span>
+            Quy định phân loại
+          </button>
+        </nav>
+
+        <!-- Tab 1: Export Markdown -->
+        <div id="tab-export-md" class="tab-content active">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Định dạng chuẩn 100% theo file <code>problem-backlog.md</code> (bao gồm Bảng danh sách, Quy định, Chi tiết từng mục và Mẫu copy).
+            </p>
+            <div style="display: flex; gap: 0.5rem;">
+              <button id="btn-copy-md-content" class="btn btn-secondary">
+                <span class="material-symbols-outlined">content_copy</span>
+                Sao chép Markdown
+              </button>
+              <button id="btn-download-md-file" class="btn btn-primary">
+                <span class="material-symbols-outlined">download</span>
+                Tải file .md
+              </button>
+            </div>
+          </div>
+          <pre id="export-md-box" class="code-box"></pre>
+        </div>
+
+        <!-- Tab 2: Export JSON -->
+        <div id="tab-export-json" class="tab-content" style="display: none;">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.75rem;">
+            <p style="font-size: 0.85rem; color: var(--text-muted);">
+              Dữ liệu JSON có cấu trúc đầy đủ, có thể lưu trữ hoặc nạp lại bất kỳ lúc nào.
+            </p>
+            <div style="display: flex; gap: 0.5rem;">
+              <button id="btn-copy-json-content" class="btn btn-secondary">
+                <span class="material-symbols-outlined">content_copy</span>
+                Sao chép JSON
+              </button>
+              <button id="btn-download-json-file" class="btn btn-primary">
+                <span class="material-symbols-outlined">download</span>
+                Tải file .json
+              </button>
+            </div>
+          </div>
+          <pre id="export-json-box" class="code-box"></pre>
+        </div>
+
+        <!-- Tab 3: Import -->
+        <div id="tab-import" class="tab-content" style="display: none;">
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div style="border: 2px dashed var(--border); padding: 1.5rem; text-align: center; border-radius: var(--radius-md); background: #f8fafc;">
+              <span class="material-symbols-outlined" style="font-size: 40px; color: var(--primary);">cloud_upload</span>
+              <p style="margin-top: 0.5rem; font-weight: 600;">Chọn file từ máy tính (.json hoặc .md)</p>
+              <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 0.75rem;">Hỗ trợ nạp trực tiếp file problem-backlog.json hoặc problem-backlog.md</p>
+              <input type="file" id="import-file-input" accept=".json,.md" style="display: none;">
+              <button type="button" class="btn btn-secondary" onclick="document.getElementById('import-file-input').click()">
+                <span class="material-symbols-outlined">folder_open</span>
+                Duyệt file...
+              </button>
+            </div>
+
+            <div class="form-group">
+              <label class="form-label" for="import-text-input">Hoặc dán nội dung Markdown / JSON trực tiếp vào đây:</label>
+              <textarea id="import-text-input" class="form-control" rows="6" placeholder="Dán nội dung problem-backlog.md hoặc JSON vào đây..."></textarea>
+            </div>
+
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 0.75rem;">
+              <label style="display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; cursor: pointer;">
+                <input type="checkbox" id="import-merge-mode">
+                <span>Gộp thêm vào danh sách hiện có (không ghi đè toàn bộ)</span>
+              </label>
+
+              <button type="button" id="btn-do-import" class="btn btn-primary">
+                <span class="material-symbols-outlined">upload</span>
+                Tiến hành Nhập Dữ liệu
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tab 4: Guide -->
+        <div id="tab-guide" class="tab-content" style="display: none;">
+          <div style="display: flex; flex-direction: column; gap: 1.25rem;">
+            <div>
+              <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">Bảng phân loại Pain point</h3>
+              <table class="data-table" style="font-size: 0.85rem;">
+                <thead>
+                  <tr>
+                    <th>Loại</th>
+                    <th>Ý nghĩa & Tiêu chí</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="badge badge-type-unmentioned">Guideline chưa nói tới</span></td>
+                    <td>Tình huống hoàn toàn không có trong guideline ban đầu. Cần đề xuất giải pháp hoặc hỏi BTC.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-type-ambiguous">Guideline mơ hồ</span></td>
+                    <td>Đọc guideline ra được hai cách hiểu trở lên (ví dụ: câu chữ một đằng, hình minh họa một nẻo).</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-type-conflict">Guideline mâu thuẫn</span></td>
+                    <td>Hai mục trong guideline nói ngược nhau. Cần làm rõ và thống nhất lại.</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge badge-type-tool">Pain point công cụ</span></td>
+                    <td>Guideline rõ, nhưng thao tác trên CVAT quá chậm, lặp lại nhiều lần hoặc dễ nhầm lẫn.</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div>
+              <h3 style="font-size: 0.95rem; font-weight: 700; margin-bottom: 0.5rem;">Các trạng thái luân chuyển</h3>
+              <ul style="padding-left: 1.25rem; font-size: 0.85rem; display: flex; flex-direction: column; gap: 0.4rem; color: #334155;">
+                <li><strong>🔴 Mở:</strong> Vấn đề vừa được phát hiện, chưa bắt đầu bàn bạc.</li>
+                <li><strong>🗣️ Đang bàn:</strong> Đang thảo luận trong team để tìm phương án thống nhất.</li>
+                <li><strong>↗️ Hỏi BTC:</strong> Đã gửi câu hỏi lên Ban tổ chức/khách hàng, chờ phản hồi chính thức.</li>
+                <li><strong>✅ Đã chốt:</strong> Đã quyết định giải pháp, chuyển sang Sổ quyết định (ví dụ: <code>QĐ-001</code>).</li>
+                <li><strong>🛠️ Làm tool:</strong> Quyết định giải quyết bằng code tự động, triển khai tại thư mục <code>source-tool/</code>.</li>
+                <li><strong>⚪ Bỏ:</strong> Không còn là vấn đề hoặc bị hủy (kèm ghi chú lý do).</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline modal-close-btn">Đóng</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification Container -->
+  <div id="toast-container" class="toast-container"></div>
+
+  <!-- Application Logic -->
+  <script src="app.js"></script>
+</body>
+</html>
+
