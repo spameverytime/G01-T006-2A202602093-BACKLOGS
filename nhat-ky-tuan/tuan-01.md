@@ -1,45 +1,40 @@
-# Nhật ký tuần 01 · 15/09 – 21/09/2026
+# Nhật ký tuần 01 · 14/09 – 20/09/2026
 
-**Học viên:** Phạm Xuân Duy (MSSV: `2A202602093`) — **Đội:** T006  
-**Lead tuần này:** @thanh-vien-a  
-**Dữ liệu / task CVAT:** Ảnh giao thông đô thị — [task 12](https://cvat.example.com/tasks/12)
+
+**Lead tuần này:**  - Nguyễn Đại Hoàng @davidhevn
+**Dữ liệu / task CVAT:** Ảnh giao thông đô thị — [task 125](https://cvat.note.transformerlabs.ai/tasks/125), [task 178](https://cvat.note.transformerlabs.ai/tasks/178)
 
 ## Thành viên và phân công
 
-| Thành viên | Vị trí | Phân công tuần này |
-|---|---|---|
-| Phạm Xuân Duy (`2A202602093`) | Annotator | Job 1351 |
-| Nguyễn Văn A (@thanh-vien-a) | Lead | Chia job, chốt edge case, review xác suất 10% mọi job |
-| Trần Thị B (@thanh-vien-b) | Annotator | Job 101, 102 |
-| Lê Văn C (@thanh-vien-c) | Annotator | Job 103, 104 |
-| Phạm Thị D (@thanh-vien-d) | Reviewer · Annotator | Review job 101–104; gán job 105 |
+
+| Thành viên                       | Vị trí                  | Phân công tuần này                                                                                                                                                                                    |
+| ---------------------------------- | ------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Nguyễn Đại Hoàng (@davidhevn) | Lead, Annotator, Reviewer | Chia job, chốt edge case, review xác suất 25% cho mỗi job trong[task 125](https://cvat.note.transformerlabs.ai/tasks/125), gán job[ 1562](https://cvat.note.transformerlabs.ai/tasks/178/jobs/1562) |
+| Nguyễn Như Quỳnh (@nnq2412)    | Annotator                 | Job[1352](https://cvat.note.transformerlabs.ai/tasks/125/jobs/1352), [1565](https://cvat.note.transformerlabs.ai/tasks/178/jobs/1565)                                                                     |
+| Trương Trọng Đức (@TTDucAI18) | Annotator                 | Job[1353](https://cvat.note.transformerlabs.ai/tasks/125/jobs/1353) ,[1567](https://cvat.note.transformerlabs.ai/tasks/178/jobs/1567)                                                                    |
+| Phạm Xuân Duy (@spameverytime)  | Annotator                 | Job[1351](https://cvat.note.transformerlabs.ai/tasks/125/jobs/1351),[1564](https://cvat.note.transformerlabs.ai/tasks/178/jobs/1564)                                                                      |
+| Thân Vĩnh Trọng (@thantrong)   | Annotator, Reviewer       | Review mỗi job trong[task 178](https://cvat.note.transformerlabs.ai/tasks/178), gán job [1350](https://cvat.note.transformerlabs.ai/tasks/125/jobs/1350), viết báo cáo                              |
 
 Phạm Thị D vừa review vừa gán, nên job 105 do Lead review.
 
 ## Công việc
 
-| # | Nội dung công việc | Annotator | Reviewer | Hoàn thành | Ghi chú |
-|---|---|---|---|---|---|
-| 1 | Job 101 — 250 ảnh, bbox `xe_may` / `o_to` / `nguoi` | @thanh-vien-b | @thanh-vien-d | ✅ 100% | Review trả lại 12 ảnh, đã sửa xong |
-| 2 | Job 102 — 250 ảnh, cùng nhãn | @thanh-vien-b | @thanh-vien-d | 🟡 70% |  |
-| 3 | Job 103 — 250 ảnh, cùng nhãn | @thanh-vien-c | @thanh-vien-d | ⛔ 30% | Dừng, chờ chốt [P-002](../problem-backlog.md#p-002) |
-| 4 | Job 104 — 250 ảnh, cùng nhãn | @thanh-vien-c | @thanh-vien-d | ⬜ 0% | Làm sau job 103 |
-| 5 | Job 105 — 250 ảnh, cùng nhãn | @thanh-vien-d | @thanh-vien-a | 🟡 40% |  |
-| 6 | Đọc lại guideline §3, gom các ca chưa rõ | @thanh-vien-a | — | ✅ 100% | Ra P-001, P-002 |
-| 7 | Rà lại job 101 theo QĐ-001 | @thanh-vien-b | @thanh-vien-d | ✅ 100% | Sửa 37 ảnh người ngồi sau |
-| 8 | Job 1351 — Gán nhãn các đối tượng: `car`, `truck`, `traffic light`, `traffic sign`, `lane/double yellow`, `lane/double white`, `lane/single white`, `lane/single yellow`, `pedestrian`, `bicycle` | Phạm Xuân Duy | Lead | 🟡 Đang làm | 17/09: Đã xong các đối tượng trên; tiếp tục làm buổi trưa theo lịch nhóm |
+
+| #  | Nội dung công việc                                                                                                                                                                                                                                                                                                                                  | Annotator      | Reviewer   | Hoàn thành | Ghi chú                                                                     |
+| -- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------- | ---------- | ------------ | ---------------------------------------------------------------------------- |
+| 1  | Job[1350](https://cvat.note.transformerlabs.ai/tasks/125/jobs/1350)— 25 ảnh, bbox ` pedestrian, rider, car, truck, bus, train, motorcycle, bicycle, traffic light, traffic sign, area/drivable, area/alternative, lane/crosswalk, lane/double white, lane/double yellow, lane/road curb, lane/single other, lane/single white, lane/single yellow ` | @thantrong     | @davidhevn | 🟡 80%       | Dừng chờ review                                                            |
+| 2  | Job[1351](https://cvat.note.transformerlabs.ai/tasks/125/jobs/1351) — 25 ảnh, cùng nhãn bbox                                                                                                                                                                                                                                                       | @spameverytime | @davidhevn | 🟡 70%       | Dừng chờ review                                                            |
+| 3  | Job[1352](https://cvat.note.transformerlabs.ai/tasks/125/jobs/1352) — 25 ảnh, cùng nhãn bbox                                                                                                                                                                                                                                                      | @nnq2412       | @davidhevn | 🟡 80%       | Đã xong 25 ảnh, Dừng chờ review                                         |
+| 4  | Job[1353](https://cvat.note.transformerlabs.ai/tasks/125/jobs/1353)— 25 ảnh, cùng nhãn bbox                                                                                                                                                                                                                                                        | @TTDucAI18     | @davidhevn | ⬜ 0%       | Làm sau job[1567](https://cvat.note.transformerlabs.ai/tasks/178/jobs/1567) |
+| 5  | Job[1562](https://cvat.note.transformerlabs.ai/tasks/178/jobs/1562) — 25 ảnh, segment `road, sidewalk, building, wall, fence, pole, traffic_light, traffic_sign, vegetation, terrain, sky, person, rider, car, truck, bus, train, motorcycle, bicycle`                                                                                               | @davidhevn     | @thantrong | 🟡 30%       | Đang làm                                                                   |
+| 6  | Job[1564](https://cvat.note.transformerlabs.ai/tasks/178/jobs/1564) — 25 ảnh, cùng bộ nhãn segment                                                                                                                                                                                                                                                | @spameverytime | @thantrong | 🟡 60%       | Dừng chờ review                                                            |
+| 7  | Job[1565](https://cvat.note.transformerlabs.ai/tasks/178/jobs/1565) — 25 ảnh, cùng bộ nhãn segment                                                                                                                                                                                                                                                | @nnq2412       | @thantrong | ⬜  0%      | Làm sau job 1352                                                            |
+| 8  | Job[1567](https://cvat.note.transformerlabs.ai/tasks/178/jobs/1567) — 25 ảnh, cùng bộ nhãn segment                                                                                                                                                                                                                                                | @TTDucAI18     | @thantrong | 🟡 75%       | Dừng chờ review                                                            |
+| 9  | Review các job trong[Task 178](https://cvat.note.transformerlabs.ai/tasks/178)                                                                                                                                                                                                                                                                        | @thantrong     | @davidhevn | 🟡 20%       | Đang review                                                                 |
+| 10 | Review các job trong Task 125                                                                                                                                                                                                                                                                                                                         | @davidhevn     | —         | 🟡 10%       | Làm sau job 1562                                                            |
+| 11 | Viết báo cáo công việc trong tuần                                                                                                                                                                                                                                                                                                                | @thantrong     | —         | 🟡 50%       | Viết báo cáo đợt 1                                                      |
 
 Mức hoàn thành: ✅ xong **và đã qua review** · 🟡 đang làm (ghi %) · ⛔ bị chặn (ghi lý do) · ⬜ chưa bắt đầu
-
-### Chi tiết tiến độ theo ngày (Phạm Xuân Duy)
-
-#### Ngày 17/09/2026
-- **Công việc thực hiện:** Gán nhãn **Job 1351**.
-- **Tiến độ đã hoàn thành:** Đã hoàn thiện gán nhãn các lớp đối tượng:
-  - **Phương tiện & Người:** `car`, `truck`, `pedestrian`, `bicycle`
-  - **Đèn tín hiệu & Biển báo:** `traffic light`, `traffic sign`
-  - **Vạch kẻ đường (Lanes):** `lane/double yellow`, `lane/double white`, `lane/single white`, `lane/single yellow`
-- **Kế hoạch tiếp theo:** Tiếp tục hoàn thiện các đối tượng còn lại vào buổi trưa theo lịch phân công của nhóm.
 
 ## Tổng kết
 

@@ -1,0 +1,3 @@
+- Gán nhãn là gán các đặc trưng của vật thể, mô hình. Ví dụ nói đến đèn giao thông thì đặc trưng là cái đèn có tín hiệu chứ không phải cả cái cột đèn.
+- alternative thường là đường khẩn cấp.
+- 
