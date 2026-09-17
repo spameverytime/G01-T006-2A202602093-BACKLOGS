@@ -26,18 +26,23 @@ Repo này phục vụ các mục đích chính:
 | [`nhat-ky-tuan/`](nhat-ky-tuan/) | Nhật ký phân công, tiến độ công việc và kết quả cá nhân theo từng tuần | Đầu tuần nhận việc, cuối tuần chốt |
 | [`problem-backlog.md`](problem-backlog.md) | Ghi nhận các edge case gặp phải khi gán nhãn mà guideline chưa trả lời được, kèm link CVAT | **Ngay khi gặp** |
 | [`so-quyet-dinh.md`](so-quyet-dinh.md) | Những gì cá nhân/đội đã chốt thống nhất và lý do | Mỗi lần chốt một vấn đề |
+| [`pain-points.md`](pain-points.md) | Sổ ghi nhận nỗi đau, khó khăn thể chất/tâm lý, rào cản công cụ và quy trình của annotator | Khi phát sinh nỗi đau |
+| [`Kinh_Nghiem_Label_Thuc_Chien.md`](Kinh_Nghiem_Label_Thuc_Chien.md) | Cẩm nang kinh nghiệm 10.000 giờ cho người mới bắt đầu: thứ tự layer, mẹo CVAT, xử lý occluded/truncated | Tài liệu hướng dẫn thực chiến |
 | [`source-tool/`](source-tool/) | Source code công cụ tự viết để gỡ pain point hoặc tăng tốc khi gán nhãn | Khi phát triển/cập nhật tool |
 
 ## Luồng xử lý & Liên kết tài liệu
 
 ```mermaid
 flowchart LR
-    A[Gán nhãn trên CVAT] -->|Gặp edge case| B[problem-backlog.md<br/>P-xxx + link CVAT]
+    A[Gán nhãn trên CVAT] -->|Gặp edge case dữ liệu| B[problem-backlog.md<br/>P-xxx + link CVAT]
+    A -->|Gặp ức chế / khó khăn thao tác| PP[pain-points.md<br/>PP-xxx Nỗi đau]
     B -->|Thảo luận & chốt xử lý| C[so-quyet-dinh.md<br/>QĐ-xxx]
+    PP -->|Đề xuất tool giải tỏa nỗi đau| D[source-tool/]
+    B -->|Pain point công cụ lặp lại| D
     C -->|Áp dụng lại khi gán nhãn| A
-    B -->|Pain point công cụ lặp lại| D[source-tool/]
     D -->|Tool hỗ trợ gán nhãn| A
     B -.-> E[nhat-ky-tuan/<br/>Tổng kết minh chứng cá nhân]
+    PP -.-> E
     C -.-> E
     E -->|Báo cáo & minh chứng| F[Leader tổng hợp gửi Mentor]
 ```
@@ -102,6 +107,21 @@ Lưu trữ mọi thỏa thuận kỹ thuật đã chốt trong đội ngũ.
   2. Tại `QĐ-yyy`, ghi chú: *Thay thế cho `[QĐ-xxx]`*.
   3. Cập nhật trạng thái của `QĐ-xxx` cũ thành: `Bị thay bởi [QĐ-yyy]`.
 - **Cấu trúc 1 mục quyết định:** Phải gồm đủ: Ngày · Người tham gia (@chốt, @thành viên) · Xuất phát từ (`[P-xxx]` hoặc cuộc họp) · Bối cảnh phát sinh · Các phương án cân nhắc (phân tích ưu/nhược, ghi rõ **Chọn** hoặc Loại) · Quyết định dứt khoát · Danh sách việc phải làm theo (`- [ ] việc (@người phụ trách)`).
+
+---
+
+### 5. Quy tắc ghi Sổ Pain Points (`pain-points.md`)
+Ghi nhận các trở ngại thao tác, ức chế công cụ, mệt mỏi thể chất/tinh thần và bất cập quy trình của annotator.
+- **Mã định danh:** `PP-001`, `PP-002`... tăng dần liên tục, không dùng lại mã đã hủy.
+- **5 Phân loại chuẩn:**
+  1. *🛠️ Công cụ & Hạ tầng:* Lỗi CVAT giật lag, timeout, mất dữ liệu, thiếu phím tắt.
+  2. *📘 Đặc tả & Guideline:* Quy định mơ hồ, thiếu ảnh mẫu đối chiếu visual do/don't.
+  3. *🩺 Thể chất & Thao tác:* Mỏi mắt, đau mỏi cổ tay (RSI) do click chuột liên tục hàng trăm lần.
+  4. *⚖️ Review & Phản hồi:* Reviewer đánh giá cảm tính, thiếu chuẩn sai số định lượng, trả feedback chậm.
+  5. *📷 Chất lượng Dữ liệu:* Ảnh mờ, thiếu sáng, lóa đèn, góc quay bị khuất.
+- **4 Mức độ tác động:** `🚨 Nghiêm trọng` (Critical) · `⚠️ Cao` (High) · `⚡ Trung bình` (Medium) · `💡 Thấp` (Low).
+- **4 Trạng thái chuẩn:** `🔴 Đang gặp` · `🟡 Giải pháp tạm` (phải có Workaround) · `🛠️ Đang làm tool` (trỏ `source-tool/`) · `✅ Đã giải quyết`.
+- **Cấu trúc 1 mục:** Tóm tắt · Phân loại & Mức độ · Người báo cáo & Tần suất · Triệu chứng & Bối cảnh · Nguyên nhân gốc rễ · Tác động thực tế (thời gian/năng suất) · Giải pháp tạm thời (Workaround) · Đề xuất dài hạn (Tool/Guideline) · Trạng thái.
 
 ---
 

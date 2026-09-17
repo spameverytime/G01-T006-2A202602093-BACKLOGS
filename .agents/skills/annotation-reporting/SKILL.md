@@ -2,17 +2,18 @@
 name: annotation-reporting
 description: >-
   Hỗ trợ ghi nhận, định dạng và đồng bộ các báo cáo trong dự án Data Annotation:
-  Problem Backlog (P-xxx), Sổ Quyết Định (QĐ-xxx), và Nhật Ký / Báo Cáo Tuần (tuan-NN.md).
+  Problem Backlog (P-xxx), Sổ Quyết Định (QĐ-xxx), Sổ Pain Points (PP-xxx) và Nhật Ký / Báo Cáo Tuần (tuan-NN.md).
   Sử dụng skill này khi người dùng yêu cầu thêm/cập nhật issue backlog, ghi chép quyết định kỹ thuật,
-  hoặc lập báo cáo tiến độ/nhật ký công việc cá nhân hoặc nhóm theo chuẩn định dạng của dự án.
+  ghi nhận nỗi đau gán nhãn (pain points), hoặc lập báo cáo tiến độ/nhật ký công việc cá nhân hoặc nhóm theo chuẩn định dạng của dự án.
 ---
 
-# Annotation Reporting Skill (Problem Backlog, Sổ Quyết Định, Báo Cáo Tuần)
+# Annotation Reporting Skill (Problem Backlog, Sổ Quyết Định, Pain Points, Báo Cáo Tuần)
 
-Skill này chuẩn hóa và tự động hóa quy trình ghi nhận 3 loại tài liệu cốt lõi trong dự án Quản lý quy trình gán nhãn dữ liệu:
-1. **Problem Backlog** ([`problem-backlog.md`](file:///home/dp/Documents/projects/WORKSHOPS/G01-T006-2A202602093-BACKLOGS/problem-backlog.md)) — Lưu vết các edge case, vấn đề guideline và pain point công cụ.
+Skill này chuẩn hóa và tự động hóa quy trình ghi nhận 4 loại tài liệu cốt lõi trong dự án Quản lý quy trình gán nhãn dữ liệu:
+1. **Problem Backlog** ([`problem-backlog.md`](file:///home/dp/Documents/projects/WORKSHOPS/G01-T006-2A202602093-BACKLOGS/problem-backlog.md)) — Lưu vết các edge case dữ liệu, vấn đề guideline và pain point công cụ.
 2. **Sổ Quyết Định** ([`so-quyet-dinh.md`](file:///home/dp/Documents/projects/WORKSHOPS/G01-T006-2A202602093-BACKLOGS/so-quyet-dinh.md)) — Lưu vết các quy định kỹ thuật đã chốt (Bất biến / Append-only).
-3. **Nhật Ký & Báo Cáo Tuần** ([`nhat-ky-tuan/tuan-NN.md`](file:///home/dp/Documents/projects/WORKSHOPS/G01-T006-2A202602093-BACKLOGS/nhat-ky-tuan/)) — Báo cáo tiến độ cá nhân/nhóm, daily log, tổng kết tuần và kế hoạch tuần tới.
+3. **Sổ Pain Points** ([`pain-points.md`](file:///home/dp/Documents/projects/WORKSHOPS/G01-T006-2A202602093-BACKLOGS/pain-points.md)) — Lưu vết các nỗi đau, rào cản thao tác, mệt mỏi thể chất/tâm lý và xung đột quy trình của người gán nhãn.
+4. **Nhật Ký & Báo Cáo Tuần** ([`nhat-ky-tuan/tuan-NN.md`](file:///home/dp/Documents/projects/WORKSHOPS/G01-T006-2A202602093-BACKLOGS/nhat-ky-tuan/)) — Báo cáo tiến độ cá nhân/nhóm, daily log, tổng kết tuần và kế hoạch tuần tới.
 
 ---
 
@@ -209,19 +210,84 @@ Skill này chuẩn hóa và tự động hóa quy trình ghi nhận 3 loại tà
 3. [Mục tiêu 3, ví dụ: Hoàn tất 100% khối lượng job và nghiệm thu ✅ 100%]
 ```
 
+
 ---
 
-## 4. Checklist Kiểm Tra Chéo (Cross-Validation Checklist)
+## 4. Quy Trình Ghi Nhận Sổ Pain Points (`PP-NNN`)
+
+### 4.1. Nguyên tắc cốt lõi
+- **Mã định danh:** `PP-NNN` (ví dụ `PP-001`, `PP-002`, `PP-006`...). Tăng dần liên tục, **tuyệt đối không tái sử dụng mã đã đóng/hủy**.
+- **Vị trí lưu:** [`pain-points.md`](file:///home/dp/Documents/projects/WORKSHOPS/G01-T006-2A202602093-BACKLOGS/pain-points.md).
+- **Cập nhật đồng thời:** Khi ghi nhận một pain point mới, **bắt buộc cập nhật cả 2 vị trí**:
+  1. Thêm 1 dòng vào bảng `## 2. Bảng Danh Sách Nỗi Đau` ở đầu file.
+  2. Tạo section chi tiết `### PP-NNN` ở phần thân file (trong mục `## 4. Các Pain Point Của Tôi` hoặc nối tiếp mã trước).
+
+### 4.2. Phân loại chuẩn (Chỉ chọn 1 trong 5 nhóm)
+| Phân loại | Ý nghĩa |
+|---|---|
+| `🛠️ Công cụ & Hạ tầng` | CVAT lag, timeout, mất dữ liệu, thiếu phím tắt, giao diện khó thao tác |
+| `📘 Đặc tả & Guideline` | Hướng dẫn mông lung, thiếu ảnh đối chiếu, quy tắc mâu thuẫn hoặc thay đổi đột ngột |
+| `🩺 Thể chất & Thao tác` | Mỏi mắt, đau cổ tay/ngón tay (RSI), mệt mỏi do lặp lại thao tác click chuột hàng nghìn lần |
+| `⚖️ Review & Phản hồi` | Đánh giá cảm tính, thiếu chuẩn sai số định lượng, feedback trễ gây sửa lại hàng loạt |
+| `📷 Chất lượng Dữ liệu` | Ảnh mờ, tối, nhòe, lóa sáng, góc quay bị che khuất nghiêm trọng |
+
+### 4.3. Mức độ tác động (Severity - Chỉ chọn 1 trong 4 mức)
+- `🚨 Nghiêm trọng (Critical)`: Gây mất dữ liệu hoàn toàn, chặn đứng tiến độ hoặc gây ức chế cực lớn khiến annotator bỏ cuộc.
+- `⚠️ Cao (High)`: Làm giảm >50% năng suất gán nhãn, tăng cao tỷ lệ sai sót hoặc gây đau mỏi thể chất nhanh chóng.
+- `⚡ Trung bình (Medium)`: Làm chậm 15% - 30% tốc độ làm việc, thao tác cồng kềnh nhưng vẫn tiếp tục được.
+- `💡 Thấp (Low)`: Bất tiện nhỏ về trải nghiệm, không cản trở lớn đến tiến độ.
+
+### 4.4. Trạng thái chuẩn (Chỉ chọn 1 trong 4 trạng thái)
+- `🔴 Đang gặp`: Nỗi đau diễn ra thường xuyên, chưa có giải pháp khắc phục.
+- `🟡 Giải pháp tạm`: Đã có mẹo, phím tắt hoặc cách ứng phó tạm thời (ghi rõ ở mục Workaround).
+- `🛠️ Đang làm tool`: Đang phát triển phần mềm/script nội bộ để tự động hóa hoặc tháo gỡ (trỏ sang `source-tool/`).
+- `✅ Đã giải quyết`: Đã có giải pháp dứt điểm (bổ sung tool, tinh chỉnh CVAT hoặc ban hành quyết định mới trong `so-quyet-dinh.md`).
+
+### 4.5. Template chuẩn thêm vào `pain-points.md`
+
+#### Dòng thêm vào bảng danh sách:
+```markdown
+| [PP-NNN](#pp-nnn) | Tóm tắt ngắn gọn nỗi đau | Phân loại chuẩn | Mức độ chuẩn | Trạng thái chuẩn | Hướng giải quyết / Tool |
+```
+
+#### Section chi tiết:
+```markdown
+### PP-NNN
+
+**Tóm tắt nỗi đau trong một câu súc tích**
+
+- **Phân loại:** [Chọn 1 trong 5 loại chuẩn]
+- **Mức độ tác động:** [Chọn 1 trong 4 mức chuẩn]
+- **Người ghi nhận:** @[username-github] · dd/mm/yyyy
+- **Tần suất xuất hiện:** [Mỗi khi làm bài / Khi mạng lag / Cuối tuần /...]
+- **Triệu chứng & Bối cảnh:**
+  - [Mô tả chi tiết cảm giác, tình huống cụ thể diễn ra khiến bạn bực bội hoặc tốn công sức]
+- **Nguyên nhân gốc rễ (Root Cause):**
+  - [Tại sao điều này lại xảy ra?]
+- **Tác động thực tế:**
+  - [Làm mất bao nhiêu thời gian, gây ảnh hưởng tinh thần/thể chất ra sao?]
+- **Giải pháp tạm thời (Workaround):**
+  - [Hiện tại bạn đang làm cách nào để chống chế hoặc giải quyết tạm thời?]
+- **Giải pháp dài hạn đề xuất:**
+  - [Bạn muốn có tool gì, muốn leader/mentor đổi quy tắc ra sao để giải quyết dứt điểm?]
+- **Trạng thái:** [Chọn 1 trong 4 trạng thái chuẩn]
+```
+
+---
+
+## 5. Checklist Kiểm Tra Chéo (Cross-Validation Checklist)
 
 Trước khi xác nhận hoàn thành bất kỳ báo cáo hay cập nhật nào, AI Agent phải thực hiện kiểm tra các điều kiện sau:
 
 - [ ] **Tính nhất quán mã định danh:**
-  - Mã `P-NNN` và `QĐ-NNN` có tồn tại và khớp hoàn toàn giữa bảng danh sách và nội dung chi tiết.
-  - Không trùng lặp mã đã tồn tại.
+  - Mã `P-NNN`, `QĐ-NNN`, và `PP-NNN` có tồn tại và khớp hoàn toàn giữa bảng danh sách và nội dung chi tiết.
+  - Không trùng lặp mã đã tồn tại; không tái sử dụng mã đã hủy.
 - [ ] **Tính chính xác của Link:**
   - Link CVAT có đủ format `https://.../tasks/<id>/jobs/<id>?frame=<n>` hoặc có mô tả rõ ràng.
-  - Link nội bộ Markdown dùng cú pháp chính xác: `[P-xxx](problem-backlog.md#p-xxx)` hoặc `[P-xxx](../problem-backlog.md#p-xxx)` tuỳ theo vị trí file hiện tại.
+  - Link nội bộ Markdown dùng cú pháp chính xác: `[P-xxx](problem-backlog.md#p-xxx)`, `[PP-xxx](pain-points.md#pp-xxx)` tuỳ theo vị trí file hiện tại.
 - [ ] **Nguyên tắc Sổ quyết định:** Không chỉnh sửa quyết định cũ; nếu thay thế phải có liên kết chéo 2 chiều (QĐ mới trỏ QĐ cũ, QĐ cũ đổi trạng thái sang "Bị thay bởi").
+- [ ] **Quy chuẩn Sổ Pain Points:** Phân loại thuộc 5 nhóm chuẩn; Mức độ thuộc 4 mức chuẩn; Trạng thái thuộc 4 trạng thái chuẩn; Có cả mục Workaround lẫn Đề xuất dài hạn.
 - [ ] **Quy chuẩn Icon tiến độ trong Báo cáo tuần:** Chỉ dùng `✅ 100%`, `🟡 xx%`, `⛔ xx%`, `⬜ 0%`. Tuyệt đối không ghi `100%` mà chưa qua review.
 - [ ] **Chuẩn Git Commit:** Đề xuất câu lệnh commit theo cú pháp:
   `git commit -m "backlog dd/mm/yyyy: <nội dung tóm tắt>"`
+
