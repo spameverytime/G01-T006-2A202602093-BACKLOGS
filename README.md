@@ -7,6 +7,8 @@ Repo lưu trữ backlog và nhật ký làm việc cá nhân của học viên t
 - **Mã học viên / Định danh repo:** `G01-T006-Phạm Xuân Duy-2A202602093`
 - **Họ và tên:** Phạm Xuân Duy
 - **Mã số sinh viên (MSSV):** `2A202602093`
+- **Email:** `26ai.duypx@vinuni.edu.vn`
+- **Lớp học phần:** AI Action khóa IV
 - **Mã đội:** `T006` (Group 01)
 
 ## Mục đích của Backlog
