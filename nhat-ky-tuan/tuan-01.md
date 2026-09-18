@@ -17,7 +17,7 @@
 | # | Nhiệm vụ / Job CVAT | Dạng gán nhãn | Quy mô | Tiến độ | Trạng thái |
 |:---:|---|---|:---:|:---:|---|
 | 1 | **Job [1351](https://cvat.note.transformerlabs.ai/tasks/125/jobs/1351)** (Task 125) | Bounding Box & Polyline | 25 ảnh | **🟡 70%** | Đã gán các đối tượng chính, dừng chờ review đợt 1 & chốt edge cases |
-| 2 | **Job [1564](https://cvat.note.transformerlabs.ai/tasks/178/jobs/1564)** (Task 178) | Semantic Segmentation | 50 ảnh | **🟡 95%** | Hoàn thành 100% đối tượng `sky`, `building`, `vegetation` (50/50 ảnh) và `sidewalk`; rà soát các chi tiết nhỏ trước nghiệm thu |
+| 2 | **Job [1564](https://cvat.note.transformerlabs.ai/tasks/178/jobs/1564)** (Task 178) | Semantic Segmentation | 50 ảnh | **✅ 100%** | Đã hoàn thành toàn bộ 50 ảnh, tiếp thu phản hồi từ Reviewer và chỉnh sửa đạt chuẩn nghiệm thu |
 
 *Quy ước mức hoàn thành:* `✅ 100%`: Hoàn thành & đã qua review · `🟡 xx%`: Đang làm (kèm %) · `⛔ xx%`: Bị chặn (kèm mã P-xxx) · `⬜ 0%`: Chưa bắt đầu.
 
@@ -33,7 +33,7 @@
 - **Job [1564](https://cvat.note.transformerlabs.ai/tasks/178/jobs/1564) (Task 178 — Semantic Segmentation):**
   - **Quy mô:** 50 ảnh giao thông đô thị.
   - **Bộ nhãn thực hiện:** `road`, `sidewalk`, `building`, `wall`, `fence`, `pole`, `traffic_light`, `traffic_sign`, `vegetation`, `terrain`, `sky`, `person`, `rider`, `car`, `truck`, `bus`, `train`, `motorcycle`, `bicycle`.
-  - **Tiến độ hiện tại:** **🟡 95%** (Hoàn thành toàn diện 50/50 ảnh cho các lớp nền và hạ tầng chủ đạo: `sky`, `building`, `vegetation`, `sidewalk` và lòng đường; chuẩn bị rà soát self-QC các chi tiết nhỏ).
+  - **Tiến độ hiện tại:** **✅ 100%** (Đã hoàn thành toàn diện 50/50 ảnh, tiếp nhận phản hồi từ Reviewer và hoàn tất chỉnh sửa các lỗi đường biên/lớp nhãn, đạt nghiệm thu hoàn tất).
 
 ### 2.2. Nhật ký công việc hàng ngày (Daily Log)
 - **15/09/2026:**
@@ -52,8 +52,8 @@
   - Tập trung thực hiện Job 1564 (Task 178 — Semantic Segmentation) theo chiến thuật gán nhãn lớp nền (Background Layering):
     - **Sáng:** Hoàn thành gán nhãn đối tượng bầu trời (`sky`) cho toàn bộ 50/50 ảnh của job, bo chuẩn đường chân trời và tiếp giáp với ngọn cây, mái công trình.
     - **Trưa:** Hoàn thành toàn bộ đối tượng công trình xây dựng (`building`) cho 50/50 ảnh của Job 1564, căn chỉnh tỉ mỉ ranh giới tiếp giáp giữa các tòa nhà với bầu trời (`sky`) và vỉa hè (`sidewalk`).
-    - **Chiều (Cập nhật):** Hoàn tất gán nhãn đối tượng cây xanh / thảm thực vật (`vegetation`) cho toàn bộ 50/50 ảnh. Đã xử lý kỹ lưỡng phần tán cây phức tạp, tách bạch rõ ràng giữa tán cây với bầu trời (`sky`), tường công trình (`building`) và các cột đèn (`pole`).
-  - Nâng tiến độ Job 1564 lên **🟡 95%**, bước vào giai đoạn rà soát self-QC và xử lý các đối tượng chi tiết nhỏ còn lại trước khi gửi review nghiệm thu.
+    - **Chiều:** Hoàn tất gán nhãn đối tượng cây xanh / thảm thực vật (`vegetation`) cho toàn bộ 50/50 ảnh. Đã xử lý kỹ lưỡng phần tán cây phức tạp, tách bạch rõ ràng giữa tán cây với bầu trời (`sky`), tường công trình (`building`) và các cột đèn (`pole`). Hoàn thiện các đối tượng chi tiết và gửi Reviewer kiểm tra.
+    - **Tối (Nghiệm thu):** Tiếp nhận phản hồi từ Reviewer, rà soát và chỉnh sửa triệt để các vị trí cần tinh chỉnh đường biên/overlap. Hoàn tất nghiệm thu chính thức cho toàn bộ 50 ảnh của Job 1564, chốt tiến độ đạt **✅ 100%**.
 
 ---
 
@@ -84,9 +84,9 @@ Trong quá trình trực tiếp gán nhãn trên Job 1351, tôi đã chủ độ
 ## 5. Tổng kết cá nhân Tuần 01
 
 - **Khối lượng thực hiện:**
-  - Đã thực hiện: Đạt tiến độ tổng thể ~87% khối lượng cá nhân được giao.
+  - Đã thực hiện: Đạt tiến độ tổng thể ~90% khối lượng cá nhân được giao.
     - Job 1351 (Task 125): ~17 / 25 ảnh (**🟡 70%**).
-    - Job 1564 (Task 178): 50 ảnh (**🟡 95%** — hoàn thành 100% `sky`, `building`, `vegetation` trên 50/50 ảnh và toàn bộ `sidewalk`).
+    - Job 1564 (Task 178): 50 / 50 ảnh (**✅ 100%** — đã qua review nghiệm thu hoàn tất sau khi chỉnh sửa theo phản hồi).
 - **Đóng góp phát hiện vấn đề:** Phát hiện và lập hồ sơ 05 edge cases thực tế kèm bằng chứng link CVAT.
 - **Khó khăn gặp phải:**
   - Nhãn Semantic Segmentation ở Job 1564 đòi hỏi độ tỉ mỉ cao ở biên các vật thể phức tạp (`vegetation`, `pole`, `sidewalk`), đặc biệt ranh giới tiếp giáp giữa vỉa hè (`sidewalk`) và mặt đường xe chạy (`road`), tốn nhiều thời gian.
@@ -98,6 +98,6 @@ Trong quá trình trực tiếp gán nhãn trên Job 1351, tôi đã chủ độ
 
 ## 6. Kế hoạch cá nhân Tuần 02
 
-1. Nhận kết quả nghiệm thu đợt 1 từ Reviewer cho Job 1351 và Job 1564; rà soát và chỉnh sửa ngay các lỗi được phản hồi.
+1. Nhận kết quả nghiệm thu đợt 1 từ Reviewer cho Job 1351; rà soát và chỉnh sửa ngay các lỗi được phản hồi.
 2. Áp dụng hướng dẫn giải quyết đối với vạch đôi [P-005] và ngưỡng che khuất [P-001] để hoàn thiện các frame còn lại của Job 1351.
-3. Hoàn tất 100% khối lượng còn lại của Job 1351 (30%) và Job 1564 (5%), đưa cả 2 job về trạng thái nghiệm thu hoàn tất (**`✅ 100%`**).
+3. Hoàn tất 100% khối lượng còn lại của Job 1351 (30%), đưa toàn bộ các job được giao về trạng thái nghiệm thu hoàn tất (**`✅ 100%`**).
