@@ -5,7 +5,7 @@ Tài liệu này dùng để **thu thập, phân tích và theo dõi các nỗi 
 Khác với [`problem-backlog.md`](problem-backlog.md) (tập trung chủ yếu vào các ca biên **Edge Cases** dữ liệu và thiếu sót của guideline kỹ thuật), **Sổ Pain Points** tập trung vào **con người và công cụ**: *Cái gì khiến annotator mệt mỏi nhất? Thao tác nào tốn nhiều thời gian vô ích nhất? Khâu nào dễ ức chế và dễ nản lòng nhất?*
 
 Từ tài liệu này, nhóm sẽ ưu tiên:
-1. Xây dựng các **công cụ tự động hóa** ([`source-tool/`](source-tool/)) giúp giảm tải thao tác lặp.
+1. Đề xuất & xây dựng các **công cụ tự động hóa** (ghi nhận tại [`source-tool/tool-ideas.md`](source-tool/tool-ideas.md) và mã nguồn tại [`source-tool/`](source-tool/)) giúp giảm tải thao tác lặp.
 2. Chuẩn hóa lại **quy trình review/feedback** để giảm bất đồng quan điểm.
 3. Đề xuất cải tiến **guideline và môi trường làm việc** thân thiện hơn cho annotator.
 
@@ -49,6 +49,7 @@ Từ tài liệu này, nhóm sẽ ưu tiên:
 | [PP-004](#pp-004) | Reviewer từ chối batch cảm tính, không có tiêu chí định lượng khiến annotator sửa lại toàn bộ | ⚖️ Review & Phản hồi | ⚠️ Cao | 🔴 Đang gặp | Thống nhất sai số cho phép (Margin of Error / IoU threshold); Họp đối chiếu mẫu |
 | [PP-005](#pp-005) | Thao tác chuyển đổi giữa hàng chục nhãn (Class selector) chậm và dễ chọn nhầm | 🛠️ Công cụ & Hạ tầng | ⚡ Trung bình | 🛠️ Đang làm tool | Phím tắt số (Number Keys); Gom nhóm phân cấp nhãn (Hierarchical labels) |
 | [PP-006](#pp-006) | Thao tác gán nhãn mảng nền lớn (sky, road) lặp đi lặp lại đơn điệu gây ngợp và chán nản | 🩺 Thể chất & Thao tác | ⚠️ Cao | 🛠️ Đang làm tool | Đề xuất Tool tự động Pre-annotation Sky & Road (Background First) |
+| [PP-007](#pp-007) | Tranh chấp layer chồng lấn & lúng túng điều chỉnh thứ tự Z-order khi đã lỡ vẽ đè | 🛠️ Công cụ & Hạ tầng | ⚠️ Cao | 🟡 Giải pháp tạm | Tận dụng thuộc tính Z-Order trong CVAT; Áp dụng Quy trình vẽ 4 tầng (Layering SOP) |
 
 ---
 
@@ -194,7 +195,7 @@ Từ tài liệu này, nhóm sẽ ưu tiên:
 ## 4. Các Pain Point Của Tôi (User Pain Points)
 
 > ✍️ **Khu vực dành riêng cho Duy bổ sung các nỗi đau thực tế của cá nhân.**  
-> Khi bạn gặp bất kỳ sự ức chế, khó khăn thao tác, mỏi mệt hoặc vấn đề quy trình nào trong lúc làm bài, hãy ghi nhận tiếp từ mã `PP-007` theo cấu trúc mẫu bên dưới:
+> Khi bạn gặp bất kỳ sự ức chế, khó khăn thao tác, mỏi mệt hoặc vấn đề quy trình nào trong lúc làm bài, hãy ghi nhận tiếp từ mã `PP-008` theo cấu trúc mẫu bên dưới:
 
 ---
 
@@ -228,6 +229,40 @@ Từ tài liệu này, nhóm sẽ ưu tiên:
     3. **Đầu ra:** Xuất file annotation chuẩn định dạng CVAT XML 1.1 / Datumaro hoặc COCO Segmentation.
     4. **Workflow ứng dụng:** Upload file annotation sinh sẵn này lên CVAT trước -> Khi Annotator mở CVAT ra, `sky` và `road` đã được tô sẵn ở layer nền -> Annotator chỉ cần tập trung vẽ các chi tiết tinh xảo (`building`, `tree`, `pole`, `traffic_sign`, `vehicle`, `pedestrian`) đè lên trên, giảm ngay 30%–40% khối lượng thao tác thủ công!
 - **Trạng thái:** 🛠️ Đang làm tool (Đề xuất phát triển trong `source-tool/sky-road-pre-annotator/` trên cổng `9002`)
+
+---
+
+### PP-007
+
+**Tranh chấp thứ tự layer chồng lấn (Layer Overlap) & lúng túng khi điều chỉnh thứ tự Z-Order khi đã lỡ vẽ đè**
+
+- **Phân loại:** 🛠️ Công cụ & Hạ tầng
+- **Mức độ tác động:** ⚠️ Cao (High)
+- **Người ghi nhận:** @spameverytime · 18/09/2026
+- **Tần suất xuất hiện:** Thường xuyên trong mọi cảnh Semantic Segmentation có độ phức tạp cao (cây cối trước tòa nhà, xe cộ trên mặt đường, biển báo trên nền trời).
+- **Triệu chứng & Bối cảnh:**
+  - Trong quá trình vẽ segmentation, các đối tượng thực tế luôn có sự che khuất và chồng lấn nhau (ví dụ: cành cây đè lên tường nhà, xe ô tô đè lên mặt đường, cột đèn đè lên xe và cây).
+  - Annotator không phán đoán được nên vẽ đối tượng nào trước, đối tượng nào sau.
+  - Khi đã tỉ mỉ vẽ xong một đối tượng (ví dụ chiếc xe), sau đó lỡ tay vẽ một mảng nền (ví dụ mặt đường hoặc bóng râm) thì mảng nền lại nhảy lên đè mất toàn bộ chiếc xe bên dưới.
+  - Annotator không biết làm thế nào để đưa chiếc xe nổi trở lại lên trên; nếu xóa đi vẽ lại thì mất 15–30 phút công sức cực kỳ ức chế và nản lòng.
+- **Nguyên nhân gốc rễ (Root Cause):**
+  - Thiếu quy chuẩn thứ tự vẽ lớp (Layer Hierarchy Pipeline) từ xa tới gần trước khi đặt bút vẽ.
+  - Thiếu kiến thức sử dụng thuộc tính **Z-Order** (độ sâu hiển thị của layer) trên giao diện CVAT và các phím tắt quản lý layer nâng cao.
+- **Tác động thực tế:**
+  - Lãng phí thời gian: Phải xóa đi vẽ lại hoặc cắt viền thủ công cực kỳ vất vả, giảm 50% tốc độ gán nhãn.
+  - Nguy cơ sinh lỗi chất lượng: Lớp sau đè mất pixel của lớp trước khiến mask xuất ra bị sai phân loại pixel nghiêm trọng.
+- **Giải pháp tạm thời (Workaround):**
+  - **Sử dụng tính năng Z-Order của CVAT:** Chọn đối tượng bị che $\rightarrow$ Mở bảng `Objects` ở thanh bên phải $\rightarrow$ Tăng chỉ số `Z Order` từ `0` lên `1`, `2` hoặc `10`. Đối tượng sẽ lập tức nổi lên trên các lớp khác mà không cần vẽ lại!
+  - **Dùng phím tắt:** Chọn đối tượng và nhấn phím `+` (hoặc `Shift + +`) để tăng Z-order, `-` để giảm Z-order.
+  - **Ẩn/Khóa tạm thời:** Nhấn icon Con Mắt (phím tắt `H`) để tạm ẩn các layer lớn, hoặc icon Ổ Khóa (phím tắt `L`) để khóa layer nền, tránh click nhầm khi đang vẽ chi tiết nhỏ.
+- **Giải pháp dài hạn đề xuất:**
+  - Chuẩn hóa **"Quy trình vẽ tối ưu 4 tầng (Layering SOP)"** vào cẩm nang nội bộ và guideline:
+    1. *Tầng 1 (Z=0):* Nền vô tận (`sky`, đồi núi xa).
+    2. *Tầng 2 (Z=5):* Hạ tầng tĩnh (`road`, `sidewalk`, `terrain`, `building`).
+    3. *Tầng 3 (Z=10):* Thảm thực vật & Kết cấu trung cảnh (`vegetation`, tường rào).
+    4. *Tầng 4 (Z=20+):* Vật thể độc lập & Chi tiết mảnh (`vehicle`, `pedestrian`, `pole`, `traffic sign`, `lane`).
+  - Khi tuân thủ đúng quy trình này, các lớp sau tự nhiên đè lên lớp trước mà không cần phải cắt xén viền giao nhau.
+- **Trạng thái:** 🟡 Giải pháp tạm (Đã có giải pháp Z-Order & Quy trình SOP)
 
 ---
 

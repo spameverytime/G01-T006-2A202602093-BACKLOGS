@@ -64,8 +64,13 @@ Trước khi chạm vào bất kỳ công cụ vẽ nào:
 | **Lớp 6 (Tiền cảnh & Đối tượng nhỏ)** | `motorcycle`, `bicycle`, `rider`, `pedestrian` | BBox | Thường di chuyển đan xen, nằm ở lớp trước cùng hoặc bị các xe to che một phần. |
 
 > [!TIP]
-> **Mẹo thao tác trên CVAT:**  
-> Sau khi vẽ xong Lớp 1 (Drivable Area) và Lớp 2 (Lane Marking), hãy dùng tính năng **Lock Layer (Khóa lớp)** hoặc phím tắt ẩn/giảm Opacity (độ trong suốt) xuống còn khoảng 20-30%. Lúc này bạn hoàn toàn yên tâm vẽ hàng chục bounding box xe cộ bên trên mà không sợ bấm trúng điểm polygon của đường!
+> **Mẹo thao tác trên CVAT & Cách "Cứu nguy khi lỡ vẽ đè layer" (Z-Order Hack):**  
+> 1. **Khi mới vẽ:** Sau khi vẽ xong Lớp 1 (Drivable Area / Sky) và Lớp 2 (Lane Marking), hãy dùng tính năng **Lock Layer (phím L)** hoặc giảm Opacity (độ trong suốt) xuống 20-30%. Lúc này bạn hoàn toàn yên tâm vẽ các đối tượng bên trên mà không sợ bấm trúng điểm polygon của nền!
+> 2. **Lỡ vẽ lớp nền đè lên vật thể chi tiết? TUYỆT ĐỐI KHÔNG XÓA:**
+>    - **Cách 1 (Chỉnh Z-Order):** Chọn đối tượng bị che $\rightarrow$ Nhìn sang bảng `Objects` ở thanh bên phải $\rightarrow$ Tìm ô **`Z Order`** (mặc định = 0) $\rightarrow$ Tăng lên `1`, `2` hoặc `10`. Ngay lập tức đối tượng sẽ nổi lên trên đè ngược lại lớp nền!
+>    - **Cách 2 (Phím tắt nhanh):** Chọn đối tượng và bấm phím `+` (hoặc `Shift + +`) để đẩy layer lên trên, phím `-` để hạ layer xuống dưới.
+>    - **Cách 3 (Ẩn tạm thời để sửa viền):** Bấm phím **`H`** (Hide) để ẩn tạm đối tượng bên trên, thoải mái sửa viền đối tượng bên dưới rồi bấm `H` lần nữa để hiện lại.
+> 3. **Quy tắc vàng của Semantic Segmentation:** Pixel của hình có Z-Order cao hơn sẽ tự động chiếm quyền ưu tiên và đè lên hình có Z-Order thấp hơn khi export dữ liệu mask. Do đó bạn **không bao giờ phải mất công cắt xén viền tiếp giáp giữa các lớp!**
 
 ---
 

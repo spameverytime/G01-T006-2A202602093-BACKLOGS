@@ -25,12 +25,14 @@ Mỗi tool một thư mục con, có README riêng:
 source-tool/
 ├── README.md                       ← file này, giữ bảng danh sách tool
 ├── GUIDELINE.md                    ← quy chuẩn phát triển, phân bổ cổng 9xxx & danh mục tool
+├── tool-ideas.md                   ← sổ ghi nhận các ý tưởng tool giải quyết pain point
 └── problem-backlog-visualize-tool/ ← tool quản lý backlog (cổng 9001)
     ├── README.md
     ├── run.sh
     └── …source code…
 ```
 
+> 💡 Xem danh sách và đóng góp ý tưởng phát triển công cụ mới tại [`tool-ideas.md`](tool-ideas.md).  
 > 📖 Chi tiết về quy chuẩn phát triển, phân bổ cổng `9xxx`, ý nghĩa và tác dụng của từng tool xem tại [`GUIDELINE.md`](GUIDELINE.md).
 
 Thêm tool thì thêm một dòng vào bảng:
