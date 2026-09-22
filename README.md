@@ -27,6 +27,7 @@ Repo này phục vụ các mục đích chính:
 | [`problem-backlog.md`](problem-backlog.md) | Ghi nhận các edge case gặp phải khi gán nhãn mà guideline chưa trả lời được, kèm link CVAT | **Ngay khi gặp** |
 | [`so-quyet-dinh.md`](so-quyet-dinh.md) | Những gì cá nhân/đội đã chốt thống nhất và lý do | Mỗi lần chốt một vấn đề |
 | [`pain-points.md`](pain-points.md) | Sổ ghi nhận nỗi đau, khó khăn thể chất/tâm lý, rào cản công cụ và quy trình của annotator | Khi phát sinh nỗi đau |
+| [`Quy_Trinh_Annotation_QC_QA_Guideline.md`](Quy_Trinh_Annotation_QC_QA_Guideline.md) | Quy trình SOP toàn diện cho Team Leader, Annotator, QC (L1) và QA (L2): Giao thức Protocol K-100, Kiểm định Thống kê Wilson Score, Escalation 3 tầng | Quy chuẩn kỹ thuật & Nghiệm thu |
 | [`Kinh_Nghiem_Label_Thuc_Chien.md`](Kinh_Nghiem_Label_Thuc_Chien.md) | Cẩm nang kinh nghiệm 10.000 giờ cho người mới bắt đầu: thứ tự layer, mẹo CVAT, xử lý occluded/truncated | Tài liệu hướng dẫn thực chiến |
 | [`source-tool/`](source-tool/) | Source code công cụ tự viết để gỡ pain point hoặc tăng tốc khi gán nhãn | Khi phát triển/cập nhật tool |
 
@@ -157,15 +158,17 @@ git push origin main
 Mọi công cụ web nội bộ đều tuân thủ dải cổng **`9xxx`** để không xung đột hệ thống:
 
 ```bash
-# === Cách 1: Khởi chạy nhanh bằng script tiện ích (Khuyến nghị) ===
+# === Tool 1: Quản lý Backlog (Cổng 9001) ===
 cd source-tool/problem-backlog-visualize-tool
 ./run.sh
+# Mở trình duyệt tại: http://localhost:9001
 
-# === Cách 2: Khởi chạy trực tiếp bằng Python 3 ===
-cd source-tool/problem-backlog-visualize-tool
-python3 -m http.server 9001
+# === Tool 2: Trực quan hóa Quy trình SOP & Kiểm định Wilson (Cổng 9002) ===
+cd source-tool/annotation-sop-visualizer
+./run.sh
+# Mở trình duyệt tại: http://localhost:9002
 ```
-> Mở trình duyệt tại: `http://localhost:9001`
+> Hoặc mở trực tiếp file `index.html` trong trình duyệt.
 
 ### 3. Xử lý sự cố cổng mạng (Khi cổng `9xxx` bị chiếm dụng)
 Nếu gặp lỗi `Address already in use` khi khởi chạy tool:

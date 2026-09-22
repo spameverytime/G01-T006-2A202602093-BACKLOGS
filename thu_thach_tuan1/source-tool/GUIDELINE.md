@@ -35,7 +35,7 @@ Tài liệu này quy định các nguyên tắc kỹ thuật, phân bổ cổng 
 | Cổng (Port) | Tên Tool | Thư mục | Mục đích & Chức năng chính | Trạng thái |
 |---|---|---|---|---|
 | **`9001`** | `problem-backlog-visualize-tool` | [`problem-backlog-visualize-tool/`](problem-backlog-visualize-tool/) | Quản lý, trực quan hóa và nhập/xuất `problem-backlog.md` | Hoàn thành |
-| **`9002`** | *(Dành sẵn cho tool tiếp theo)* | — | — | Dự kiến |
+| **`9002`** | `annotation-sop-visualizer` | [`annotation-sop-visualizer/`](annotation-sop-visualizer/) | Trực quan hóa quy trình SOP, máy tính Wilson Score, K-100 và tạo biên bản nghiệm thu | Hoàn thành |
 | **`9003`** | *(Dành sẵn cho tool tiếp theo)* | — | — | Dự kiến |
 
 ---
@@ -78,6 +78,38 @@ cd source-tool/problem-backlog-visualize-tool
 python3 -m http.server 9001
 ```
 Sau đó mở trình duyệt tại: `http://localhost:9001`
+
+---
+
+### 3.2. `annotation-sop-visualizer` (Cổng `9002`)
+
+- **Thư mục:** [`source-tool/annotation-sop-visualizer/`](annotation-sop-visualizer/)
+- **Cổng phân bổ:** `9002` (Địa chỉ: `http://localhost:9002`)
+- **Tác giả:** @antigravity
+- **Giải quyết:** Trực quan hóa toàn diện Quy trình Vận hành Tiêu chuẩn (SOP), máy tính kiểm định thống kê Wilson Score Interval, mô phỏng Protocol K-100, thang đo Demerit Points và tạo Biên bản Nghiệm thu chất lượng lô dữ liệu.
+
+#### Ý nghĩa & Bối cảnh:
+Tài liệu quy trình SOP (`Quy_Trinh_Annotation_QC_QA_Guideline.md`) chứa nhiều công thức toán học thống kê phức tạp (khoảng tin cậy Wilson, ma trận RACI, chỉ số Kappa, mIoU). Annotator và QC/QA gặp khó khăn khi phải tính toán thủ công hoặc tra cứu văn bản dài dòng. Công cụ này số hóa và trực quan hóa toàn bộ quy trình thành một Dashboard tương tác thời gian thực.
+
+#### Tác dụng & Giá trị mang lại:
+1. **Interactive Workflow Pipeline:** Trực quan hóa 6 bước quy trình với bảng phân quyền RACI, tiêu chí vượt qua (Pass Criteria) và hướng dẫn kỹ thuật chi tiết.
+2. **Máy tính Khoảng tin cậy Wilson thời gian thực:** Nhập cỡ mẫu $n$ và số lỗi $e$, tính ngay Cận dưới Wilson $w^-$ ở độ tin cậy 95% ($z=1.96$), đưa ra kết luận tức thì (ACCEPT / REJECT) kèm thanh đo trực quan và highlight bảng ma trận tra cứu.
+3. **Mô phỏng Đánh giá Protocol K-100:** Đo lường 4 chỉ số Accuracy, Kappa, BBox IoU, Semantic mIoU và giới hạn lỗi Critical để cấp chứng chỉ phân bổ job.
+4. **Cẩm nang Thực chiến Đồ họa (Visual Handbook):** Minh họa SVG so sánh hộp BBox đúng vs sai, chiến thuật Layering 6 lớp, phân biệt Rider vs Pedestrian.
+5. **Bộ tính điểm phạt QC L1 (Demerit Points):** Tự động tính điểm phạt theo trọng số Critical ($\times 10$), Major ($\times 3$), Minor ($\times 1$) và đề xuất hành động (Pass / Rework / Reject).
+6. **Trung tâm Điều hành Leader (Leader Center):** Tính nhanh khối lượng chuẩn hóa Work Units $W = N \times 19$, lịch trình hàng ngày và bộ checklist hàng tuần có lưu LocalStorage.
+7. **Trình tạo Biên bản Nghiệm thu Lô hàng:** Điền thông tin nhanh, tự động tổng hợp kết quả Wilson và xuất văn bản Markdown chuẩn hoặc in PDF.
+
+#### Cách khởi chạy:
+```bash
+# Cách 1: Chạy script tiện ích
+cd source-tool/annotation-sop-visualizer
+./run.sh
+
+# Cách 2: Lệnh trực tiếp
+python3 -m http.server 9002
+```
+Sau đó mở trình duyệt tại: `http://localhost:9002`
 
 ---
 

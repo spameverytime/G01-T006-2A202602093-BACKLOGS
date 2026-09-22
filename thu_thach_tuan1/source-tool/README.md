@@ -40,6 +40,7 @@ Thêm tool thì thêm một dòng vào bảng:
 | Tool | Giải quyết | Người viết | Trạng thái |
 |---|---|---|---|
 | [`problem-backlog-visualize-tool`](problem-backlog-visualize-tool/) | Quản lý, trực quan hóa và nhập/xuất `problem-backlog.md` | @antigravity | Hoàn thành |
+| [`annotation-sop-visualizer`](annotation-sop-visualizer/) | Trực quan hóa quy trình SOP, máy tính Wilson Score, Protocol K-100, Demerit Points và tạo biên bản nghiệm thu | @antigravity | Hoàn thành |
 
 ## Mẫu README cho từng tool
 

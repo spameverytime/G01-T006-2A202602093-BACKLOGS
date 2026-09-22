@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quy Trình Chuẩn SOP & Guideline Kiểm Soát Chất Lượng | AI20K G01-T006</title>
+  
+  <!-- Google Fonts: Plus Jakarta Sans -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Google Material Symbols Outlined -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+  
+  <!-- Custom Styles -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-container">
+    
+    <!-- Navigation Bar -->
+    <header class="navbar">
+      <div class="brand-wrapper">
+        <div class="brand-icon">
+          <span class="material-symbols-outlined" style="font-size: 26px;">verified_user</span>
+        </div>
+        <div>
+          <div class="brand-title">
+            SOP Quality Assurance Hub
+            <span class="brand-badge">v1.2 3-Roles Edition</span>
+          </div>
+          <div style="font-size: 0.72rem; color: var(--text-muted);">AI20K • Đội T006 • Quy Chuẩn Gán Nhãn & Kiểm Định Chất Lượng</div>
+        </div>
+      </div>
+
+      <nav class="nav-links">
+        <button class="nav-tab active" data-target="section-leader-hub">
+          <span class="material-symbols-outlined">workspace_premium</span>
+          <span>👑 Team Leader Hub</span>
+        </button>
+        <button class="nav-tab" data-target="section-annotator-hub">
+          <span class="material-symbols-outlined">edit_square</span>
+          <span>✏️ Annotator Hub</span>
+        </button>
+        <button class="nav-tab" data-target="section-reviewer-hub">
+          <span class="material-symbols-outlined">find_in_page</span>
+          <span>🔍 Reviewer (QC/QA) Hub</span>
+        </button>
+        <button class="nav-tab" data-target="section-wilson-calculator">
+          <span class="material-symbols-outlined">calculate</span>
+          <span>Máy Tính Wilson & K-100</span>
+        </button>
+        <button class="nav-tab" data-target="section-pipeline-overview">
+          <span class="material-symbols-outlined">account_tree</span>
+          <span>Quy Trình Tổng Thể & RACI</span>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+
+      <!-- =================================================================== -->
+      <!-- VAI TRÒ 1: TEAM LEADER HUB -->
+      <!-- =================================================================== -->
+      <section id="section-leader-hub" class="content-section">
+        <div class="section-header">
+          <span class="badge-tag badge-warning">
+            <span class="material-symbols-outlined" style="font-size: 14px;">shield_person</span>
+            Role 01: Team Leader
+          </span>
+          <h1 class="section-title">Trung Tâm Điều Hành Dành Cho Team Leader</h1>
+          <p class="section-desc">
+            Trách nhiệm điều phối sản lượng định lượng, kiểm soát cửa ngõ Onboarding K-100, quản lý Escalation L2 và chủ trì Sổ Quyết Định <code>so-quyet-dinh.md</code> theo dữ liệu chuẩn của dự án.
+          </p>
+        </div>
+
+        <!-- 1. Tiêu chí cần đạt của Leader -->
+        <div class="glass-card" style="border-left: 5px solid #f59e0b; margin-bottom: 2rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #fbbf24; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined">target</span>
+            Bộ Tiêu Chí Cần Đạt Của Team Leader (Leader KPIs & Thresholds)
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">1. TIẾN ĐỘ SẢN LƯỢNG</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #10b981; margin: 0.2rem 0;">&ge; 100% Work Units</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Tính toán chính xác theo công thức $W = N_{ảnh} \times 19$ classes. Không ước lượng cảm tính.</div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">2. SLA GIẢI QUYẾT L2</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #f59e0b; margin: 0.2rem 0;">&le; 2 Giờ</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Tiếp nhận cờ <code>UNCERTAIN_*</code>, xử lý hoặc lập hồ sơ <code>P-xxx</code> vào <code>problem-backlog.md</code>.</div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">3. KIỂM SOÁT ONBOARDING</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #6366f1; margin: 0.2rem 0;">100% Pass K-100</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Chỉ giao Job Production cho nhân sự đã vượt qua bộ 100 frame Benchmark K-100.</div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">4. CHẤT LƯỢNG NGHIỆM THU</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #34d399; margin: 0.2rem 0;">w⁻ &ge; 95.00%</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Lô dữ liệu của đội phải đạt Cận dưới Wilson 95% trong bài kiểm định của QA L2.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Quy trình hành động 5 bước của Leader -->
+        <div class="glass-card" style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined" style="color: var(--primary);">format_list_numbered</span>
+            Quy Trình Vận Hành Tiêu Chuẩn 5 Bước Của Team Leader
+          </h3>
+
+          <div style="display: flex; flex-direction: column; gap: 1rem;">
+            <div style="display: flex; gap: 1rem; background: rgba(0,0,0,0.25); padding: 1rem; border-radius: 10px;">
+              <div style="background: #f59e0b; color: black; font-weight: 800; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">1</div>
+              <div>
+                <strong style="color: white; font-size: 0.95rem;">Kiểm Soát Cửa Ngõ K-100 & Phân Bổ Job CVAT:</strong>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.2rem;">
+                  Tổ chức sát hạch K-100. Khi thành viên đạt Acc &ge; 98%, Kappa &ge; 0.85, IoU &ge; 0.85, mIoU &ge; 0.80 và 0 lỗi Critical mới mở quyền truy cập Job. Phân chia batch theo năng lực (tân binh: 20-30 ảnh, senior: 50-100 ảnh).
+                </p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; background: rgba(0,0,0,0.25); padding: 1rem; border-radius: 10px;">
+              <div style="background: #f59e0b; color: black; font-weight: 800; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">2</div>
+              <div>
+                <strong style="color: white; font-size: 0.95rem;">Lập Lịch Trình Vận Hành & Khử Điểm Nghẽn (Daily Standup 15p):</strong>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.2rem;">
+                  08:30 mỗi sáng tổ chức Standup 15 phút rà soát các job bị dừng <code>⛔ xx%</code>. Phát hiện thành viên bị vướng mắc để tháo gỡ ngay trong buổi sáng.
+                </p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; background: rgba(0,0,0,0.25); padding: 1rem; border-radius: 10px;">
+              <div style="background: #f59e0b; color: black; font-weight: 800; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">3</div>
+              <div>
+                <strong style="color: white; font-size: 0.95rem;">Điều Phối Escalation L2 & Quản Trị Sổ Quyết Định:</strong>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.2rem;">
+                  Kiểm tra cờ <code>UNCERTAIN_*</code> trên CVAT (11:30 & 16:30). Nếu case mới, lập mã <code>P-xxx</code> vào <code>problem-backlog.md</code> trong 2 giờ. Tổ chức họp chốt và ban hành <code>QĐ-xxx</code> vào <code>so-quyet-dinh.md</code> (Bất biến).
+                </p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; background: rgba(0,0,0,0.25); padding: 1rem; border-radius: 10px;">
+              <div style="background: #f59e0b; color: black; font-weight: 800; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">4</div>
+              <div>
+                <strong style="color: white; font-size: 0.95rem;">Quản Trị Nỗi Đau Annotator & Triển Khai Tooling (Cổng 9xxx):</strong>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.2rem;">
+                  Rà soát <code>pain-points.md</code>, tiếp nhận phản hồi mỏi mắt, thao tác thừa, lag CVAT. Chuyển thành đề xuất <code>source-tool/tool-ideas.md</code> và triển khai script hỗ trợ trên dải cổng 9xxx.
+                </p>
+              </div>
+            </div>
+
+            <div style="display: flex; gap: 1rem; background: rgba(0,0,0,0.25); padding: 1rem; border-radius: 10px;">
+              <div style="background: #f59e0b; color: black; font-weight: 800; width: 28px; height: 28px; border-radius: 50%; display: flex; align-items: center; justify-content: center; flex-shrink: 0;">5</div>
+              <div>
+                <strong style="color: white; font-size: 0.95rem;">Tổng Hợp Báo Cáo Tuần & Ký Biên Bản Nghiệm Thu:</strong>
+                <p style="font-size: 0.85rem; color: var(--text-secondary); margin-top: 0.2rem;">
+                  Kiểm tra kết quả QC L1, gửi mẫu sang QA L2 kiểm định Wilson. Khi đạt chuẩn $w^- \ge 95\%$, cùng QA Lead và Project Manager ký Biên bản nghiệm thu và nộp báo cáo tổng hợp tuần lên Mentor.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Ví dụ Minh họa từ Guideline thực tế cho Leader -->
+        <div class="glass-card" style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: #60a5fa; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined">menu_book</span>
+            Tình Huống Thực Chiến Điển Hình Của Leader Trong Dự Án
+          </h3>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem;">
+            <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem;">
+              <span class="badge-tag badge-primary">Tình Huống Phân Bổ Năng Suất</span>
+              <h4 style="font-size: 1rem; font-weight: 700; color: white; margin: 0.5rem 0;">Tính Work Units Cho Job 1351 (Task BBox 2D)</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                <strong>Bối cảnh:</strong> Leader giao Job 1351 gồm <strong>50 ảnh</strong> cho Duy.<br>
+                <strong>Áp dụng công thức:</strong> Task có 19 classes (10 BBox object, 2 Drivable polygon, 7 Lane polyline).<br>
+                <strong>Kết quả:</strong> $W_{\text{job}} = 50 \times 19 = \mathbf{950 \text{ Work Units}}$.<br>
+                <strong>Tiến độ:</strong> Khi Duy hoàn thành nhãn <code>car</code> và <code>pedestrian</code> trên 50 ảnh, tiến độ đạt: $(50 \times 2) / 950 = \mathbf{10.5\%}$.
+              </p>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem;">
+              <span class="badge-tag badge-warning">Tình Huống Xử Lý Escalation L2</span>
+              <h4 style="font-size: 1rem; font-weight: 700; color: white; margin: 0.5rem 0;">Xử Lý Edge Case P-001: Đường Khẩn Cấp (Area Alternative)</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                <strong>Bối cảnh:</strong> Annotator gắn cờ <code>[UNCERTAIN_CLASS]</code> trên Frame 12 vì không rõ dải lề đường là <code>area/drivable</code> hay <code>area/alternative</code>.<br>
+                <strong>Hành động Leader:</strong> Trong 2 giờ, Leader lập mã <code>P-001</code> trên <code>problem-backlog.md</code>, gắn link CVAT. Họp nhanh 10p, tham chiếu Mentor Guideline Tuần 1: <em>"alternative thường là đường khẩn cấp"</em>.<br>
+                <strong>Chốt quyết định:</strong> Ban hành <code>QĐ-001</code> chốt toàn bộ làn khẩn cấp gán <code>area/alternative</code>, đổi <code>P-001</code> sang <code>✅ Đã chốt</code>.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Công cụ trực tiếp cho Leader: Máy tính Work Units -->
+        <div class="glass-card">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined" style="color: var(--warning);">calculate</span>
+            Công Cụ Tính Nhanh Khối Lượng Cho Leader (W = N &times; 19)
+          </h3>
+          <div style="display: flex; gap: 1.5rem; align-items: center; flex-wrap: wrap;">
+            <div style="min-width: 240px;">
+              <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 0.35rem;">
+                Nhập số lượng ảnh của Job ($N_{ảnh}$):
+              </label>
+              <input type="number" class="calc-number-input" id="leaderNumImages" value="50" min="1">
+            </div>
+            <div style="background: rgba(245, 158, 11, 0.1); border: 1px solid rgba(245, 158, 11, 0.3); border-radius: 12px; padding: 1rem 1.5rem; display: flex; align-items: center; gap: 1.5rem;">
+              <div>
+                <div style="font-size: 0.75rem; font-weight: 700; color: #fbbf24; text-transform: uppercase;">TỔNG ĐƠN VỊ CÔNG VIỆC CHUẨN:</div>
+                <div style="font-size: 1.8rem; font-weight: 800; color: white;" id="leaderWorkUnitsDisplay">950</div>
+              </div>
+              <span class="material-symbols-outlined" style="font-size: 36px; color: #f59e0b;">work</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- VAI TRÒ 2: ANNOTATOR HUB -->
+      <!-- =================================================================== -->
+      <section id="section-annotator-hub" class="content-section" style="display: none;">
+        <div class="section-header">
+          <span class="badge-tag badge-primary">
+            <span class="material-symbols-outlined" style="font-size: 14px;">edit_note</span>
+            Role 02: Annotator
+          </span>
+          <h1 class="section-title">Quy Trình & Tiêu Chuẩn Thực Chiến Dành Cho Annotator</h1>
+          <p class="section-desc">
+            Quy trình gán nhãn 5 bước, chiến thuật xếp lớp Layering, quy tắc quét không gian Z-Scan, bộ tiêu chuẩn độ khít hộp BBox và checklist 60 giây tự kiểm trước khi bàn giao.
+          </p>
+        </div>
+
+        <!-- 1. Tiêu chí cần đạt của Annotator -->
+        <div class="glass-card" style="border-left: 5px solid #6366f1; margin-bottom: 2rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #818cf8; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined">military_tech</span>
+            Bộ Tiêu Chí Cần Đạt Của Annotator (Quality Benchmarks)
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">1. VƯỢT QUA PROTOCOL K-100</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #34d399; margin: 0.2rem 0;">Pass K-100 Gate</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Accuracy &ge; 98%, Kappa &ge; 0.85, IoU &ge; 0.85, mIoU &ge; 0.80 và 0 lỗi Critical.</div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">2. TỶ LỆ REWORK QC L1</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #60a5fa; margin: 0.2rem 0;">&lt; 3.0%</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Số frame bị trả về sửa lại ở vòng kiểm tra Peer Review không vượt quá 3%.</div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">3. ĐỘ KHÍT HỘP (TIGHTNESS)</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #a78bfa; margin: 0.2rem 0;">100% Khít Pixel</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Hộp bao trọn gương chiếu hậu, đáy sát mặt đường tiếp xúc lốp, không chứa bóng đổ.</div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">4. QUY TẮC DỪNG 30S</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #f87171; margin: 0.2rem 0;">0 Suy Đoán Mò</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Gặp đối tượng phân vân > 30s phải dừng lại, gắn cờ <code>UNCERTAIN_*</code> xin ý kiến.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Quy trình 5 bước thực chiến của Annotator -->
+        <div class="glass-card" style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined" style="color: var(--primary);">psychology</span>
+            Quy Trình Gán Nhãn 5 Bước Thực Chiến (Battle-tested 5-Steps)
+          </h3>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 1rem;">
+            <div style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem;">
+              <span class="badge-tag badge-primary">Bước 0</span>
+              <h4 style="font-size: 1rem; font-weight: 700; color: white; margin: 0.3rem 0;">Quét Toàn Cảnh 3s & Chỉnh Sáng</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                Định vị thời tiết, ánh sáng, điểm tụ. Nếu ảnh tối/bóng râm: bấm tổ hợp phím tăng Brightness +10-20% và Contrast +10% trên CVAT.
+              </p>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem;">
+              <span class="badge-tag badge-cyan">Bước 1</span>
+              <h4 style="font-size: 1rem; font-weight: 700; color: white; margin: 0.3rem 0;">Chiến Thuật Xếp Lớp (Layering)</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                Luôn vẽ từ Nền (Drivable, Sky) $\rightarrow$ Vạch đường (Lanes) $\rightarrow$ Cột đèn $\rightarrow$ Xe lớn $\rightarrow$ Xe nhỏ và Người. Khóa layer <code>L</code> trước khi vẽ lớp trên!
+              </p>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem;">
+              <span class="badge-tag badge-warning">Bước 2</span>
+              <h4 style="font-size: 1rem; font-weight: 700; color: white; margin: 0.3rem 0;">Từ Vật Thể Lớn Đến Vật Nhỏ</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                Vẽ xe tải (`truck`), xe buýt (`bus`) trước làm mỏ neo thị giác. Sau đó vẽ xe con $\rightarrow$ Xe máy $\rightarrow$ Người đi bộ cuối cùng để không bị lấn biên.
+              </p>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem;">
+              <span class="badge-tag badge-purple">Bước 3</span>
+              <h4 style="font-size: 1rem; font-weight: 700; color: white; margin: 0.3rem 0;">Quét Z-Scan & Chiều Sâu</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                Quét ziczac từ trên xuống dưới hoặc từ điểm tụ (xa nhất) lan dần ra rìa cận cảnh (2 mép ảnh). Bắt trọn vẹn các xe bị cắt viền và người núp sau cây.
+              </p>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.25); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem;">
+              <span class="badge-tag badge-success">Bước 4</span>
+              <h4 style="font-size: 1rem; font-weight: 700; color: white; margin: 0.3rem 0;">60 Giây Tự Kiểm Soát (Self-QC)</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">
+                Chạy bộ tiêu chí "3 Không - 3 Đủ" trước khi bấm Submit chuyển sang ảnh tiếp theo. Bấm <code>H</code> ẩn/hiện nhãn để kiểm tra box sót.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 3. Minh họa trực quan & Ví dụ Case Studies cho Annotator -->
+        <div class="glass-card" style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: #34d399; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined">image</span>
+            Các Tình Huống Gán Nhãn Thực Chiến Chuẩn Guideline
+          </h3>
+
+          <!-- SVG Visual Tightness -->
+          <div class="visual-comparison-grid" style="margin-bottom: 1.5rem;">
+            <div class="visual-box correct">
+              <div style="font-size: 0.85rem; font-weight: 700; color: #10b981; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.3rem;">
+                <span class="material-symbols-outlined" style="font-size: 18px;">check_circle</span>
+                VÍ DỤ ĐÚNG (GUIDELINE §3 & §3.1)
+              </div>
+              <div class="visual-canvas">
+                <svg width="240" height="150" viewBox="0 0 240 150">
+                  <line x1="10" y1="120" x2="230" y2="120" stroke="#334155" stroke-width="2" stroke-dasharray="4"/>
+                  <ellipse cx="120" cy="125" rx="55" ry="8" fill="rgba(0,0,0,0.4)" />
+                  <rect x="60" y="65" width="120" height="45" rx="8" fill="#3b82f6" />
+                  <polygon points="80,65 100,40 145,40 160,65" fill="#60a5fa" />
+                  <rect x="52" y="68" width="8" height="6" rx="2" fill="#2563eb" />
+                  <rect x="180" y="68" width="8" height="6" rx="2" fill="#2563eb" />
+                  <circle cx="85" cy="115" r="10" fill="#1e293b" stroke="#64748b" stroke-width="3"/>
+                  <circle cx="155" cy="115" r="10" fill="#1e293b" stroke="#64748b" stroke-width="3"/>
+                  <rect x="50" y="38" width="140" height="85" fill="none" stroke="#10b981" stroke-width="2.5"/>
+                </svg>
+              </div>
+              <div style="font-size: 0.8rem; color: #cbd5e1;">
+                <strong>Chiếc xe Car (Job 1351 Frame B026):</strong> Hộp chạm sát đỉnh mui xe, bao gồm 2 gương chiếu hậu bên ngoài, đáy chạm mặt đất tiếp xúc lốp xe. Không bao trùm bóng đổ.
+              </div>
+            </div>
+
+            <div class="visual-box incorrect">
+              <div style="font-size: 0.85rem; font-weight: 700; color: #ef4444; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.3rem;">
+                <span class="material-symbols-outlined" style="font-size: 18px;">cancel</span>
+                CÁC LỖI SAI CẤM KỴ CẦN TRÁNH
+              </div>
+              <div class="visual-canvas">
+                <svg width="240" height="150" viewBox="0 0 240 150">
+                  <line x1="10" y1="120" x2="230" y2="120" stroke="#334155" stroke-width="2" stroke-dasharray="4"/>
+                  <ellipse cx="120" cy="125" rx="55" ry="8" fill="rgba(0,0,0,0.4)" />
+                  <rect x="60" y="65" width="120" height="45" rx="8" fill="#3b82f6" />
+                  <polygon points="80,65 100,40 145,40 160,65" fill="#60a5fa" />
+                  <rect x="52" y="68" width="8" height="6" rx="2" fill="#2563eb" />
+                  <rect x="180" y="68" width="8" height="6" rx="2" fill="#2563eb" />
+                  <circle cx="85" cy="115" r="10" fill="#1e293b" stroke="#64748b" stroke-width="3"/>
+                  <circle cx="155" cy="115" r="10" fill="#1e293b" stroke="#64748b" stroke-width="3"/>
+                  <rect x="62" y="32" width="115" height="105" fill="none" stroke="#ef4444" stroke-width="2.5" stroke-dasharray="4"/>
+                </svg>
+              </div>
+              <div style="font-size: 0.8rem; color: #cbd5e1;">
+                <strong>Lỗi thường gặp:</strong> Vẽ box quá dài chứa bóng đổ mặt đường (khiến mô hình phanh gấp vô cớ) hoặc cắt cụt mất gương xe.
+              </div>
+            </div>
+          </div>
+
+          <!-- Bảng phân biệt các cặp nhạy cảm -->
+          <div style="overflow-x: auto;">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Tình Huống / Đối Tượng</th>
+                  <th>Gán Đúng Chuẩn Guideline</th>
+                  <th>Lỗi Sai Phổ Biến</th>
+                  <th>Thuộc Tính Bắt Buộc</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><strong>Người đang điều khiển xe máy/xe đạp</strong></td>
+                  <td>Người là <code>rider</code>, xe là <code>motorcycle</code>/<code>bicycle</code> (2 box đè nhau).</td>
+                  <td>Gán nhầm người lái xe thành <code>pedestrian</code>.</td>
+                  <td>Nếu bị xe khác che: <code>occluded=true</code></td>
+                </tr>
+                <tr>
+                  <td><strong>Người dắt xe máy / đứng sửa xe</strong></td>
+                  <td>Người là <code>pedestrian</code>, xe là <code>motorcycle</code> riêng biệt.</td>
+                  <td>Gán nhầm người dắt bộ thành <code>rider</code>.</td>
+                  <td>Theo dõi vị trí chân tiếp đất.</td>
+                </tr>
+                <tr>
+                  <td><strong>Hình người in quảng cáo trên xe buýt</strong></td>
+                  <td><strong>TUYỆT ĐỐI KHÔNG GÁN NHÃN</strong> (Nằm trọn trong box xe buýt).</td>
+                  <td>Đóng khung hình người mẫu in trên thùng xe.</td>
+                  <td>AI sẽ bị ảo giác "người ma" nếu gán!</td>
+                </tr>
+                <tr>
+                  <td><strong>Xe bị cắt 1 phần ở mép ảnh trái/phải</strong></td>
+                  <td>Vẽ box ôm sát phần nhìn thấy chạm đúng biên ảnh.</td>
+                  <td>Vẽ box ước lượng vượt ra ngoài khung ảnh.</td>
+                  <td>Bắt buộc bật <code>truncated=true</code>.</td>
+                </tr>
+                <tr>
+                  <td><strong>Cột đèn tín hiệu giao thông (Semantic)</strong></td>
+                  <td>Hộp đèn tín hiệu = <code>traffic_light</code>; Cột treo = <code>pole</code> (QĐ-001).</td>
+                  <td>Tô luôn cả cột vào nhãn <code>traffic_light</code>.</td>
+                  <td>RULE 01: Không chồng lấn mask.</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 4. Checklist 60 Giây Tương Tác cho Annotator -->
+        <div class="glass-card">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined" style="color: var(--primary);">checklist</span>
+            Checklist 60 Giây Tự Review Của Annotator (Tự động lưu LocalStorage)
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+            Trước khi bấm nộp Job, hãy tự kiểm tra 6 tiêu chí sống còn sau:
+          </p>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 0.5rem;">
+            <label class="checklist-item">
+              <input type="checkbox" id="chkAnn1">
+              <span class="checklist-text">1. KHÔNG SÓT: Đã quét kỹ 2 mép viền ảnh (xe bị cắt mép)?</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" id="chkAnn2">
+              <span class="checklist-text">2. KHÔNG THỪA: Đã loại bỏ hình in quảng cáo trên thân xe tải?</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" id="chkAnn3">
+              <span class="checklist-text">3. KHÔNG LỎNG: Cạnh box đã chạm sát điểm ngoài cùng và gương xe?</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" id="chkAnn4">
+              <span class="checklist-text">4. ĐỦ ATTRIBUTES: Đã bật occluded/truncated đúng quy tắc?</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" id="chkAnn5">
+              <span class="checklist-text">5. ĐỦ TAXONOMY: Người lái xe chọn `rider`, xe con chọn `car`?</span>
+            </label>
+            <label class="checklist-item">
+              <input type="checkbox" id="chkAnn6">
+              <span class="checklist-text">6. ĐỦ CHUẨN BIÊN: Polygon drivable không tự cắt (no self-intersection)?</span>
+            </label>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- VAI TRÒ 3: REVIEWER (QC L1 & QA L2) HUB -->
+      <!-- =================================================================== -->
+      <section id="section-reviewer-hub" class="content-section" style="display: none;">
+        <div class="section-header">
+          <span class="badge-tag badge-cyan">
+            <span class="material-symbols-outlined" style="font-size: 14px;">policy</span>
+            Role 03: Reviewer (QC & QA)
+          </span>
+          <h1 class="section-title">Quy Trình Kiểm Định Chất Lượng Dành Cho Reviewer</h1>
+          <p class="section-desc">
+            Tiêu chuẩn kiểm tra 2 tầng: Tầng 1 - QC L1 Peer Review (lấy mẫu 25% phân tầng, tính điểm phạt Demerit Points) và Tầng 2 - QA L2 Thẩm định Thống kê Khoa học bằng Khoảng tin cậy Wilson.
+          </p>
+        </div>
+
+        <!-- 1. Tiêu chí cần đạt của Reviewer -->
+        <div class="glass-card" style="border-left: 5px solid #06b6d4; margin-bottom: 2rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; color: #22d3ee; margin-bottom: 0.75rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined">rule</span>
+            Bộ Tiêu Chí Cần Đạt Của Reviewer (Inspection Gates & Rigor)
+          </h3>
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1rem;">
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">1. TỶ LỆ LẤY MẪU QC L1</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #38bdf8; margin: 0.2rem 0;">&ge; 25.0%</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Lấy mẫu ngẫu nhiên phân tầng bao quát cả ảnh ngày, đêm, mật độ xe dày.</div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">2. ĐIỂM PHẠT PASS L1</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #10b981; margin: 0.2rem 0;">DP &le; 0.3 đ/frame</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Pass hoàn toàn: 0 Critical, 0 Major, bình quân DP &le; 0.3 điểm/frame.</div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">3. CẬN DƯỚI WILSON QA L2</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #34d399; margin: 0.2rem 0;">w⁻ &ge; 95.00%</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Mẫu audit độc lập $n \ge 80$, cận dưới Wilson 95% phải đạt từ 95.00% trở lên.</div>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); padding: 1rem; border-radius: 10px; border: 1px solid var(--border-color);">
+              <div style="font-size: 0.72rem; color: var(--text-muted); font-weight: 700; text-transform: uppercase;">4. SLA TRẢ FEEDBACK</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #f59e0b; margin: 0.2rem 0;">&le; 4 Giờ</div>
+              <div style="font-size: 0.78rem; color: var(--text-secondary);">Kể từ khi annotator nộp Job, QC phải hoàn thành review và trả feedback.</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- 2. Quy trình 2 tầng kiểm định chi tiết -->
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; margin-bottom: 2rem;">
+          <!-- QC L1 Process -->
+          <div class="glass-card">
+            <span class="badge-tag badge-cyan">Tầng 1</span>
+            <h3 style="font-size: 1.15rem; font-weight: 700; color: white; margin: 0.5rem 0;">Quy Trình Kiểm Tra QC L1 (Peer Review)</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              Do Senior Annotator hoặc Sub-lead phụ trách, soát lỗi trực tiếp trên từng frame CVAT:
+            </p>
+            <ul style="font-size: 0.85rem; color: #cbd5e1; list-style: none; display: flex; flex-direction: column; gap: 0.6rem;">
+              <li style="display: flex; gap: 0.5rem;">
+                <span class="material-symbols-outlined" style="color: #ef4444; font-size: 18px;">dangerous</span>
+                <span><strong>🚨 Lỗi Critical (-10 điểm):</strong> Sót người/xe, sai class căn bản, mask overlap $\rightarrow$ <strong>Reject 100% job ngay</strong>.</span>
+              </li>
+              <li style="display: flex; gap: 0.5rem;">
+                <span class="material-symbols-outlined" style="color: #f59e0b; font-size: 18px;">warning</span>
+                <span><strong>⚠️ Lỗi Major (-3 điểm):</strong> IoU lỏng lẻo ($0.70 - 0.84$), quên attribute occluded/truncated, polygon tự cắt.</span>
+              </li>
+              <li style="display: flex; gap: 0.5rem;">
+                <span class="material-symbols-outlined" style="color: #60a5fa; font-size: 18px;">info</span>
+                <span><strong>💡 Lỗi Minor (-1 điểm):</strong> Lệch biên nhẹ $2-3\text{px}$, thừa/thiếu anchor point trên đường thẳng.</span>
+              </li>
+              <li style="display: flex; gap: 0.5rem;">
+                <span class="material-symbols-outlined" style="color: #10b981; font-size: 18px;">verified</span>
+                <span><strong>Đánh giá kết quả:</strong> $\overline{\text{DP}} \le 0.3$ (Pass hoàn toàn); $\le 1.5$ (Pass điều kiện, sửa trong 2h); $> 1.5$ (Reject).</span>
+              </li>
+            </ul>
+          </div>
+
+          <!-- QA L2 Process -->
+          <div class="glass-card">
+            <span class="badge-tag badge-danger">Tầng 2</span>
+            <h3 style="font-size: 1.15rem; font-weight: 700; color: white; margin: 0.5rem 0;">Quy Trình Kiểm Định QA L2 (Wilson Audit)</h3>
+            <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1rem;">
+              Do Tech Lead hoặc QA Lead độc lập thực hiện trên toàn bộ Lô dữ liệu (500 - 2000 ảnh):
+            </p>
+            <ul style="font-size: 0.85rem; color: #cbd5e1; list-style: none; display: flex; flex-direction: column; gap: 0.6rem;">
+              <li style="display: flex; gap: 0.5rem;">
+                <span class="material-symbols-outlined" style="color: #6366f1; font-size: 18px;">shuffle</span>
+                <span><strong>Lấy mẫu ngẫu nhiên:</strong> Rút ngẫu nhiên $n \ge 80$ frames (thường $n=100$ hoặc $n=200$).</span>
+              </li>
+              <li style="display: flex; gap: 0.5rem;">
+                <span class="material-symbols-outlined" style="color: #6366f1; font-size: 18px;">functions</span>
+                <span><strong>Tính Cận Dưới Wilson ($w^-$):</strong> Áp dụng độ tin cậy $95\%$ ($z=1.96$), đo lường chất lượng tối thiểu thực tế.</span>
+              </li>
+              <li style="display: flex; gap: 0.5rem;">
+                <span class="material-symbols-outlined" style="color: #10b981; font-size: 18px;">check_circle</span>
+                <span><strong>Nghiệm thu ($w^- \ge 95\%$):</strong> Ký Biên bản nghiệm thu Lô hàng (Batch Acceptance Sheet).</span>
+              </li>
+              <li style="display: flex; gap: 0.5rem;">
+                <span class="material-symbols-outlined" style="color: #ef4444; font-size: 18px;">cancel</span>
+                <span><strong>Từ chối ($w^- < 95\%$):</strong> Reject toàn bộ lô hàng, yêu cầu Team Leader kích hoạt Rework Protocol khẩn cấp.</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 3. Ví dụ Kiểm Định Thực Tế từ Guideline -->
+        <div class="glass-card" style="margin-bottom: 2rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; color: #22d3ee; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined">analytics</span>
+            Các Ca Đánh Giá Điển Hình Của Reviewer Trong Dự Án
+          </h3>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 1.25rem;">
+            <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem;">
+              <span class="badge-tag badge-danger">Ca Đánh Giá QC L1</span>
+              <h4 style="font-size: 1rem; font-weight: 700; color: white; margin: 0.5rem 0;">Phát Hiện 1 Lỗi Critical Sót Người Đi Bộ</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                <strong>Mẫu kiểm tra:</strong> Job 1351 có 50 ảnh, QC kiểm tra $n=15$ ảnh.<br>
+                <strong>Phát hiện:</strong> Ở Frame B032, có 1 người đi bộ <code>pedestrian</code> đứng trong bóng râm dưới tán cây bị bỏ sót.<br>
+                <strong>Quyết định QC:</strong> Lỗi bỏ sót người là <strong>Lỗi Critical (-10 điểm)</strong>. QC lập tức <strong>REJECT TOÀN BỘ JOB</strong>, trả về cho Duy làm lại 100% các frame của job.
+              </p>
+            </div>
+
+            <div style="background: rgba(0,0,0,0.3); border: 1px solid var(--border-color); border-radius: 12px; padding: 1.25rem;">
+              <span class="badge-tag badge-success">Ca Đánh Giá QA L2 (Wilson)</span>
+              <h4 style="font-size: 1rem; font-weight: 700; color: white; margin: 0.5rem 0;">Kiểm Định Lô Dữ Liệu Tuần 1 (1000 Ảnh)</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary); line-height: 1.5;">
+                <strong>Quy mô lô:</strong> $N_{\text{total}} = 1000$ ảnh đã qua vòng QC L1.<br>
+                <strong>Mẫu kiểm định QA:</strong> Rút ngẫu nhiên $n = 100$ ảnh. Kết quả kiểm tra phát hiện <strong>0 ảnh lỗi</strong> ($\hat{p} = 100.0\%$).<br>
+                <strong>Tính toán Wilson:</strong> $w^- = \mathbf{96.30\%} \ge 95.00\%$.<br>
+                <strong>Quyết định QA:</strong> Lô hàng đạt chuẩn thống kê xuất sắc. QA Lead và Team Leader ký Biên bản Nghiệm thu bàn giao.
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 4. Bộ Tính Điểm Phạt Demerit Points Tương Tác Của QC L1 -->
+        <div class="glass-card">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined" style="color: var(--danger);">fact_check</span>
+            Công Cụ Chấm Điểm Phạt QC L1 Trực Tiếp (Demerit Points Engine)
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+            Nhập số lỗi phát hiện trong mẫu để hệ thống tự động tính điểm phạt bình quân $\overline{\text{DP}}$ và đưa ra quyết định Pass/Reject.
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 700; color: #f87171;">Lỗi Critical (&times; 10):</label>
+              <input type="number" class="calc-number-input" id="dpCritical" value="0" min="0">
+              <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem;">Sót người, sai class, mask overlap</div>
+            </div>
+
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 700; color: #fbbf24;">Lỗi Major (&times; 3):</label>
+              <input type="number" class="calc-number-input" id="dpMajor" value="0" min="0">
+              <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem;">IoU lỏng, quên attributes</div>
+            </div>
+
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 700; color: #60a5fa;">Lỗi Minor (&times; 1):</label>
+              <input type="number" class="calc-number-input" id="dpMinor" value="0" min="0">
+              <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem;">Lệch biên nhẹ 2-3px</div>
+            </div>
+
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 700; color: #cbd5e1;">Cỡ Mẫu Kiểm Tra (n):</label>
+              <input type="number" class="calc-number-input" id="dpSampleFrames" value="25" min="1">
+              <div style="font-size: 0.7rem; color: var(--text-muted); margin-top: 0.2rem;">25% của Job 100 ảnh</div>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1.5rem; align-items: center; background: rgba(0, 0, 0, 0.3); border-radius: 10px; padding: 1rem; flex-wrap: wrap;">
+            <div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">TỔNG ĐIỂM PHẠT:</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: white;" id="dpTotalDisplay">0</div>
+            </div>
+            <div>
+              <div style="font-size: 0.75rem; color: var(--text-muted);">ĐIỂM TRUNG BÌNH (DP/frame):</div>
+              <div style="font-size: 1.4rem; font-weight: 800; color: #60a5fa;" id="dpAvgDisplay">0.00</div>
+            </div>
+            <div style="flex: 1; min-width: 250px;">
+              <div style="font-size: 0.75rem; color: var(--text-muted);">KẾT LUẬN CỦA QC L1:</div>
+              <div id="dpDecisionDisplay" class="status-accept" style="padding: 0.5rem 1rem; border-radius: 8px; font-size: 0.85rem; margin-top: 0.2rem;">
+                <strong>PASS HOÀN TOÀN</strong> (0 Critical, DP = 0.00 &le; 0.3)
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- TAB 4: MÁY TÍNH TOÁN WILSON & K-100 SIMULATOR -->
+      <!-- =================================================================== -->
+      <section id="section-wilson-calculator" class="content-section" style="display: none;">
+        <div class="section-header">
+          <span class="badge-tag badge-danger">
+            <span class="material-symbols-outlined" style="font-size: 14px;">functions</span>
+            Statistical Calculation Engine
+          </span>
+          <h2 class="section-title">Máy Tính Kiểm Định Thống Kê Wilson & K-100 Simulator</h2>
+          <p class="section-desc">
+            Công cụ tính toán Cận dưới khoảng tin cậy Wilson 95% ($w^-$) theo thời gian thực và mô phỏng đánh giá điều kiện vượt qua bài test Onboarding K-100.
+          </p>
+        </div>
+
+        <div class="calc-grid">
+          <!-- Left: Input controls -->
+          <div class="glass-card">
+            <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+              <span class="material-symbols-outlined" style="color: var(--primary);">tune</span>
+              Tham Số Kiểm Định Lô Hàng
+            </h3>
+
+            <div class="calc-input-group">
+              <div class="calc-label">
+                <span>Cỡ Mẫu Kiểm Tra (n):</span>
+                <span class="calc-value-badge" id="wilsonSampleBadge">100 frames</span>
+              </div>
+              <input type="range" class="calc-slider" id="wilsonSampleSize" min="30" max="300" step="10" value="100">
+              <div style="display: flex; justify-content: space-between; font-size: 0.75rem; color: var(--text-muted); margin-top: 0.3rem;">
+                <span>n = 30</span>
+                <span>n = 100 (Chuẩn)</span>
+                <span>n = 200 (Lô lớn)</span>
+                <span>n = 300</span>
+              </div>
+              <div style="margin-top: 0.75rem;">
+                <input type="number" class="calc-number-input" id="wilsonSampleInput" value="100" min="10" max="1000">
+              </div>
+            </div>
+
+            <div class="calc-input-group">
+              <div class="calc-label">
+                <span>Số Lượng Ảnh Phát Hiện Lỗi (e):</span>
+                <span class="calc-value-badge" id="wilsonErrorBadge" style="color: #f87171;">0 ảnh lỗi</span>
+              </div>
+              <input type="number" class="calc-number-input" id="wilsonErrors" value="0" min="0" max="50">
+              <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.4rem;">
+                *Một ảnh chỉ cần chứa &ge; 1 lỗi (Critical hoặc Major) được tính là 1 frame lỗi.
+              </div>
+            </div>
+
+            <div style="background: rgba(99, 102, 241, 0.08); border: 1px solid rgba(99, 102, 241, 0.2); border-radius: 10px; padding: 1rem; margin-top: 1rem;">
+              <div style="font-size: 0.8rem; font-weight: 700; color: #a5b4fc; margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.3rem;">
+                <span class="material-symbols-outlined" style="font-size: 16px;">calculate</span>
+                Công thức Toán học Cận dưới Wilson 95% (z = 1.96):
+              </div>
+              <div style="font-family: monospace; font-size: 0.82rem; color: #e2e8f0; overflow-x: auto; padding: 0.3rem 0;">
+                w⁻ = [ p̂ + z²/(2n) - z·sqrt( p̂(1-p̂)/n + z²/(4n²) ) ] / [ 1 + z²/n ]
+              </div>
+            </div>
+          </div>
+
+          <!-- Right: Real-time Evaluation & Gauge -->
+          <div class="calc-result-box">
+            <div>
+              <div class="result-status-banner status-accept" id="wilsonStatusBanner">
+                <span class="material-symbols-outlined" style="font-size: 28px;">verified</span>
+                <div>
+                  <div>NGHIỆM THU CHẤP THUẬN (ACCEPTED)</div>
+                  <div style="font-size: 0.78rem; font-weight: 500; opacity: 0.9;">Cận dưới Wilson đạt chuẩn an toàn &ge; 95.00%</div>
+                </div>
+              </div>
+
+              <div class="metric-row">
+                <div class="metric-item">
+                  <div class="metric-label">Tỷ lệ Pass quan sát (p̂)</div>
+                  <div class="metric-big-value" id="wilsonPHat" style="color: #60a5fa;">100.0%</div>
+                </div>
+                <div class="metric-item">
+                  <div class="metric-label">Cận dưới Wilson (w⁻)</div>
+                  <div class="metric-big-value" id="wilsonLowerBound" style="color: #10b981;">96.30%</div>
+                </div>
+              </div>
+
+              <div class="confidence-bar-wrapper">
+                <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: 700; margin-bottom: 0.35rem;">
+                  <span>Khoảng Tin Cậy So Với Ngưỡng 95%</span>
+                  <span id="wilsonBarLabel" style="color: #a5b4fc;">w⁻ = 96.30%</span>
+                </div>
+                <div class="confidence-bar-track">
+                  <div class="target-marker"></div>
+                  <div class="target-marker-label">Ngưỡng 95%</div>
+                  <div class="confidence-bar-fill" id="wilsonBarFill" style="width: 96.3%; background: #10b981;"></div>
+                </div>
+              </div>
+            </div>
+
+            <div style="margin-top: 1.5rem; font-size: 0.8rem; color: var(--text-muted); border-top: 1px solid var(--border-color); padding-top: 1rem;">
+              <strong>Quy tắc nghiệm thu:</strong> Nếu mẫu kiểm định có cận dưới $w^- < 95\%$, Lô dữ liệu bắt buộc bị từ chối (REJECT) và trả về cho toàn đội rà soát.
+            </div>
+          </div>
+        </div>
+
+        <!-- Reference Table -->
+        <div class="glass-card" style="margin-top: 2rem;">
+          <h3 style="font-size: 1.1rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined" style="color: var(--primary);">table_chart</span>
+            Bảng Tra Cứu Chuẩn Nghiệm Thu QA (Wilson Acceptance Matrix)
+          </h3>
+          <div style="overflow-x: auto;">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Cỡ Mẫu (n)</th>
+                  <th>Số Lỗi Tối Đa Cho Phép (e)</th>
+                  <th>Tỷ Lệ Mẫu (p̂)</th>
+                  <th>Cận Dưới Wilson (w⁻)</th>
+                  <th>Kết Luận QA</th>
+                  <th>Ghi Chú Khuyến Nghị</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="wilson-matrix-row" data-n="30" data-e="0">
+                  <td>n = 30</td>
+                  <td>0 lỗi</td>
+                  <td>100.0%</td>
+                  <td>88.65%</td>
+                  <td><span class="badge-tag badge-danger" style="margin: 0;">REJECT</span></td>
+                  <td>Mẫu quá nhỏ, khoảng tin cậy quá rộng, chưa đủ bằng chứng.</td>
+                </tr>
+                <tr class="wilson-matrix-row" data-n="50" data-e="0">
+                  <td>n = 50</td>
+                  <td>0 lỗi</td>
+                  <td>100.0%</td>
+                  <td>92.86%</td>
+                  <td><span class="badge-tag badge-danger" style="margin: 0;">REJECT</span></td>
+                  <td>Chưa chạm ngưỡng an toàn 95%, cần tăng cỡ mẫu.</td>
+                </tr>
+                <tr class="wilson-matrix-row" data-n="80" data-e="0">
+                  <td><strong>n = 80</strong></td>
+                  <td><strong>0 lỗi</strong></td>
+                  <td><strong>100.0%</strong></td>
+                  <td><strong style="color: #34d399;">95.42%</strong></td>
+                  <td><span class="badge-tag badge-success" style="margin: 0;">ACCEPT</span></td>
+                  <td>Cỡ mẫu tối thiểu có thể nghiệm thu nếu 100% không lỗi.</td>
+                </tr>
+                <tr class="wilson-matrix-row highlight" data-n="100" data-e="0">
+                  <td><strong>n = 100</strong></td>
+                  <td><strong>0 lỗi</strong></td>
+                  <td><strong>100.0%</strong></td>
+                  <td><strong style="color: #34d399;">96.30%</strong></td>
+                  <td><span class="badge-tag badge-success" style="margin: 0;">ACCEPT</span></td>
+                  <td><strong>Mẫu chuẩn khuyến nghị cho lô 500 - 1000 ảnh.</strong></td>
+                </tr>
+                <tr class="wilson-matrix-row" data-n="100" data-e="1">
+                  <td>n = 100</td>
+                  <td>1 lỗi</td>
+                  <td>99.0%</td>
+                  <td>94.55%</td>
+                  <td><span class="badge-tag badge-danger" style="margin: 0;">REJECT</span></td>
+                  <td>Cận dưới 94.55% < 95% -> Phải trả về sửa.</td>
+                </tr>
+                <tr class="wilson-matrix-row" data-n="150" data-e="2">
+                  <td><strong>n = 150</strong></td>
+                  <td><strong>&le; 2 lỗi</strong></td>
+                  <td><strong>98.7%</strong></td>
+                  <td><strong style="color: #34d399;">95.27%</strong></td>
+                  <td><span class="badge-tag badge-success" style="margin: 0;">ACCEPT</span></td>
+                  <td>Cho phép tối đa 2 lỗi với mẫu 150 frame.</td>
+                </tr>
+                <tr class="wilson-matrix-row" data-n="200" data-e="3">
+                  <td><strong>n = 200</strong></td>
+                  <td><strong>&le; 3 lỗi</strong></td>
+                  <td><strong>98.5%</strong></td>
+                  <td><strong style="color: #34d399;">95.68%</strong></td>
+                  <td><span class="badge-tag badge-success" style="margin: 0;">ACCEPT</span></td>
+                  <td>Khuyến nghị cho các lô sản xuất lớn (> 2000 ảnh).</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- K-100 Simulator Sub-section -->
+        <div class="glass-card" style="margin-top: 2rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1.25rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined" style="color: var(--purple);">military_tech</span>
+            Mô Phỏng Đánh Giá Điều Kiện Pass Protocol K-100
+          </h3>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1.25rem; margin-bottom: 1.5rem;">
+            <div>
+              <div class="calc-label">
+                <span>Accuracy:</span>
+                <span class="calc-value-badge" id="kAccVal">98.5%</span>
+              </div>
+              <input type="range" class="calc-slider" id="kAcc" min="90" max="100" step="0.1" value="98.5">
+              <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem;">Chuẩn: &ge; 98.0%</div>
+            </div>
+
+            <div>
+              <div class="calc-label">
+                <span>Cohen's Kappa (&kappa;):</span>
+                <span class="calc-value-badge" id="kKappaVal">0.88</span>
+              </div>
+              <input type="range" class="calc-slider" id="kKappa" min="0.5" max="1.0" step="0.01" value="0.88">
+              <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem;">Chuẩn: &ge; 0.85</div>
+            </div>
+
+            <div>
+              <div class="calc-label">
+                <span>BBox IoU:</span>
+                <span class="calc-value-badge" id="kIoUVal">0.89</span>
+              </div>
+              <input type="range" class="calc-slider" id="kIoU" min="0.6" max="1.0" step="0.01" value="0.89">
+              <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem;">Chuẩn: &ge; 0.85</div>
+            </div>
+
+            <div>
+              <div class="calc-label">
+                <span>Semantic mIoU:</span>
+                <span class="calc-value-badge" id="kMIoUVal">0.83</span>
+              </div>
+              <input type="range" class="calc-slider" id="kMIoU" min="0.5" max="1.0" step="0.01" value="0.83">
+              <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem;">Chuẩn: &ge; 0.80</div>
+            </div>
+
+            <div>
+              <div class="calc-label">
+                <span>Lỗi Critical:</span>
+              </div>
+              <select id="kCrit" class="calc-number-input" style="padding: 0.45rem;">
+                <option value="0">0 lỗi (Đạt)</option>
+                <option value="1">1 lỗi (Trượt)</option>
+                <option value="2">2 lỗi (Trượt)</option>
+              </select>
+              <div style="font-size: 0.72rem; color: var(--text-muted); margin-top: 0.25rem;">Chuẩn: 0 lỗi Fatal</div>
+            </div>
+          </div>
+
+          <div id="k100Result" class="calc-result-box status-accept">
+            <!-- Rendered via JS -->
+          </div>
+        </div>
+      </section>
+
+      <!-- =================================================================== -->
+      <!-- TAB 5: QUY TRÌNH TỔNG THỂ & MA TRẬN PHÂN QUYỀN RACI -->
+      <!-- =================================================================== -->
+      <section id="section-pipeline-overview" class="content-section" style="display: none;">
+        <div class="section-header">
+          <span class="badge-tag badge-primary">
+            <span class="material-symbols-outlined" style="font-size: 14px;">account_tree</span>
+            End-to-End Workflow & RACI
+          </span>
+          <h2 class="section-title">Sơ Đồ Vận Hành 6 Bước & Ma Trận Trách Nhiệm Toàn Diện</h2>
+          <p class="section-desc">
+            Tổng quan luồng di chuyển dữ liệu qua 6 trạm kiểm soát kỹ thuật và phân định rõ trách nhiệm giữa 3 vai trò: Leader, Annotator, Reviewer và Project Manager.
+          </p>
+        </div>
+
+        <!-- 6-step Pipeline Grid -->
+        <div class="pipeline-grid" id="pipelineGrid">
+          <!-- Rendered via JS -->
+        </div>
+
+        <!-- Step detail container -->
+        <div id="stepDetailContainer" class="step-detail-container">
+          <!-- Rendered via JS -->
+        </div>
+
+        <!-- Bảng RACI Matrix Toàn diện -->
+        <div class="glass-card" style="margin-top: 2rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined" style="color: var(--primary);">grid_view</span>
+            Ma Trận Phân Định Trách Nhiệm (RACI Matrix)
+          </h3>
+          <div style="overflow-x: auto;">
+            <table class="custom-table">
+              <thead>
+                <tr>
+                  <th>Nhiệm Vụ / Công Đoạn Trong Quy Trình</th>
+                  <th>👑 Team Leader</th>
+                  <th>✏️ Annotator</th>
+                  <th>🔍 Peer QC (L1)</th>
+                  <th>🛡️ Tech Lead (QA L2)</th>
+                  <th>🎓 Mentor / PM</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>1. Đào tạo & Thi sát hạch Protocol K-100</td>
+                  <td><strong style="color: #fbbf24;">A (Accountable)</strong></td>
+                  <td><strong style="color: #60a5fa;">R (Responsible)</strong></td>
+                  <td>C (Consulted)</td>
+                  <td><strong style="color: #fbbf24;">A (Accountable)</strong></td>
+                  <td>I (Informed)</td>
+                </tr>
+                <tr>
+                  <td>2. Phân bổ Job CVAT & Lập kế hoạch tuần</td>
+                  <td><strong style="color: #fbbf24;">A / R</strong></td>
+                  <td>I</td>
+                  <td>I</td>
+                  <td>C</td>
+                  <td>I</td>
+                </tr>
+                <tr>
+                  <td>3. Gán nhãn Production & 60s Self-QC</td>
+                  <td>I</td>
+                  <td><strong style="color: #60a5fa;">A / R</strong></td>
+                  <td>I</td>
+                  <td>I</td>
+                  <td>I</td>
+                </tr>
+                <tr>
+                  <td>4. Kiểm tra lấy mẫu QC L1 (25% Job)</td>
+                  <td><strong style="color: #fbbf24;">A</strong></td>
+                  <td>I (Sửa nếu fail)</td>
+                  <td><strong style="color: #60a5fa;">R</strong></td>
+                  <td>C</td>
+                  <td>I</td>
+                </tr>
+                <tr>
+                  <td>5. Quản trị Edge Cases (P-xxx) & Họp chốt QĐ-xxx</td>
+                  <td><strong style="color: #fbbf24;">A / R</strong></td>
+                  <td>R (Gắn cờ CVAT)</td>
+                  <td>C</td>
+                  <td>C</td>
+                  <td><strong style="color: #fbbf24;">A (Duyệt)</strong></td>
+                </tr>
+                <tr>
+                  <td>6. Kiểm định Thống kê Wilson QA L2 (Audit)</td>
+                  <td>C</td>
+                  <td>I</td>
+                  <td>C</td>
+                  <td><strong style="color: #60a5fa;">R</strong></td>
+                  <td><strong style="color: #fbbf24;">A</strong></td>
+                </tr>
+                <tr>
+                  <td>7. Ký Biên bản Nghiệm thu Lô hàng & Bàn giao</td>
+                  <td><strong style="color: #60a5fa;">R (Ký duyệt)</strong></td>
+                  <td>I</td>
+                  <td>I</td>
+                  <td>C (Xác nhận)</td>
+                  <td><strong style="color: #fbbf24;">A (Ký duyệt)</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- Trình tạo Biên bản Nghiệm thu Lô hàng -->
+        <div class="glass-card" id="reportForm" style="margin-top: 2rem;">
+          <h3 style="font-size: 1.15rem; font-weight: 700; margin-bottom: 0.5rem; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined" style="color: var(--success);">receipt_long</span>
+            Tạo Biên Bản Nghiệm Thu Lô Dữ Liệu (Batch Acceptance Sign-Off)
+          </h3>
+          <p style="font-size: 0.85rem; color: var(--text-secondary); margin-bottom: 1.25rem;">
+            Điền nhanh thông số để tạo Biên bản nghiệm thu điện tử, tích hợp kết quả kiểm định Wilson, xuất file Markdown hoặc in ấn trực tiếp.
+          </p>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.25rem;">
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">Mã Lô Hàng (Batch ID):</label>
+              <input type="text" class="calc-number-input" id="repBatchId" value="BATCH-2026-W01">
+            </div>
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">Dạng Tác Vụ:</label>
+              <select class="calc-number-input" id="repTaskType" style="padding: 0.55rem;">
+                <option value="2D BBox, Polygon & Polyline">2D BBox, Polygon & Polyline</option>
+                <option value="Semantic Segmentation">Semantic Segmentation</option>
+              </select>
+            </div>
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">Tổng Quy Mô (N_total):</label>
+              <input type="number" class="calc-number-input" id="repTotalFrames" value="1000">
+            </div>
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">Cỡ Mẫu Kiểm Định (n):</label>
+              <input type="number" class="calc-number-input" id="repSampleSize" value="100">
+            </div>
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">Số Lỗi Phát Hiện (e):</label>
+              <input type="number" class="calc-number-input" id="repErrorCount" value="0">
+            </div>
+          </div>
+
+          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">Trưởng Đội (Team Leader):</label>
+              <input type="text" class="calc-number-input" id="repLeaderName" value="Phạm Xuân Duy">
+            </div>
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">Trưởng Nhóm QA (Auditor):</label>
+              <input type="text" class="calc-number-input" id="repQaName" value="spameverytime">
+            </div>
+            <div>
+              <label style="font-size: 0.8rem; font-weight: 600; color: var(--text-secondary);">Trưởng Dự Án (Project Manager):</label>
+              <input type="text" class="calc-number-input" id="repPmName" value="Mentor AI20K">
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 1rem; justify-content: flex-end;">
+            <button type="button" class="btn btn-primary" id="previewReportBtn">
+              <span class="material-symbols-outlined">visibility</span>
+              Xem Trước & Ký Duyệt Biên Bản
+            </button>
+          </div>
+        </div>
+      </section>
+
+    </main>
+
+    <!-- Modal for Previewing & Printing Report -->
+    <div class="modal-overlay" id="reportModal">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div style="font-weight: 800; font-size: 1.15rem; color: white; display: flex; align-items: center; gap: 0.5rem;">
+            <span class="material-symbols-outlined" style="color: var(--primary);">article</span>
+            Biên Bản Nghiệm Thu Chất Lượng Lô Hàng
+          </div>
+          <button id="closeModalBtn" style="background: none; border: none; color: var(--text-muted); cursor: pointer;">
+            <span class="material-symbols-outlined">close</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <pre id="reportPreviewContent" style="background: rgba(0, 0, 0, 0.4); border: 1px solid var(--border-color); border-radius: 10px; padding: 1.25rem; color: #e2e8f0; font-family: monospace; font-size: 0.85rem; line-height: 1.6; white-space: pre-wrap;"></pre>
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-outline" id="copyReportMdBtn">
+            <span class="material-symbols-outlined">content_copy</span>
+            Sao Chép Markdown
+          </button>
+          <button class="btn btn-primary" id="printReportBtn">
+            <span class="material-symbols-outlined">print</span>
+            In / Xuất PDF
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Custom Scripts -->
+  <script src="app.js"></script>
+</body>
+</html>
