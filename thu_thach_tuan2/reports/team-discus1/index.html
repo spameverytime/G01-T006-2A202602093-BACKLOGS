@@ -1,0 +1,1945 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Báo Cáo Thảo Luận Team 1 — Tuần 2 | AI20K Build Phase</title>
+  <style>
+    :root {
+      --bg-primary: #0b0f19;
+      --bg-secondary: #111827;
+      --bg-card: rgba(17, 24, 39, 0.75);
+      --bg-card-hover: rgba(31, 41, 55, 0.85);
+      --border-subtle: rgba(255, 255, 255, 0.08);
+      --border-focus: rgba(99, 102, 241, 0.5);
+      --text-main: #f3f4f6;
+      --text-muted: #9ca3af;
+      --text-subtle: #6b7280;
+      --primary: #6366f1;
+      --primary-light: #818cf8;
+      --primary-glow: rgba(99, 102, 241, 0.25);
+      --accent-cyan: #06b6d4;
+      --accent-emerald: #10b981;
+      --accent-amber: #f59e0b;
+      --accent-rose: #f43f5e;
+      --accent-purple: #a855f7;
+      --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.3);
+      --shadow-lg: 0 12px 30px rgba(0, 0, 0, 0.5);
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 18px;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      background-color: var(--bg-primary);
+      background-image: 
+        radial-gradient(at 0% 0%, rgba(99, 102, 241, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(6, 182, 212, 0.12) 0px, transparent 50%),
+        radial-gradient(at 50% 50%, rgba(16, 185, 129, 0.06) 0px, transparent 60%);
+      background-attachment: fixed;
+      color: var(--text-main);
+      line-height: 1.6;
+      padding: 24px;
+      font-size: 15px;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+    }
+
+    /* Header & Hero */
+    header {
+      background: linear-gradient(135deg, rgba(30, 27, 75, 0.8), rgba(15, 23, 42, 0.9));
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 32px 36px;
+      margin-bottom: 28px;
+      box-shadow: var(--shadow-lg);
+      backdrop-filter: blur(16px);
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: linear-gradient(90deg, var(--primary), var(--accent-cyan), var(--accent-emerald), var(--accent-amber));
+    }
+
+    .header-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(99, 102, 241, 0.15);
+      border: 1px solid rgba(99, 102, 241, 0.35);
+      color: var(--primary-light);
+      padding: 6px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .header-title {
+      font-size: 28px;
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+      line-height: 1.3;
+      letter-spacing: -0.5px;
+    }
+
+    .header-desc {
+      color: var(--text-muted);
+      font-size: 15px;
+      max-width: 860px;
+      margin-bottom: 20px;
+    }
+
+    .header-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+      padding-top: 20px;
+      border-top: 1px solid var(--border-subtle);
+    }
+
+    .stat-card {
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-sm);
+      padding: 12px 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      transition: all 0.2s ease;
+    }
+
+    .stat-card:hover {
+      background: rgba(255, 255, 255, 0.06);
+      border-color: rgba(255, 255, 255, 0.15);
+      transform: translateY(-2px);
+    }
+
+    .stat-val {
+      font-size: 22px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .stat-lbl {
+      font-size: 12px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+    }
+
+    /* Module Card Wrapper */
+    .module-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 28px;
+      margin-bottom: 28px;
+      backdrop-filter: blur(12px);
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s;
+    }
+
+    .module-card:hover {
+      border-color: rgba(255, 255, 255, 0.14);
+    }
+
+    .module-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-bottom: 22px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .module-title-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .module-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(99, 102, 241, 0.12);
+      border: 1px solid rgba(99, 102, 241, 0.25);
+      color: var(--primary-light);
+      flex-shrink: 0;
+    }
+
+    .module-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .module-title {
+      font-size: 20px;
+      font-weight: 700;
+      color: #ffffff;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .module-tag {
+      font-size: 12px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-weight: 600;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--text-muted);
+    }
+
+    /* Section Subheadings */
+    .section-subtitle {
+      font-size: 15px;
+      font-weight: 600;
+      color: #e5e7eb;
+      margin: 18px 0 10px 0;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* Tables */
+    .table-responsive {
+      overflow-x: auto;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border-subtle);
+      margin-bottom: 18px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      text-align: left;
+      font-size: 14px;
+    }
+
+    th {
+      background: rgba(255, 255, 255, 0.04);
+      padding: 12px 16px;
+      color: var(--text-muted);
+      font-weight: 600;
+      text-transform: uppercase;
+      font-size: 12px;
+      letter-spacing: 0.5px;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    td {
+      padding: 13px 16px;
+      border-bottom: 1px solid var(--border-subtle);
+      color: var(--text-main);
+      vertical-align: middle;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    tbody tr:hover {
+      background: rgba(255, 255, 255, 0.025);
+    }
+
+    /* Badges */
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      padding: 3px 8px;
+      border-radius: 6px;
+      font-size: 12px;
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .badge-primary { background: rgba(99, 102, 241, 0.15); color: #a5b4fc; border: 1px solid rgba(99, 102, 241, 0.3); }
+    .badge-emerald { background: rgba(16, 185, 129, 0.15); color: #6ee7b7; border: 1px solid rgba(16, 185, 129, 0.3); }
+    .badge-amber   { background: rgba(245, 158, 11, 0.15); color: #fcd34d; border: 1px solid rgba(245, 158, 11, 0.3); }
+    .badge-rose    { background: rgba(244, 63, 94, 0.15);  color: #fda4af; border: 1px solid rgba(244, 63, 94, 0.3); }
+    .badge-cyan    { background: rgba(6, 182, 212, 0.15);  color: #67e8f9; border: 1px solid rgba(6, 182, 212, 0.3); }
+    .badge-purple  { background: rgba(168, 85, 247, 0.15); color: #d8b4fe; border: 1px solid rgba(168, 85, 247, 0.3); }
+
+    /* Member Grid */
+    .member-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .member-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      position: relative;
+      transition: all 0.25s ease;
+    }
+
+    .member-card:hover {
+      background: rgba(255, 255, 255, 0.05);
+      border-color: var(--border-focus);
+      transform: translateY(-2px);
+    }
+
+    .member-card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .member-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .member-meta {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      gap: 10px;
+      font-family: monospace;
+    }
+
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .skill-tag {
+      font-size: 11px;
+      padding: 2px 7px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      color: #d1d5db;
+      border: 1px solid rgba(255, 255, 255, 0.07);
+    }
+
+    /* Links Row */
+    .links-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+      margin-top: 14px;
+    }
+
+    .link-pill {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 10px 14px;
+      border-radius: var(--radius-sm);
+      background: rgba(255, 255, 255, 0.03);
+      border: 1px solid var(--border-subtle);
+      color: #d1d5db;
+      text-decoration: none;
+      font-size: 13px;
+      transition: all 0.2s;
+    }
+
+    .link-pill:hover {
+      background: rgba(99, 102, 241, 0.1);
+      border-color: var(--border-focus);
+      color: #ffffff;
+      transform: translateX(3px);
+    }
+
+    .link-pill svg {
+      width: 16px;
+      height: 16px;
+      color: var(--primary-light);
+      flex-shrink: 0;
+    }
+
+    /* Workflow Cards */
+    .flow-steps {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin: 16px 0 22px 0;
+    }
+
+    .flow-step-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 18px;
+      position: relative;
+    }
+
+    .flow-num {
+      position: absolute;
+      top: 14px;
+      right: 14px;
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(99, 102, 241, 0.2);
+      color: var(--primary-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .flow-step-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .flow-step-desc {
+      font-size: 13px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    /* Alert / Callout box */
+    .callout {
+      border-radius: var(--radius-md);
+      padding: 16px 20px;
+      margin: 16px 0;
+      border-left: 4px solid;
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .callout-amber {
+      border-left-color: var(--accent-amber);
+      background: rgba(245, 158, 11, 0.05);
+    }
+
+    .callout-emerald {
+      border-left-color: var(--accent-emerald);
+      background: rgba(16, 185, 129, 0.05);
+    }
+
+    .callout-purple {
+      border-left-color: var(--accent-purple);
+      background: rgba(168, 85, 247, 0.05);
+    }
+
+    .callout-icon {
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    .callout-icon svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .callout-title {
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+      font-size: 14px;
+    }
+
+    .callout-text {
+      font-size: 13px;
+      color: #d1d5db;
+      line-height: 1.5;
+    }
+
+    /* Timeline / Event Cards */
+    .event-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 14px;
+      margin-top: 14px;
+    }
+
+    .event-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      border-top: 3px solid transparent;
+      transition: all 0.2s;
+    }
+
+    .event-card:hover {
+      background: rgba(255, 255, 255, 0.04);
+      transform: translateY(-2px);
+    }
+
+    .event-card.event-workshop { border-top-color: var(--accent-cyan); }
+    .event-card.event-office   { border-top-color: var(--accent-purple); }
+    .event-card.event-mentor   { border-top-color: var(--accent-amber); }
+    .event-card.event-deadline { border-top-color: var(--accent-rose); }
+
+    .event-time-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .event-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    .event-host {
+      font-size: 13px;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    /* Thumbnail Gallery */
+    .thumbnail-row {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 16px;
+      margin: 18px 0;
+    }
+
+    .thumb-card {
+      background: rgba(255, 255, 255, 0.02);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      transition: all 0.25s ease;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .thumb-card:hover {
+      border-color: var(--border-focus);
+      transform: scale(1.02);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.4);
+    }
+
+    .thumb-img {
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      background: #1e293b;
+      display: block;
+    }
+
+    .thumb-caption {
+      padding: 10px 14px;
+      font-size: 13px;
+      font-weight: 600;
+      color: #e5e7eb;
+      background: rgba(17, 24, 39, 0.8);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    /* Interactive Checkpoint */
+    .checkpoint-progress-wrap {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      padding: 14px 18px;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .progress-bar-bg {
+      flex: 1;
+      min-width: 180px;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.08);
+      border-radius: 999px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--primary), var(--accent-cyan), var(--accent-emerald));
+      border-radius: 999px;
+      transition: width 0.3s ease;
+    }
+
+    .checkpoint-filter-tabs {
+      display: flex;
+      gap: 8px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .filter-btn {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid var(--border-subtle);
+      color: var(--text-muted);
+      padding: 7px 14px;
+      border-radius: 999px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .filter-btn:hover {
+      color: #ffffff;
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .filter-btn.active {
+      background: var(--primary);
+      color: #ffffff;
+      border-color: var(--primary);
+    }
+
+    .checkpoint-group {
+      margin-bottom: 18px;
+      background: rgba(255, 255, 255, 0.015);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+    }
+
+    .checkpoint-group-title {
+      padding: 12px 18px;
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 14px;
+      font-weight: 700;
+      color: #e5e7eb;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+    }
+
+    .checkpoint-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      padding: 11px 18px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+      cursor: pointer;
+      transition: background 0.15s;
+    }
+
+    .checkpoint-item:last-child {
+      border-bottom: none;
+    }
+
+    .checkpoint-item:hover {
+      background: rgba(255, 255, 255, 0.03);
+    }
+
+    .checkpoint-item input[type="checkbox"] {
+      margin-top: 3px;
+      width: 17px;
+      height: 17px;
+      accent-color: var(--accent-emerald);
+      cursor: pointer;
+    }
+
+    .checkpoint-text {
+      flex: 1;
+      font-size: 13.5px;
+      color: var(--text-main);
+      line-height: 1.45;
+    }
+
+    .checkpoint-item.checked .checkpoint-text {
+      text-decoration: line-through;
+      color: var(--text-subtle);
+    }
+
+    .checkpoint-badge {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--text-muted);
+      white-space: nowrap;
+    }
+
+    /* Modal Lightbox */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.85);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      align-items: center;
+      justify-content: center;
+      padding: 24px;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-content {
+      max-width: 90vw;
+      max-height: 85vh;
+      background: var(--bg-secondary);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.7);
+    }
+
+    .modal-img {
+      max-width: 100%;
+      max-height: 75vh;
+      object-fit: contain;
+      display: block;
+      background: #000;
+    }
+
+    .modal-header {
+      padding: 12px 18px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-bottom: 1px solid var(--border-subtle);
+      background: var(--bg-card);
+    }
+
+    .modal-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: #fff;
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .modal-close-btn:hover {
+      color: #fff;
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    /* Footer */
+    footer {
+      text-align: center;
+      padding: 24px 0 12px 0;
+      font-size: 13px;
+      color: var(--text-subtle);
+      border-top: 1px solid var(--border-subtle);
+      margin-top: 40px;
+    }
+
+    @media (max-width: 768px) {
+      body { padding: 14px; }
+      header { padding: 22px; }
+      .header-title { font-size: 22px; }
+      .module-card { padding: 18px; }
+      .stat-val { font-size: 18px; }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+
+  <!-- HERO HEADER -->
+  <header>
+    <div class="header-badge">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+      AI20K Build Phase • Cohort 4A
+    </div>
+    <h1 class="header-title">BÁO CÁO THẢO LUẬN TEAM 1 — TUẦN 2</h1>
+    <p class="header-desc">
+      Hệ thống hóa toàn bộ thông tin triển khai thử thách Tuần 2 của <strong>Team T006 — Anyone's Legend</strong>: Phân bổ công việc, quy trình annotation 3 bước, lịch sự kiện & deadline báo cáo, cùng danh mục checkpoint kỹ thuật bám sát guideline Week 2.
+    </p>
+
+    <div class="header-stats">
+      <div class="stat-card">
+        <span class="stat-val" style="color: #818cf8;">5 / 5</span>
+        <span class="stat-lbl">Thành viên tham gia</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val" style="color: #6ee7b7;">3 Tasks • 10 Jobs</span>
+        <span class="stat-lbl">Khối lượng trên CVAT</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val" style="color: #fcd34d;">75 Frames</span>
+        <span class="stat-lbl">Tổng số frame phân bổ</span>
+      </div>
+      <div class="stat-card">
+        <span class="stat-val" style="color: #f43f5e;">12:00 T5 & CN</span>
+        <span class="stat-lbl">Deadline nộp Mentor Duty</span>
+      </div>
+    </div>
+  </header>
+
+  <!-- MODULE 1: DANH SÁCH TEAM -->
+  <section class="module-card" id="module-team">
+    <div class="module-header">
+      <div class="module-title-wrap">
+        <div class="module-icon">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div>
+          <h2 class="module-title">1. Danh Sách Team T006 — Anyone's Legend</h2>
+          <div class="module-tag">5 Thành viên • Lớp D302 • AI20K Build Phase</div>
+        </div>
+      </div>
+      <div>
+        <span class="badge badge-primary">Quy mô: 5/5 Full Slot</span>
+      </div>
+    </div>
+
+    <div class="callout callout-purple">
+      <div class="callout-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color:#c084fc;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+      </div>
+      <div>
+        <div class="callout-title">Định hướng Anyone's Legend:</div>
+        <div class="callout-text">
+          Xây dựng hệ thống dữ liệu & mô hình AI thực chiến, tối ưu pipeline gán nhãn và kiểm soát chất lượng dữ liệu khắt khe. Team Leader điều phối kỹ thuật, phân chia 2 phase làm việc nhịp nhàng để đạt chất lượng nghiệm thu tối đa.
+        </div>
+      </div>
+    </div>
+
+    <div class="member-grid">
+      <!-- Member 1 -->
+      <div class="member-card">
+        <div class="member-card-header">
+          <span class="member-name">NGUYỄN ĐẠI HOÀNG</span>
+          <span class="badge badge-amber">Leader</span>
+        </div>
+        <div class="member-meta">
+          <span>MSSV: 2A202602208</span>
+          <span>Lớp: D302</span>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Team Leadership</span>
+          <span class="skill-tag">Backend</span>
+          <span class="skill-tag">Cloud / DevOps</span>
+          <span class="skill-tag">Data Pipeline</span>
+          <span class="skill-tag">Image Annotation</span>
+          <span class="skill-tag">Python & SQL</span>
+          <span class="skill-tag">Xe tự hành / Robotaxi</span>
+        </div>
+      </div>
+
+      <!-- Member 2 -->
+      <div class="member-card">
+        <div class="member-card-header">
+          <span class="member-name">THÂN VĨNH TRỌNG</span>
+          <span class="badge badge-primary">Member</span>
+        </div>
+        <div class="member-meta">
+          <span>MSSV: 2A202602262</span>
+          <span>Lớp: D302</span>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Annotation Tooling</span>
+          <span class="skill-tag">Data Quality</span>
+          <span class="skill-tag">Backend</span>
+          <span class="skill-tag">Cloud / DevOps</span>
+          <span class="skill-tag">Hạ tầng dữ liệu</span>
+          <span class="skill-tag">Text/Image Annotation</span>
+          <span class="skill-tag">Xe tự hành / Robotaxi</span>
+        </div>
+      </div>
+
+      <!-- Member 3 -->
+      <div class="member-card">
+        <div class="member-card-header">
+          <span class="member-name">TRƯƠNG TRỌNG ĐỨC</span>
+          <span class="badge badge-primary">Member</span>
+        </div>
+        <div class="member-meta">
+          <span>MSSV: 2A202602172</span>
+          <span>Lớp: D302</span>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag">Annotation QC</span>
+          <span class="skill-tag">Computer Vision</span>
+          <span class="skill-tag">Data Pipeline</span>
+          <span class="skill-tag">Scripting / Automation</span>
+          <span class="skill-tag">Frontend & Backend</span>
+          <span class="skill-tag">Tự động hoá quy trình</span>
+          <span class="skill-tag">Xe tự hành / Robotaxi</span>
+        </div>
+      </div>
+
+      <!-- Member 4 -->
+      <div class="member-card" style="border-color: rgba(6, 182, 212, 0.4); background: rgba(6, 182, 212, 0.04);">
+        <div class="member-card-header">
+          <span class="member-name">NGUYỄN NHƯ QUỲNH</span>
+          <span class="badge badge-cyan">Leader Phase / Member</span>
+        </div>
+        <div class="member-meta">
+          <span>MSSV: 2A202602336</span>
+          <span>Lớp: D302</span>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag" style="color: #67e8f9; font-weight: 600;">Leader Phase Task #341</span>
+          <span class="skill-tag">Guideline Writing</span>
+          <span class="skill-tag">Data Quality</span>
+          <span class="skill-tag">Frontend & Backend</span>
+          <span class="skill-tag">Project Management</span>
+          <span class="skill-tag">Hạ tầng dữ liệu</span>
+          <span class="skill-tag">Python & SQL</span>
+          <span class="skill-tag">Xe tự hành / Robotaxi</span>
+        </div>
+      </div>
+
+      <!-- Member 5 -->
+      <div class="member-card" style="border-color: rgba(99, 102, 241, 0.4); background: rgba(99, 102, 241, 0.04);">
+        <div class="member-card-header">
+          <span class="member-name">PHẠM XUÂN DUY</span>
+          <span class="badge badge-emerald">Leader Phase / Member</span>
+        </div>
+        <div class="member-meta">
+          <span>MSSV: 2A202602093</span>
+          <span>Lớp: D302</span>
+        </div>
+        <div class="skill-tags">
+          <span class="skill-tag" style="color: #6ee7b7; font-weight: 600;">Leader Phase Task #338 & #339</span>
+          <span class="skill-tag">Điều phối 2 Phase</span>
+          <span class="skill-tag">Computer Vision</span>
+          <span class="skill-tag">Quản lý chất lượng dữ liệu</span>
+          <span class="skill-tag">Tự động hoá quy trình</span>
+          <span class="skill-tag">Hạ tầng dữ liệu</span>
+          <span class="skill-tag">Xe tự hành / Robotaxi</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Quick Links -->
+    <div class="section-subtitle">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 13a5 5 0 007.54.54l3-3a5 5 0 00-7.07-7.07l-1.72 1.71"/><path d="M14 11a5 5 0 00-7.54-.54l-3 3a5 5 0 007.07 7.07l1.71-1.71"/></svg>
+      Kênh làm việc & tài nguyên dự án
+    </div>
+    <div class="links-grid">
+      <a class="link-pill" href="https://github.com/AI20K-Build-Phase-Cohort-4A" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 00-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0020 4.77 5.07 5.07 0 0019.91 1S18.73.65 16 2.48a13.38 13.38 0 00-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 005 4.77a5.44 5.44 0 00-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 009 18.13V22"/></svg>
+        GitHub Team G01-T006
+      </a>
+      <a class="link-pill" href="https://github.com/AI20K-Build-Phase-Cohort-4A/labeling-team-template" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+        Labeling Team Template
+      </a>
+      <a class="link-pill" href="https://discord.com/channels/1547077006166986752/1548326479350337639" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+        Discord Channel Team T006
+      </a>
+      <a class="link-pill" href="https://cvat.note.transformerlabs.ai/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><line x1="8" y1="21" x2="16" y2="21"/><line x1="12" y1="17" x2="12" y2="21"/></svg>
+        Nền tảng CVAT Dự Án
+      </a>
+    </div>
+  </section>
+
+  <!-- MODULE 2: DANH SÁCH TASKS, JOBS & THÀNH VIÊN -->
+  <section class="module-card" id="module-tasks">
+    <div class="module-header">
+      <div class="module-title-wrap">
+        <div class="module-icon" style="background: rgba(6, 182, 212, 0.12); border-color: rgba(6, 182, 212, 0.25); color: var(--accent-cyan);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 2 7 12 12 22 7 12 2"/><polyline points="2 17 12 22 22 17"/><polyline points="2 12 12 17 22 12"/></svg>
+        </div>
+        <div>
+          <h2 class="module-title">2. Danh Sách Tasks, Jobs & Thành Viên Tham Gia</h2>
+          <div class="module-tag">Dữ liệu nguồn từ plan_info.md</div>
+        </div>
+      </div>
+      <div>
+        <span class="badge badge-cyan">Chuẩn phân bổ: 15 frames / 20 hours / 8 labels / người</span>
+      </div>
+    </div>
+
+    <!-- Tasks Summary Table -->
+    <div class="section-subtitle">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>
+      A. Tổng quan 3 Tasks được cấp phát trên CVAT
+    </div>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Task ID</th>
+            <th>Tên Task</th>
+            <th>Assignee Quản Lý Task</th>
+            <th>Subset</th>
+            <th>Quy mô Job</th>
+            <th>Tổng Frames</th>
+            <th>Tiến độ</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong style="color: var(--primary-light);">Task #339</strong></td>
+            <td><strong>W2-POSEPRE-G1-T1</strong> (HumanPose With Pre-label)</td>
+            <td><code>2A202602093</code> (Phạm Xuân Duy — <strong style="color: #6ee7b7;">Leader Phase</strong>)</td>
+            <td>Input subset</td>
+            <td>4 Jobs (#2194 - #2197)</td>
+            <td><span class="badge badge-primary">40 frames</span></td>
+            <td>4 annotating • 4 total</td>
+          </tr>
+          <tr>
+            <td><strong style="color: var(--primary-light);">Task #338</strong></td>
+            <td><strong>W2-POSE-G1-T1</strong> (HumanPose Without Pre-label)</td>
+            <td><code>2A202602093</code> (Phạm Xuân Duy — <strong style="color: #6ee7b7;">Leader Phase</strong>)</td>
+            <td>Input subset</td>
+            <td>4 Jobs (#2190 - #2193)</td>
+            <td><span class="badge badge-cyan">20 frames</span></td>
+            <td>4 annotating • 4 total</td>
+          </tr>
+          <tr>
+            <td><strong style="color: var(--primary-light);">Task #341</strong></td>
+            <td><strong>---</strong> (Task bổ sung / Face Landmark)</td>
+            <td><code>2A202602336</code> (Nguyễn Như Quỳnh — <strong style="color: #67e8f9;">Leader Phase</strong>)</td>
+            <td>Input subset</td>
+            <td>4 Jobs (#2198, #2202, ...)</td>
+            <td><span class="badge badge-amber">40 frames (18f active)</span></td>
+            <td>4 annotating • 4 total</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Jobs Detail Table -->
+    <div class="section-subtitle">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 012 2v14a2 2 0 01-2 2H6a2 2 0 01-2-2V6a2 2 0 012-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+      B. Danh sách Jobs chi tiết & Phân công thành viên
+    </div>
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>Job ID</th>
+            <th>Thuộc Task</th>
+            <th>Thành viên phụ trách</th>
+            <th>MSSV</th>
+            <th>Frame Range</th>
+            <th>Số frames</th>
+            <th>Thời lượng</th>
+            <th>Cập nhật gần nhất</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Task 339 Jobs -->
+          <tr>
+            <td><code>Job #2194</code></td>
+            <td>Task #339</td>
+            <td><strong>NGUYỄN ĐẠI HOÀNG</strong></td>
+            <td><code>2A202602208</code></td>
+            <td>0 – 9</td>
+            <td>10 frames (25%)</td>
+            <td>10 hours</td>
+            <td>Sep 22, 10:01</td>
+          </tr>
+          <tr>
+            <td><code>Job #2195</code></td>
+            <td>Task #339</td>
+            <td><strong>THÂN VĨNH TRỌNG</strong></td>
+            <td><code>2A202602262</code></td>
+            <td>10 – 19</td>
+            <td>10 frames (25%)</td>
+            <td>10 hours</td>
+            <td>Sep 22, 00:11</td>
+          </tr>
+          <tr>
+            <td><code>Job #2196</code></td>
+            <td>Task #339</td>
+            <td><strong>NGUYỄN NHƯ QUỲNH</strong></td>
+            <td><code>2A202602336</code></td>
+            <td>20 – 29</td>
+            <td>10 frames (25%)</td>
+            <td>10 hours</td>
+            <td>Sep 22, 00:11</td>
+          </tr>
+          <tr>
+            <td><code>Job #2197</code></td>
+            <td>Task #339</td>
+            <td><strong>TRƯƠNG TRỌNG ĐỨC</strong></td>
+            <td><code>2A202602172</code></td>
+            <td>30 – 39</td>
+            <td>10 frames (25%)</td>
+            <td>10 hours</td>
+            <td>Sep 22, 01:21</td>
+          </tr>
+          <!-- Task 338 Jobs -->
+          <tr>
+            <td><code>Job #2190</code></td>
+            <td>Task #338</td>
+            <td><strong>NGUYỄN ĐẠI HOÀNG</strong></td>
+            <td><code>2A202602208</code></td>
+            <td>0 – 4</td>
+            <td>5 frames (25%)</td>
+            <td>10 hours</td>
+            <td>Sep 22, 10:01</td>
+          </tr>
+          <tr>
+            <td><code>Job #2191</code></td>
+            <td>Task #338</td>
+            <td><strong>THÂN VĨNH TRỌNG</strong></td>
+            <td><code>2A202602262</code></td>
+            <td>5 – 9</td>
+            <td>5 frames (25%)</td>
+            <td>10 hours</td>
+            <td>Sep 22, 08:54</td>
+          </tr>
+          <tr>
+            <td><code>Job #2192</code></td>
+            <td>Task #338</td>
+            <td><strong>NGUYỄN NHƯ QUỲNH</strong></td>
+            <td><code>2A202602336</code></td>
+            <td>10 – 14</td>
+            <td>5 frames (25%)</td>
+            <td>10 hours</td>
+            <td>Sep 22, 10:08</td>
+          </tr>
+          <tr>
+            <td><code>Job #2193</code></td>
+            <td>Task #338</td>
+            <td><strong>TRƯƠNG TRỌNG ĐỨC</strong></td>
+            <td><code>2A202602172</code></td>
+            <td>15 – 19</td>
+            <td>5 frames (25%)</td>
+            <td>10 hours</td>
+            <td>Sep 22, 00:11</td>
+          </tr>
+          <!-- Task 341 Jobs -->
+          <tr>
+            <td><code>Job #2198</code></td>
+            <td>Task #341</td>
+            <td><strong>PHẠM XUÂN DUY</strong></td>
+            <td><code>2A202602093</code></td>
+            <td>—</td>
+            <td>5 frames</td>
+            <td>In progress</td>
+            <td>Annotation in progress</td>
+          </tr>
+          <tr>
+            <td><code>Job #2202</code></td>
+            <td>Task #341</td>
+            <td><strong>PHẠM XUÂN DUY</strong></td>
+            <td><code>2A202602093</code></td>
+            <td>—</td>
+            <td>13 frames</td>
+            <td>In progress</td>
+            <td>Annotation in progress</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Member Matrix & Labels -->
+    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 16px; margin-top: 10px;">
+      <div>
+        <div class="section-subtitle">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>
+          Tổng quan định mức công việc mỗi thành viên
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>TT</th>
+                <th>Họ và tên</th>
+                <th>MSSV</th>
+                <th>Số frames</th>
+                <th>Số labels</th>
+                <th>Thời lượng</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td>NGUYỄN ĐẠI HOÀNG</td><td><code>2A202602208</code></td><td>15 frames</td><td>8</td><td>20 hours</td></tr>
+              <tr><td>2</td><td>THÂN VĨNH TRỌNG</td><td><code>2A202602262</code></td><td>15 frames</td><td>8</td><td>20 hours</td></tr>
+              <tr><td>3</td><td>TRƯƠNG TRỌNG ĐỨC</td><td><code>2A202602172</code></td><td>15 frames</td><td>8</td><td>20 hours</td></tr>
+              <tr><td>4</td><td>NGUYỄN NHƯ QUỲNH</td><td><code>2A202602336</code></td><td>15 frames</td><td>8</td><td>20 hours</td></tr>
+              <tr><td>5</td><td>PHẠM XUÂN DUY</td><td><code>2A202602093</code></td><td>15 frames</td><td>8</td><td>20 hours</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-subtitle">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.59 13.41l-7.17 7.17a2 2 0 01-2.83 0L2 12V2h10l8.59 8.59a2 2 0 010 2.82z"/><line x1="7" y1="7" x2="7.01" y2="7"/></svg>
+          8 Labels bắt buộc trên CVAT
+        </div>
+        <div class="table-responsive">
+          <table>
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Label Name</th>
+                <th>Loại đối tượng</th>
+                <th>Ghi chú</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>1</td><td><strong style="color: var(--accent-cyan);">person</strong></td><td>HumanPose-17</td><td>1 skeleton, 17 keypoints (VinFast Left/Right)</td></tr>
+              <tr><td>2</td><td><strong style="color: #a5b4fc;">longmaytrai</strong></td><td>Face Landmark</td><td>5 points (0 – 4), contour hở</td></tr>
+              <tr><td>3</td><td><strong style="color: #a5b4fc;">longmayphai</strong></td><td>Face Landmark</td><td>5 points (5 – 9), contour hở</td></tr>
+              <tr><td>4</td><td><strong style="color: #a5b4fc;">songmui</strong></td><td>Face Landmark</td><td>4 points (10 – 13), contour hở</td></tr>
+              <tr><td>5</td><td><strong style="color: #a5b4fc;">mattrai</strong></td><td>Face Landmark</td><td>8 points (14 – 21), contour kín</td></tr>
+              <tr><td>6</td><td><strong style="color: #a5b4fc;">matphai</strong></td><td>Face Landmark</td><td>8 points (22 – 29), contour kín</td></tr>
+              <tr><td>7</td><td><strong style="color: #a5b4fc;">moingoai</strong></td><td>Face Landmark</td><td>12 points (30 – 41), contour kín</td></tr>
+              <tr><td>8</td><td><strong style="color: #a5b4fc;">moitrong</strong></td><td>Face Landmark</td><td>8 points (42 – 49), contour kín (dù miệng đóng)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 3: MÔ TẢ CÔNG VIỆC PHẢI LÀM -->
+  <section class="module-card" id="module-workflow">
+    <div class="module-header">
+      <div class="module-title-wrap">
+        <div class="module-icon" style="background: rgba(16, 185, 129, 0.12); border-color: rgba(16, 185, 129, 0.25); color: var(--accent-emerald);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/><polyline points="10 9 9 9 8 9"/></svg>
+        </div>
+        <div>
+          <h2 class="module-title">3. Mô Tả Công Việc Phải Làm (Workflow & Plan)</h2>
+          <div class="module-tag">Quy trình CVAT 3 bước • Thảo luận lần 1 • Kế hoạch 2 Phase của Duy</div>
+        </div>
+      </div>
+      <div>
+        <span class="badge badge-emerald">Nguyên tắc: Đọc kỹ guideline • Thảo luận • Quyết định</span>
+      </div>
+    </div>
+
+    <!-- Quy trình 3 bước -->
+    <div class="section-subtitle">A. Chu trình vận hành một Job trên nền tảng CVAT</div>
+    <div class="flow-steps">
+      <div class="flow-step-card">
+        <span class="flow-num">1</span>
+        <div class="flow-step-title" style="color: var(--primary-light);">Bước 1: Gắn Nhãn (Annotation)</div>
+        <div class="flow-step-desc">
+          Annotator nhận Job, chuyển <strong>State</strong> sang <code>in progress</code> để làm. Khi hoàn thành toàn bộ frame, chuyển State sang <code>completed</code>.
+        </div>
+      </div>
+      <div class="flow-step-card">
+        <span class="flow-num">2</span>
+        <div class="flow-step-title" style="color: var(--accent-amber);">Bước 2: Kiểm Tra Chéo (Validation)</div>
+        <div class="flow-step-desc">
+          Lead đổi <strong>Stage</strong> sang <code>Validation</code> và gán Assignee cho Validator (Reviewer).<br>
+          • <strong>Nếu Fail:</strong> Mở Issue trên CVAT, trả Stage về <code>Annotation</code>, State về <code>rejected</code>.<br>
+          • <strong>Nếu Pass:</strong> Chuyển Stage sang <code>Acceptance</code>.
+        </div>
+      </div>
+      <div class="flow-step-card">
+        <span class="flow-num">3</span>
+        <div class="flow-step-title" style="color: var(--accent-emerald);">Bước 3: Nghiệm Thu (Acceptance)</div>
+        <div class="flow-step-desc">
+          Xác nhận cuối cùng, chuyển State sang <code>completed</code>. Dữ liệu sẵn sàng để export nộp cho BTC và tính KPI đội.
+        </div>
+      </div>
+    </div>
+
+    <!-- Cơ chế xử lý ca khó Issue Tracker -->
+    <div class="section-subtitle">B. Cơ chế xử lý "Ca khó" (Ambiguous Cases) trên CVAT Issue Tracker</div>
+    <div class="flow-steps">
+      <div class="flow-step-card" style="border-top: 3px solid var(--accent-rose);">
+        <div class="flow-step-title">1. Flag (Đánh dấu)</div>
+        <div class="flow-step-desc">Chuột phải vào đối tượng/frame có nghi vấn, chọn <strong>Open Issue</strong> để đánh dấu trực tiếp.</div>
+      </div>
+      <div class="flow-step-card" style="border-top: 3px solid var(--accent-amber);">
+        <div class="flow-step-title">2. Discuss (Thảo luận)</div>
+        <div class="flow-step-desc">Annotator & Reviewer trao đổi trực tiếp trong comment của Issue để làm rõ góc nhìn kỹ thuật.</div>
+      </div>
+      <div class="flow-step-card" style="border-top: 3px solid var(--primary);">
+        <div class="flow-step-title">3. Decide (Quyết định)</div>
+        <div class="flow-step-desc">Thống nhất cách gán nhãn tạm thời dựa theo nguyên tắc guideline tuần 2 hoặc hỏi AI trợ lý.</div>
+      </div>
+      <div class="flow-step-card" style="border-top: 3px solid var(--accent-emerald);">
+        <div class="flow-step-title">4. Update & Resolve</div>
+        <div class="flow-step-desc">Cập nhật vào Sổ Quyết Định / Báo cáo Mentor, Annotator sửa nhãn và Reviewer nhấn <strong>Resolve</strong>.</div>
+      </div>
+    </div>
+
+    <!-- Kế hoạch cụ thể thảo luận lần 1 -->
+    <div class="callout callout-emerald">
+      <div class="callout-icon">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="color: var(--accent-emerald);"><path d="M22 11.08V12a10 10 0 11-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+      </div>
+      <div>
+        <div class="callout-title">Nội dung thống nhất từ cuộc họp Thảo luận 1 (discus-lan1.md):</div>
+        <div class="callout-text">
+          <ul style="padding-left: 18px; margin-top: 6px; display: flex; flex-direction: column; gap: 6px;">
+            <li><strong>Phân công:</strong> Mỗi người nhận 2 jobs chi tiết trong <code>plan_info.md</code>. Với Job 40 frames có 1 frame máy đánh mẫu (pre-label) — <em>bắt buộc phải kiểm tra lại so với guideline trước khi dùng</em>, các frame còn lại tự đánh.</li>
+            <li><strong>Điều phối Leader Phase (Duy & Quỳnh):</strong>
+              <br>• Tuần này đội có 2 Leader Phase: <strong>Phạm Xuân Duy</strong> (phụ trách nhiệm vụ Human-Pose: Task #338 & #339) và <strong>Nguyễn Như Quỳnh</strong> (phụ trách nhiệm vụ Face Landmark: Task #341).
+              <br>• <strong>Phase 1 (Annotation):</strong> Chậm nhất đến <strong>09:00 sáng Thứ 5 (24/09)</strong> phải hoàn thành nhãn để <strong>10:00 sáng Thứ 5</strong> tổng hợp gửi báo cáo Mentor.
+              <br>• <strong>Phase 2 (Review / Validation):</strong> Chậm nhất đến <strong>09:00 sáng Chủ Nhật (27/09)</strong> hoàn thành toàn bộ lượt rà soát chéo.
+            </li>
+            <li><strong>Nguyên tắc báo cáo:</strong> Báo cáo trước deadline; sau deadline để lại lần sau. Sử dụng Visual Checkpoint để kiểm tra.</li>
+            <li><strong>Tuyệt đối không upload annotation:</strong> Không dùng nút Upload Annotation trên CVAT vì sẽ ghi đè và làm mất dữ liệu của cả nhóm.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 4: LỊCH SỰ KIỆN TUẦN -->
+  <section class="module-card" id="module-events">
+    <div class="module-header">
+      <div class="module-title-wrap">
+        <div class="module-icon" style="background: rgba(168, 85, 247, 0.12); border-color: rgba(168, 85, 247, 0.25); color: var(--accent-purple);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+        </div>
+        <div>
+          <h2 class="module-title">4. Lịch Sự Kiện Tuần 2 (21/09 – 27/09)</h2>
+          <div class="module-tag">Trích xuất từ lich_event_tuan2.md & ảnh đính kèm</div>
+        </div>
+      </div>
+      <div>
+        <span class="badge badge-purple">Khung giờ vàng: 20:00 – 22:00</span>
+      </div>
+    </div>
+
+    <div class="event-grid">
+      <!-- T3 -->
+      <div class="event-card event-workshop">
+        <div>
+          <div class="event-time-row">
+            <span>Thứ 3 (22/09)</span>
+            <span class="badge badge-cyan">Sự kiện chung</span>
+          </div>
+          <div class="event-name" style="margin: 8px 0 4px 0;">WORKSHOP 04</div>
+          <div style="font-size: 13px; color: #d1d5db;">20:00 – 22:00</div>
+        </div>
+        <div class="event-host">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Host / Speaker: Hoàng Duy Lộc
+        </div>
+      </div>
+
+      <!-- T4 -->
+      <div class="event-card event-office">
+        <div>
+          <div class="event-time-row">
+            <span>Thứ 4 (23/09)</span>
+            <span class="badge badge-purple">Sự kiện chung</span>
+          </div>
+          <div class="event-name" style="margin: 8px 0 4px 0;">OFFICE HOUR 01</div>
+          <div style="font-size: 13px; color: #d1d5db;">20:00 – 21:00</div>
+        </div>
+        <div class="event-host">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Host: Nguyễn Thành Đạt
+        </div>
+      </div>
+
+      <!-- T5 -->
+      <div class="event-card event-mentor">
+        <div>
+          <div class="event-time-row">
+            <span>Thứ 5 (24/09)</span>
+            <span class="badge badge-amber">Mentor Duty</span>
+          </div>
+          <div class="event-name" style="margin: 8px 0 4px 0;">MENTOR DUTY — NHÓM 1</div>
+          <div style="font-size: 13px; color: #d1d5db;">20:00 – 22:00</div>
+        </div>
+        <div class="event-host">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Mentor: Thái Doãn Kiên
+        </div>
+      </div>
+
+      <!-- T6 -->
+      <div class="event-card event-workshop">
+        <div>
+          <div class="event-time-row">
+            <span>Thứ 6 (25/09)</span>
+            <span class="badge badge-cyan">Sự kiện chung</span>
+          </div>
+          <div class="event-name" style="margin: 8px 0 4px 0;">WORKSHOP 05</div>
+          <div style="font-size: 13px; color: #d1d5db;">20:00 – 22:00</div>
+        </div>
+        <div class="event-host">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Speaker: Hoàng Duy Lộc
+        </div>
+      </div>
+
+      <!-- T7 -->
+      <div class="event-card event-office">
+        <div>
+          <div class="event-time-row">
+            <span>Thứ 7 (26/09)</span>
+            <span class="badge badge-purple">Sự kiện chung</span>
+          </div>
+          <div class="event-name" style="margin: 8px 0 4px 0;">OFFICE HOUR 02</div>
+          <div style="font-size: 13px; color: #d1d5db;">20:00 – 21:00</div>
+        </div>
+        <div class="event-host">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Host: Nguyễn Hoàng Đăng
+        </div>
+      </div>
+
+      <!-- CN -->
+      <div class="event-card event-mentor">
+        <div>
+          <div class="event-time-row">
+            <span>Chủ Nhật (27/09)</span>
+            <span class="badge badge-amber">Mentor Duty</span>
+          </div>
+          <div class="event-name" style="margin: 8px 0 4px 0;">MENTOR DUTY — NHÓM 1</div>
+          <div style="font-size: 13px; color: #d1d5db;">20:00 – 22:00</div>
+        </div>
+        <div class="event-host">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 00-4-4H8a4 4 0 00-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          Mentor: Thái Doãn Kiên
+        </div>
+      </div>
+    </div>
+
+    <!-- Thumbnail ảnh gốc -->
+    <div class="section-subtitle">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Hình ảnh minh chứng sự kiện tuần 2 (Nhấp vào ảnh để phóng to)
+    </div>
+    <div class="thumbnail-row">
+      <div class="thumb-card" onclick="openModal('../../assets/images/lich_event_tuan2.png', 'Lịch Sự Kiện Tuần 2 (21/09 - 27/09)')">
+        <img class="thumb-img" src="../../assets/images/lich_event_tuan2.png" alt="Lịch Sự Kiện Tuần 2" onerror="this.onerror=null; this.src='../assets/images/lich_event_tuan2.png';">
+        <div class="thumb-caption">
+          <span>lich_event_tuan2.png</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 5: LỊCH DEADLINE BÁO CÁO -->
+  <section class="module-card" id="module-deadlines">
+    <div class="module-header">
+      <div class="module-title-wrap">
+        <div class="module-icon" style="background: rgba(244, 63, 94, 0.12); border-color: rgba(244, 63, 94, 0.25); color: var(--accent-rose);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        </div>
+        <div>
+          <h2 class="module-title">5. Lịch Deadline Báo Cáo Mentor Duty</h2>
+          <div class="module-tag">Trích xuất từ lich_mentor_duty_tuan2.md & Sổ tay học viên</div>
+        </div>
+      </div>
+      <div>
+        <span class="badge badge-rose">Kỷ luật: Đúng 12:00 trưa • Quá hạn để lần sau</span>
+      </div>
+    </div>
+
+    <div class="table-responsive">
+      <table>
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Nhiệm vụ báo cáo</th>
+            <th>Hạn nộp chính thức</th>
+            <th>Mục tiêu & Phiên giải đáp</th>
+            <th>Trạng thái</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background: rgba(244, 63, 94, 0.04);">
+            <td><strong>1</strong></td>
+            <td><strong>Báo cáo Mentor Duty — Đợt 1</strong></td>
+            <td><strong style="color: #fda4af;">12:00 (Trưa) Thứ 5, ngày 24/09</strong></td>
+            <td>Gom các ca khó/ambiguous cases giải đáp lúc 20:00 cùng ngày (Mentor Thái Doãn Kiên)</td>
+            <td><span class="badge badge-rose">Tuần 2 - Giữa tuần</span></td>
+          </tr>
+          <tr>
+            <td><strong>2</strong></td>
+            <td><strong>Nghiệm thu thử thách Tuần 2</strong></td>
+            <td><strong style="color: #fcd34d;">Thứ 7, ngày 26/09</strong></td>
+            <td>BTC nghiệm thu tiến độ và chất lượng bộ nhãn Tuần 2 của toàn đội</td>
+            <td><span class="badge badge-amber">Nghiệm thu BTC</span></td>
+          </tr>
+          <tr style="background: rgba(244, 63, 94, 0.04);">
+            <td><strong>3</strong></td>
+            <td><strong>Báo cáo Mentor Duty — Đợt 2</strong></td>
+            <td><strong style="color: #fda4af;">12:00 (Trưa) Chủ Nhật, ngày 27/09</strong></td>
+            <td>Nghiệm thu ca khó tuần 2, chuẩn bị chuyển giao tuần 3 lúc 20:00 (Mentor Thái Doãn Kiên)</td>
+            <td><span class="badge badge-rose">Tuần 2 - Cuối tuần</span></td>
+          </tr>
+          <tr>
+            <td><strong>4</strong></td>
+            <td>Báo cáo Mentor Duty — Đợt 3</td>
+            <td>12:00 (Trưa) Thứ 5, ngày 01/10</td>
+            <td>Kế hoạch tuần 3 - Giữa tuần</td>
+            <td><span class="badge badge-primary">Tuần 3</span></td>
+          </tr>
+          <tr>
+            <td><strong>5</strong></td>
+            <td>Báo cáo Mentor Duty — Đợt 4</td>
+            <td>12:00 (Trưa) Chủ Nhật, ngày 04/10</td>
+            <td>Kế hoạch tuần 3 - Cuối tuần</td>
+            <td><span class="badge badge-primary">Tuần 3</span></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <!-- Thumbnail ảnh gốc Deadline -->
+    <div class="section-subtitle">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>
+      Hình ảnh bảng hạn nộp Mentor Duty (Nhấp vào ảnh để phóng to)
+    </div>
+    <div class="thumbnail-row">
+      <div class="thumb-card" onclick="openModal('../../assets/images/lich_mentor_duty_tuan2.png', 'Lịch Hạn Nộp Mentor Duty Tuần 2')">
+        <img class="thumb-img" src="../../assets/images/lich_mentor_duty_tuan2.png" alt="Lịch Hạn Nộp Mentor Duty" onerror="this.onerror=null; this.src='../assets/images/lich_mentor_duty_tuan2.png';">
+        <div class="thumb-caption">
+          <span>lich_mentor_duty_tuan2.png</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MODULE 6: DANH SÁCH CHECKPOINT TRONG GUIDELINE WEEK 2 -->
+  <section class="module-card" id="module-checkpoints">
+    <div class="module-header">
+      <div class="module-title-wrap">
+        <div class="module-icon" style="background: rgba(245, 158, 11, 0.12); border-color: rgba(245, 158, 11, 0.25); color: var(--accent-amber);">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 01-2 2H5a2 2 0 01-2-2V5a2 2 0 012-2h11"/></svg>
+        </div>
+        <div>
+          <h2 class="module-title">6. Danh Sách Checkpoint Phải Theo Trong Guideline Week 2</h2>
+          <div class="module-tag">Áp dụng cho VF-50 Face Landmark & HumanPose-17 • Mục 5.2, 7.1, 7.2, 8</div>
+        </div>
+      </div>
+      <div>
+        <span class="badge badge-amber">Interactive Checklist • Lưu realtime</span>
+      </div>
+    </div>
+
+    <!-- Progress tracker -->
+    <div class="checkpoint-progress-wrap">
+      <div>
+        <span style="font-weight: 700; color: #fff; font-size: 14px;">Tiến Độ Tự Kiểm Tra Checkpoint: </span>
+        <span id="progress-text" style="color: var(--accent-emerald); font-weight: 700;">0 / 28 hoàn thành (0%)</span>
+      </div>
+      <div class="progress-bar-bg">
+        <div class="progress-bar-fill" id="progress-bar"></div>
+      </div>
+      <button class="filter-btn" onclick="resetCheckpoints()" style="padding: 5px 12px; font-size: 12px;">Reset tất cả</button>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="checkpoint-filter-tabs">
+      <button class="filter-btn active" onclick="filterCategory('all', this)">Tất cả (28)</button>
+      <button class="filter-btn" onclick="filterCategory('face', this)">VF-50 Face Landmark (14)</button>
+      <button class="filter-btn" onclick="filterCategory('pose', this)">HumanPose-17 (14)</button>
+      <button class="filter-btn" onclick="filterCategory('visual', this)">Mục 5.2 — Visual Checkpoint (9)</button>
+    </div>
+
+    <!-- NHÓM 1: VISUAL CHECKPOINT 5 ẢNH ĐẦU (MỤC 5.2) -->
+    <div class="checkpoint-group" data-cat="visual">
+      <div class="checkpoint-group-title">
+        <span>⚡ 1. Visual Checkpoint — Kiểm tra 5 ảnh đầu trước khi làm hàng loạt (Mục 5.2)</span>
+        <span class="checkpoint-badge">Nếu fail: Dừng & Báo Mentor</span>
+      </div>
+      
+      <!-- Face 5.2 -->
+      <label class="checkpoint-item" data-cat="face visual">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Face 5.2]</strong> Đủ 7 skeleton: <code>longmaytrai</code>, <code>longmayphai</code>, <code>songmui</code>, <code>mattrai</code>, <code>matphai</code>, <code>moingoai</code>, <code>moitrong</code> (không có label Face).</span>
+        <span class="checkpoint-badge">VF-50</span>
+      </label>
+      <label class="checkpoint-item" data-cat="face visual">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Face 5.2]</strong> Toạ độ các điểm nằm trọn trên khuôn mặt, không bị văng ra ngoài khung hình.</span>
+        <span class="checkpoint-badge">VF-50</span>
+      </label>
+      <label class="checkpoint-item" data-cat="face visual">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Face 5.2]</strong> <code>mattrai</code> và <code>longmaytrai</code> nằm ở nửa trái của khung hình theo quy ước nhìn ảnh.</span>
+        <span class="checkpoint-badge">VF-50</span>
+      </label>
+      <label class="checkpoint-item" data-cat="face visual">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Face 5.2]</strong> Mí trên và mí dưới của hai mắt không bị đảo lộn, không bắt chéo thành hình chữ X.</span>
+        <span class="checkpoint-badge">VF-50</span>
+      </label>
+
+      <!-- Pose 5.2 -->
+      <label class="checkpoint-item" data-cat="pose visual">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Pose 5.2]</strong> Có skeleton <code>person</code> với đủ 17 sublabel, được đánh số từ 1 đến 17.</span>
+        <span class="checkpoint-badge">Pose-17</span>
+      </label>
+      <label class="checkpoint-item" data-cat="pose visual">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Pose 5.2]</strong> Số skeleton khớp số người cần gán, mặc định đúng 1 người lái (bỏ qua hành khách).</span>
+        <span class="checkpoint-badge">Pose-17</span>
+      </label>
+      <label class="checkpoint-item" data-cat="pose visual">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Pose 5.2]</strong> Không có skeleton nào bị lệch toàn bộ so với người trong ảnh.</span>
+        <span class="checkpoint-badge">Pose-17</span>
+      </label>
+      <label class="checkpoint-item" data-cat="pose visual">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Pose 5.2]</strong> Nhận diện chùm điểm ở góc trên-trái (0, 0) để kéo về vị trí đúng hoặc đánh Outside.</span>
+        <span class="checkpoint-badge">Pose-17</span>
+      </label>
+      <label class="checkpoint-item" data-cat="pose visual">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Pose 5.2]</strong> Trái/phải chưa bị đảo: các điểm R_* ở phía phải khung hình, L_* ở phía trái khung hình (quy ước VinFast).</span>
+        <span class="checkpoint-badge">Pose-17</span>
+      </label>
+    </div>
+
+    <!-- NHÓM 2: CHECKPOINT TỪNG FRAME (MỤC 7.1) -->
+    <div class="checkpoint-group" data-cat="frame">
+      <div class="checkpoint-group-title">
+        <span>🔍 2. Frame Checkpoint — Kiểm tra từng frame trước khi chuyển tiếp (Mục 7.1)</span>
+        <span class="checkpoint-badge">Bắt buộc 100% frame</span>
+      </div>
+
+      <!-- Face 7.1 -->
+      <label class="checkpoint-item" data-cat="face">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Face 7.1]</strong> Đủ 7 skeleton và 50 điểm landmark, không thiếu sót bất kỳ bộ phận nào.</span>
+        <span class="checkpoint-badge">VF-50</span>
+      </label>
+      <label class="checkpoint-item" data-cat="face">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Face 7.1]</strong> Toạ độ x của các điểm 0 đến 9 (hai lông mày) tăng dần liên tục khi mặt gần chính diện.</span>
+        <span class="checkpoint-badge">VF-50</span>
+      </label>
+      <label class="checkpoint-item" data-cat="face">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Face 7.1]</strong> Hai mắt là vòng kín, không bắt chéo. Mí trên cao hơn hoặc bằng mí dưới ở cả ba cặp đối diện của mỗi mắt.</span>
+        <span class="checkpoint-badge">VF-50</span>
+      </label>
+      <label class="checkpoint-item" data-cat="face">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Face 7.1]</strong> Điểm 13 nằm trên lỗ mũi, chưa chạm chóp mũi; 3 đoạn của <code>songmui</code> chia gần đều.</span>
+        <span class="checkpoint-badge">VF-50</span>
+      </label>
+      <label class="checkpoint-item" data-cat="face">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Face 7.1]</strong> <code>moitrong</code> nằm trọn trong <code>moingoai</code> (kể cả khi miệng đóng vẫn giữ đủ 8 điểm dọc đường khép môi, không xoá).</span>
+        <span class="checkpoint-badge">VF-50</span>
+      </label>
+      <label class="checkpoint-item" data-cat="face">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Face 7.1]</strong> Không có điểm nào nằm trên gọng kính, tóc hoặc nền phía sau xe.</span>
+        <span class="checkpoint-badge">VF-50</span>
+      </label>
+      <label class="checkpoint-item" data-cat="face">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Face 7.1]</strong> 100% điểm đã có trạng thái rõ ràng (Visible, Occluded, Outside). Điểm Occluded có toạ độ ước lượng hợp lý.</span>
+        <span class="checkpoint-badge">VF-50</span>
+      </label>
+
+      <!-- Pose 7.1 -->
+      <label class="checkpoint-item" data-cat="pose">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Pose 7.1]</strong> Đúng 1 skeleton cho người lái; đủ 17 keypoint, mỗi điểm có trạng thái rõ ràng.</span>
+        <span class="checkpoint-badge">Pose-17</span>
+      </label>
+      <label class="checkpoint-item" data-cat="pose">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Pose 7.1]</strong> Không còn điểm nào ở góc (0, 0) hoặc sát góc trên-trái.</span>
+        <span class="checkpoint-badge">Pose-17</span>
+      </label>
+      <label class="checkpoint-item" data-cat="pose">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Pose 7.1]</strong> Mỗi cánh tay và mỗi chân tạo thành chuỗi liền mạch, không bắt chéo đảo lộn khớp.</span>
+        <span class="checkpoint-badge">Pose-17</span>
+      </label>
+      <label class="checkpoint-item" data-cat="pose">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Pose 7.1]</strong> Không có hai điểm khác nhau trùng toạ độ khi cả hai đều Visible.</span>
+        <span class="checkpoint-badge">Pose-17</span>
+      </label>
+      <label class="checkpoint-item" data-cat="pose">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Pose 7.1]</strong> Không có điểm nào rơi vào ghế, vô-lăng, cần số hay bảng táp-lô.</span>
+        <span class="checkpoint-badge">Pose-17</span>
+      </label>
+    </div>
+
+    <!-- NHÓM 3: CHECKPOINT CẢ JOB & SAI SỐ (MỤC 7.2 & 8) -->
+    <div class="checkpoint-group" data-cat="job">
+      <div class="checkpoint-group-title">
+        <span>📦 3. Job Checkpoint & Sai Số Cho Phép (Mục 7.2 & 8)</span>
+        <span class="checkpoint-badge">Nghiệm thu toàn Task</span>
+      </div>
+
+      <label class="checkpoint-item" data-cat="face">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Face 7.2]</strong> Đã làm đủ 70 ảnh (50 pre-label + 20 tự dựng). Đã đối chiếu schema phần B: đúng 7 label, 50 sublabel.</span>
+        <span class="checkpoint-badge">VF-50</span>
+      </label>
+      <label class="checkpoint-item" data-cat="face">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Face 7.2]</strong> Đã rà soát ít nhất 10 frame khó (nghiêng mạnh, miệng mở, nheo mắt, thiếu sáng) và lướt toàn job để đảm bảo không nhảy điểm >15 px giữa 2 frame liền kề.</span>
+        <span class="checkpoint-badge">VF-50</span>
+      </label>
+      <label class="checkpoint-item" data-cat="face">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Face 8.0]</strong> Đảm bảo ngưỡng sai số IOD (trung vị 96 px): 12 điểm neo sai số ≤ 3% IOD (~3 px); các điểm contour ≤ 5% IOD (~5 px).</span>
+        <span class="checkpoint-badge">VF-50</span>
+      </label>
+
+      <label class="checkpoint-item" data-cat="pose">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Pose 7.2]</strong> Đã làm đủ 60 ảnh (40 pre-label + 20 tự dựng). Schema phần B khớp 1 label person và 17 sublabel số 1–17.</span>
+        <span class="checkpoint-badge">Pose-17</span>
+      </label>
+      <label class="checkpoint-item" data-cat="pose">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Pose 7.2]</strong> Đã rà soát ít nhất 10 frame khó (chi dưới khuất, người vặn mình, thiếu sáng) và mở Issue cho mọi trường hợp chưa chắc chắn.</span>
+        <span class="checkpoint-badge">Pose-17</span>
+      </label>
+      <label class="checkpoint-item" data-cat="pose">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Pose 8.0]</strong> Đảm bảo ngưỡng sai số hình học: Khớp lớn (vai, hông, gối) ≤ 8 px; Khớp xa (khuỷu, cổ tay) ≤ 10 px; Khớp nhỏ/bị che (mắt, tai, cổ chân) ≤ 12 px.</span>
+        <span class="checkpoint-badge">Pose-17</span>
+      </label>
+      <label class="checkpoint-item" data-cat="face pose">
+        <input type="checkbox" onchange="toggleCheck(this)">
+        <span class="checkpoint-text"><strong>[Chung]</strong> Mọi trường hợp nghi ngờ/không chắc chắn đã được mở Issue trên CVAT để thảo luận & xin ý kiến Mentor, không tự đặt luật mới.</span>
+        <span class="checkpoint-badge">Quy trình</span>
+      </label>
+    </div>
+
+    <!-- Sơ đồ Guideline đính kèm -->
+    <div class="section-subtitle">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 016.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 014 19.5v-15A2.5 2.5 0 016.5 2z"/></svg>
+      Sơ đồ định danh Point ID & Keypoints từ Guideline (Nhấp vào để phóng to)
+    </div>
+    <div class="thumbnail-row">
+      <div class="thumb-card" onclick="openModal('../../assets/images/Week2_Guideline_Face_Landmark_VF50_so_do_point_id.png', 'Sơ đồ Point ID — VF-50 Face Landmark (0 - 49)')">
+        <img class="thumb-img" src="../../assets/images/Week2_Guideline_Face_Landmark_VF50_so_do_point_id.png" alt="Sơ đồ Face Landmark" onerror="this.onerror=null; this.src='../assets/images/Week2_Guideline_Face_Landmark_VF50_so_do_point_id.png';">
+        <div class="thumb-caption">
+          <span>VF-50 Sơ đồ Point ID (0–49)</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+      <div class="thumb-card" onclick="openModal('../../assets/images/Week2_Guideline_Face_Landmark_VF50_tinh_huong_dac_biet.png', 'Minh hoạ tình huống đặc biệt — VF-50 Face Landmark')">
+        <img class="thumb-img" src="../../assets/images/Week2_Guideline_Face_Landmark_VF50_tinh_huong_dac_biet.png" alt="Face Tình huống đặc biệt" onerror="this.onerror=null; this.src='../assets/images/Week2_Guideline_Face_Landmark_VF50_tinh_huong_dac_biet.png';">
+        <div class="thumb-caption">
+          <span>VF-50 Tình huống đặc biệt</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+      <div class="thumb-card" onclick="openModal('../../assets/images/Week2_Guideline_HumanPose17_so_do_keypoint.png', 'Sơ đồ Keypoint — HumanPose-17 (Quy ước VinFast Left/Right)')">
+        <img class="thumb-img" src="../../assets/images/Week2_Guideline_HumanPose17_so_do_keypoint.png" alt="Sơ đồ Pose Keypoint" onerror="this.onerror=null; this.src='../assets/images/Week2_Guideline_HumanPose17_so_do_keypoint.png';">
+        <div class="thumb-caption">
+          <span>HumanPose-17 Sơ đồ Keypoint</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+      <div class="thumb-card" onclick="openModal('../../assets/images/Week2_Guideline_HumanPose17_tinh_huong_dac_biet.png', 'Minh hoạ tình huống đặc biệt — HumanPose-17')">
+        <img class="thumb-img" src="../../assets/images/Week2_Guideline_HumanPose17_tinh_huong_dac_biet.png" alt="Pose Tình huống đặc biệt" onerror="this.onerror=null; this.src='../assets/images/Week2_Guideline_HumanPose17_tinh_huong_dac_biet.png';">
+        <div class="thumb-caption">
+          <span>HumanPose-17 Tình huống đặc biệt</span>
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7"/></svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>AI20K Build Phase — Cohort 4A • Team T006 Anyone's Legend</p>
+    <p style="margin-top: 4px; font-size: 12px; color: var(--text-subtle);">Báo cáo trực quan hóa tự động dựa trên tài nguyên nội bộ thư mục <code>thu_thach_tuan2/</code> • Không phát sinh dữ liệu ngoài</p>
+  </footer>
+
+</div>
+
+<!-- LIGHTBOX MODAL -->
+<div class="modal-backdrop" id="imageModal" onclick="closeModal(event)">
+  <div class="modal-content" onclick="event.stopPropagation()">
+    <div class="modal-header">
+      <span class="modal-title" id="modalTitle">Xem hình ảnh</span>
+      <button class="modal-close-btn" onclick="closeModal()">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </button>
+    </div>
+    <img class="modal-img" id="modalImg" src="" alt="Enlarged preview">
+  </div>
+</div>
+
+<script>
+  // Checkpoint State Management (Realtime with localStorage fallback)
+  const STORAGE_KEY = 't006_week2_checkpoints';
+
+  function updateProgress() {
+    const allBoxes = document.querySelectorAll('.checkpoint-item input[type="checkbox"]');
+    const checkedBoxes = document.querySelectorAll('.checkpoint-item input[type="checkbox"]:checked');
+    const total = allBoxes.length;
+    const checked = checkedBoxes.length;
+    const pct = total > 0 ? Math.round((checked / total) * 100) : 0;
+
+    const bar = document.getElementById('progress-bar');
+    const txt = document.getElementById('progress-text');
+    if (bar) bar.style.width = pct + '%';
+    if (txt) txt.textContent = `${checked} / ${total} hoàn thành (${pct}%)`;
+
+    // Save state
+    const states = [];
+    allBoxes.forEach(b => states.push(b.checked));
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(states));
+    } catch(e) {}
+  }
+
+  function toggleCheck(box) {
+    const parent = box.closest('.checkpoint-item');
+    if (box.checked) {
+      parent.classList.add('checked');
+    } else {
+      parent.classList.remove('checked');
+    }
+    updateProgress();
+  }
+
+  function loadCheckpoints() {
+    try {
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved) {
+        const states = JSON.parse(saved);
+        const allBoxes = document.querySelectorAll('.checkpoint-item input[type="checkbox"]');
+        allBoxes.forEach((b, idx) => {
+          if (states[idx]) {
+            b.checked = true;
+            b.closest('.checkpoint-item').classList.add('checked');
+          }
+        });
+      }
+    } catch(e) {}
+    updateProgress();
+  }
+
+  function resetCheckpoints() {
+    if (confirm('Bạn có chắc muốn đặt lại toàn bộ checklist?')) {
+      const allBoxes = document.querySelectorAll('.checkpoint-item input[type="checkbox"]');
+      allBoxes.forEach(b => {
+        b.checked = false;
+        b.closest('.checkpoint-item').classList.remove('checked');
+      });
+      try {
+        localStorage.removeItem(STORAGE_KEY);
+      } catch(e) {}
+      updateProgress();
+    }
+  }
+
+  // Filter Categories
+  function filterCategory(cat, btn) {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+
+    const items = document.querySelectorAll('.checkpoint-item');
+    const groups = document.querySelectorAll('.checkpoint-group');
+
+    items.forEach(item => {
+      const itemCats = item.getAttribute('data-cat') || '';
+      if (cat === 'all' || itemCats.includes(cat)) {
+        item.style.display = 'flex';
+      } else {
+        item.style.display = 'none';
+      }
+    });
+
+    // Check visible groups
+    groups.forEach(g => {
+      const visibleChildren = g.querySelectorAll('.checkpoint-item[style*="display: flex"]');
+      const hiddenChildren = g.querySelectorAll('.checkpoint-item[style*="display: none"]');
+      const allChildren = g.querySelectorAll('.checkpoint-item');
+      if (cat !== 'all' && visibleChildren.length === 0 && hiddenChildren.length === allChildren.length) {
+        g.style.display = 'none';
+      } else {
+        g.style.display = 'block';
+      }
+    });
+  }
+
+  // Lightbox Modal
+  function openModal(src, title) {
+    const modal = document.getElementById('imageModal');
+    const img = document.getElementById('modalImg');
+    const t = document.getElementById('modalTitle');
+    img.src = src;
+    t.textContent = title || 'Xem hình ảnh';
+    modal.classList.add('open');
+  }
+
+  function closeModal(e) {
+    const modal = document.getElementById('imageModal');
+    modal.classList.remove('open');
+  }
+
+  // Close on Escape key
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeModal();
+  });
+
+  // Init on DOM ready
+  document.addEventListener('DOMContentLoaded', loadCheckpoints);
+</script>
+
+</body>
+</html>
